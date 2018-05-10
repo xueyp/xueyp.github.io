@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "机器学习－算法分类汇总"
+title:  "机器学习－基本概念和流程"
 categories: Python
 tags: Python ML 机器学习 
 author: xueyp

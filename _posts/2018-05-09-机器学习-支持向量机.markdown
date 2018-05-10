@@ -485,14 +485,17 @@ $$
 - 非线性分类的问题：映射到高维度、使用核函数。
 
 2 优点
-+ 对于线性不可分的情况可以通过核函数，映射到高维特征空间实现线性可分。
-+ SVM学习问题可以表示为凸优化问题，因此可以利用已知的有效算法发现目标函数的全局最小值。而其他分类方法（如基于规则的分类器和人工神经网络）都采用一种基于贪心学习的策略来搜索假设空间，这种方法一般只能获得局部最优解。
-+ 小集群分类效果好。
++ 对于线性不可分的情况可以通过核函数，映射到高维特征空间实现线性可分
++ SVM学习问题可以表示为凸优化问题，因此可以利用已知的有效算法发现目标函数的全局最小值。而其他分类方法（如基于规则的分类器和人工神经网络）都采用一种基于贪心学习的策略来搜索假设空间，这种方法一般只能获得局部最优解
++ 小集群分类效果好
++ 使用训练样本的子集构建决策函数（这些样本点被称之为支持向量），因此它的内存效率很高
++ SVM是一个全能型的机器学习算法：可以指定不同的核函数的决策函数，提供了常见的核函数，但是也可以指定自定义的核函数
 
 3 缺点
 - SVM仅仅只限于一个二类分类问题，对于多分类问题解决效果并不好。
 - 仅局限于小集群样本，对于观测样本太多时，效率较低。
 - 寻求合适的核函数相对困难。
+- SVM不直接提供概率估计，这些都是使用昂贵的5折交叉验证计算得到的
 
 
 # 2.支持向量机和逻辑回归的联系与区别
@@ -534,6 +537,97 @@ $$
 scikit-learn示例
 ============
 
-待补
+Scikit-learn中的SVM支持稠密和稀疏两种向量作为输入。但是使用SVM为稀疏数据做预测，他一定是符合这样的数据（scipy.sparse）。为了最佳的性能，使用numpy.ndarray作为稠密向量以及scipy.sparse.csr_matrix 作为稀疏向量，并且dtype=float64。
+
+SVC，NuSVC和LinearSVC是三种在数据集上进行多分类的分类器。SVC和NuSVC是相类似的方法，但是它们接受不同的参数并且它们的数学公式也不一样。
+
+作为分类器，SVC, NuSVC and LinearSVC 都接收两个数组作为输入：训练样本 X [n_samples, n_features], 结果类标 y [n_samples] （可以是字符串或者是整数）。
+
+SVM决策函数依赖于训练数据的某个子集：称之为支持向量。这些支持向量的属性可以从一下三个成员中获取： support_vectors_, support_ 以及 n_support。
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn import svm, datasets
+
+#画网格函数
+def make_meshgrid(x, y, h=.02):
+    """Create a mesh of points to plot in
+
+    Parameters
+    ----------
+    x: data to base x-axis meshgrid on
+    y: data to base y-axis meshgrid on
+    h: stepsize for meshgrid, optional
+
+    Returns
+    -------
+    xx, yy : ndarray
+    """
+    x_min, x_max = x.min() - 1, x.max() + 1
+    y_min, y_max = y.min() - 1, y.max() + 1
+    xx, yy = np.meshgrid(np.arange(x_min, x_max, h),
+                         np.arange(y_min, y_max, h))
+    return xx, yy
+
+#画边界的函数
+def plot_contours(ax, clf, xx, yy, **params):
+    """Plot the decision boundaries for a classifier.
+
+    Parameters
+    ----------
+    ax: matplotlib axes object
+    clf: a classifier
+    xx: meshgrid ndarray
+    yy: meshgrid ndarray
+    params: dictionary of params to pass to contourf, optional
+    """
+    Z = clf.predict(np.c_[xx.ravel(), yy.ravel()])
+    Z = Z.reshape(xx.shape)
+    out = ax.contourf(xx, yy, Z, **params)
+    return out
+
+
+iris = datasets.load_iris()
+X = iris.data[:, :2]
+y = iris.target
+
+# 创建svm训练模型集，分别采用不同的核函数
+C = 1.0  # SVM regularization parameter
+models = (svm.SVC(kernel='linear', C=C),
+          svm.LinearSVC(C=C),
+          svm.SVC(kernel='rbf', gamma=0.7, C=C),
+          svm.SVC(kernel='poly', degree=3, C=C))
+models = (clf.fit(X, y) for clf in models)
+
+# title for the plots
+titles = ('SVC with linear kernel',
+          'LinearSVC (linear kernel)',
+          'SVC with RBF kernel',
+          'SVC with polynomial (degree 3) kernel')
+
+# Set-up 2x2 grid for plotting.
+fig, sub = plt.subplots(2, 2)
+plt.subplots_adjust(wspace=0.4, hspace=0.4)
+
+X0, X1 = X[:, 0], X[:, 1]
+xx, yy = make_meshgrid(X0, X1)
+
+for clf, title, ax in zip(models, titles, sub.flatten()):
+    plot_contours(ax, clf, xx, yy,
+                  cmap=plt.cm.coolwarm, alpha=0.8)
+    ax.scatter(X0, X1, c=y, cmap=plt.cm.coolwarm, s=20, edgecolors='k')
+    ax.set_xlim(xx.min(), xx.max())
+    ax.set_ylim(yy.min(), yy.max())
+    ax.set_xlabel('Sepal length')
+    ax.set_ylabel('Sepal width')
+    ax.set_xticks(())
+    ax.set_yticks(())
+    ax.set_title(title)
+
+plt.show()
+```
+
+![png]({{"/assets/images/my/20180509_20.png"| absolute_url }})
 　　
 版权声明：本文为博主原创文章，转载请注明出处。 [旭日酒馆](https://xueyp.github.io/)
