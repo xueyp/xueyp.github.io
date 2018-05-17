@@ -1,0 +1,586 @@
+---
+layout: post
+title:  "机器学习－PyTorch基础"
+categories: Python
+tags: Python ML 机器学习 PyTorch
+author: xueyp
+description: PyTorch基础和神经网络实现示例
+---
+
+PyTorch
+============
+- Pytorch 真的python风格的框架，而不是用python在写其他语言风格的代码。
+- Pytorch的Tutorial和doc更友好。
+- 动态结构对NLP，RNN友好。
+- Pytorch更便于调试，符合研究人员的使用习惯。
+
+相对于tensorflow,caffe来说，PyTorch更适合用于研究算法和学习深度学习使用。
+
+代码示例
+============
+
+```python
+from __future__ import print_function
+import torch
+```
+
+
+```python
+#张量（Tensors)
+#张量类似于numpy的ndarrays，不同之处在于张量可以使用GPU来加快计算。
+x = torch.Tensor(5, 3)
+print(x)
+```
+
+    
+    1.00000e-21 *
+      0.0000  0.0000  0.0000
+      0.0000  0.0000  0.0000
+      0.0000     nan  1.3904
+      0.0000  0.0000  0.0000
+      0.0000  0.0000  0.0000
+    [torch.FloatTensor of size 5x3]
+    
+
+
+
+```python
+x = torch.rand(5, 3)
+print(x)
+```
+
+    
+     0.3500  0.6440  0.0416
+     0.7911  0.8923  0.6756
+     0.5815  0.9901  0.9439
+     0.0507  0.5080  0.6267
+     0.0622  0.9324  0.8219
+    [torch.FloatTensor of size 5x3]
+    
+
+
+
+```python
+print(x.size())
+```
+
+    torch.Size([5, 3])
+
+
+
+```python
+y = torch.rand(5, 3)
+print(x + y)
+```
+
+    
+     0.8534  1.1394  0.4774
+     1.4424  1.2114  0.8814
+     1.4949  1.9266  1.3296
+     0.1438  0.8326  1.0657
+     1.0336  1.6894  1.1986
+    [torch.FloatTensor of size 5x3]
+    
+
+
+
+```python
+result = torch.Tensor(5, 3)
+torch.add(x, y, out=result)
+print(result)
+```
+
+    
+     0.8534  1.1394  0.4774
+     1.4424  1.2114  0.8814
+     1.4949  1.9266  1.3296
+     0.1438  0.8326  1.0657
+     1.0336  1.6894  1.1986
+    [torch.FloatTensor of size 5x3]
+    
+
+
+
+```python
+# 把x加到y上,任何在原地(in-place)改变张量的操作都有一个’_’后缀。例如x.copy_(y), x.t_()操作将改变x.
+y.add_(x)
+print(y)
+```
+
+    
+     0.8534  1.1394  0.4774
+     1.4424  1.2114  0.8814
+     1.4949  1.9266  1.3296
+     0.1438  0.8326  1.0657
+     1.0336  1.6894  1.1986
+    [torch.FloatTensor of size 5x3]
+    
+
+
+
+```python
+#numpy类似的索引
+print(x[:, 1])
+```
+
+    
+     0.6440
+     0.8923
+     0.9901
+     0.5080
+     0.9324
+    [torch.FloatTensor of size 5]
+    
+
+
+
+```python
+#把Torch张量转换为numpy数组
+a = torch.ones(5)
+print(a)
+```
+
+    
+     1
+     1
+     1
+     1
+     1
+    [torch.FloatTensor of size 5]
+    
+
+
+
+```python
+#所有在CPU上的张量，除了字符张量，都支持在numpy之间转换。
+b = a.numpy()
+print(b)
+print(type(b))
+```
+
+    [1. 1. 1. 1. 1.]
+    <class 'numpy.ndarray'>
+
+
+
+```python
+# 使用.cuda函数可以将张量移动到GPU上。
+if torch.cuda.is_available():
+    x = x.cuda()
+    y = y.cuda()
+    x + y
+```
+
+
+```python
+from torch.autograd import Variable
+x = Variable(torch.ones(2, 2), requires_grad=True)
+print(x)
+```
+
+    Variable containing:
+     1  1
+     1  1
+    [torch.FloatTensor of size 2x2]
+    
+
+
+
+```python
+y = x + 2
+print(y)
+```
+
+    Variable containing:
+     3  3
+     3  3
+    [torch.FloatTensor of size 2x2]
+    
+
+
+
+```python
+#自动求导autograd
+#变量(Variable)和函数(Function)是相互联系的,并形成一个非循环图来构建一个完整的计算过程.每个变量有一个.grad_fn属性,它指向创建该变量的一个Function,用户自己创建的变量除外,它的grad_fn属性为None.
+print(y.grad_fn)
+print(x.grad_fn)
+```
+
+    <AddBackward0 object at 0x7fa0fa300710>
+    None
+
+
+
+```python
+z = y * y * 3
+out = z.mean()
+
+print(z, out)
+```
+
+    Variable containing:
+     27  27
+     27  27
+    [torch.FloatTensor of size 2x2]
+     Variable containing:
+     27
+    [torch.FloatTensor of size 1]
+    
+
+
+
+```python
+#反向传播,out.backward()相当于执行out.backward(torch.Tensor([1.0]))
+out.backward()
+```
+
+
+```python
+#输出out对x的梯度d(out)/dx
+print(x.grad)
+```
+
+    Variable containing:
+     4.5000  4.5000
+     4.5000  4.5000
+    [torch.FloatTensor of size 2x2]
+    
+
+
+
+```python
+x = torch.randn(3)
+x = Variable(x, requires_grad=True)
+
+y = x * 2
+while y.data.norm() < 1000:
+    y = y * 2
+
+print(y)
+```
+
+    Variable containing:
+     -621.9308
+     1760.5208
+     -573.2255
+    [torch.FloatTensor of size 3]
+    
+
+
+
+```python
+"""
+神经网络的典型训练过程如下:
+1. 定义神经网络模型,它有一些可学习的参数(或者权重);
+2. 在数据集上迭代;
+3. 通过神经网络处理输入;
+4. 计算损失(输出结果和正确值的差距大小)
+5. 将梯度反向传播会网络的参数;
+6. 更新网络的参数,主要使用如下简单的更新原则:
+
+weight = weight - learning_rate * gradient """
+
+import torch
+from torch.autograd import Variable
+import torch.nn as nn
+import torch.nn.functional as F
+
+class Net(nn.Module):
+    def __init__(self):
+        super(Net, self).__init__()
+        # 1 input image channel, 6 output channels, 5*5 square convolution
+        # kernel
+
+        self.conv1 = nn.Conv2d(1, 6, 5)
+        self.conv2 = nn.Conv2d(6, 16, 5)
+        # an affine operation: y = Wx + b
+        self.fc1 = nn.Linear(16 * 5 * 5, 120)
+        self.fc2 = nn.Linear(120, 84)
+        self.fc3 = nn.Linear(84, 10)
+#只需定义forward函数,backward函数(计算梯度)在使用autograd时自动为你创建.你可以在forward函数中使用Tensor的任何操作
+    def forward(self, x):
+        # max pooling over a (2, 2) window
+        x = F.max_pool2d(F.relu(self.conv1(x)), (2, 2))
+        # If size is a square you can only specify a single number
+        x = F.max_pool2d(F.relu(self.conv2(x)), 2)
+        x = x.view(-1, self.num_flat_features(x))
+        x = F.relu(self.fc1(x))
+        x = F.relu(self.fc2(x))
+        x = self.fc3(x)
+        return x
+
+    def num_flat_features(self, x):
+        size = x.size()[1:] # all dimensions except the batch dimension
+        num_features = 1
+        for s in size:
+            num_features *= s
+        return num_features
+net = Net()
+print(net)
+```
+
+    Net(
+      (conv1): Conv2d(1, 6, kernel_size=(5, 5), stride=(1, 1))
+      (conv2): Conv2d(6, 16, kernel_size=(5, 5), stride=(1, 1))
+      (fc1): Linear(in_features=400, out_features=120, bias=True)
+      (fc2): Linear(in_features=120, out_features=84, bias=True)
+      (fc3): Linear(in_features=84, out_features=10, bias=True)
+    )
+
+
+
+```python
+#net.parameters()返回模型需要学习的参数
+params = list(net.parameters())
+print(len(params))
+for param in params:
+    print(param.size())
+```
+
+    10
+    torch.Size([6, 1, 5, 5])
+    torch.Size([6])
+    torch.Size([16, 6, 5, 5])
+    torch.Size([16])
+    torch.Size([120, 400])
+    torch.Size([120])
+    torch.Size([84, 120])
+    torch.Size([84])
+    torch.Size([10, 84])
+    torch.Size([10])
+
+
+
+```python
+#一个损失函数接受一对(output, target)作为输入(output为网络的输出,target为实际值),计算一个值来估计网络的输出和目标值相差多少.
+input = Variable(torch.randn(1, 1, 32, 32))
+out = net(input)
+print(out)
+```
+
+    Variable containing:
+    -0.1199  0.0573 -0.1254 -0.0345 -0.1352  0.1309  0.0086 -0.1051 -0.0724 -0.0350
+    [torch.FloatTensor of size 1x10]
+    
+
+
+
+```python
+#将所有参数的梯度缓存清零,然后进行随机梯度的的反向传播.
+net.zero_grad()
+out.backward(torch.randn(1, 10))
+```
+
+
+```python
+target = Variable(torch.arange(1, 11))  # a dummy target, for example
+criterion = nn.MSELoss()
+
+loss = criterion(out, target)
+print(loss)
+```
+
+    Variable containing:
+     38.9471
+    [torch.FloatTensor of size 1]
+    
+
+
+
+```python
+print(loss.grad_fn)  # MSELoss
+print(loss.grad_fn.next_functions[0][0])  # Linear
+print(loss.grad_fn.next_functions[0][0].next_functions[0][0])  # ReLU
+```
+
+    <MseLossBackward object at 0x7fa0f9ac0550>
+    <AddmmBackward object at 0x7fa0f8228160>
+    <ExpandBackward object at 0x7fa0f8228240>
+
+
+
+```python
+#更新权重
+import torch.optim as optim
+
+# create your optimizer
+optimizer = optim.SGD(net.parameters(), lr=0.01)
+
+#in your trainning loop:
+optimizer.zero_grad()  # zero the gradient buffers
+output = net(input)
+loss = criterion(output, target)
+loss.backward()
+optimizer.step() # does the update
+```
+
+
+```python
+#神经网络示例
+
+import torch
+from torch import nn, optim
+
+from torch.autograd import Variable
+from torch.utils.data import DataLoader
+from torchvision import transforms
+from torchvision import datasets
+
+batch_size = 32
+learning_rate = 1e-2
+num_epoches = 5
+
+# MNIST 手写数字训练集
+train_dataset = datasets.MNIST(
+    root='./data', train=True, transform=transforms.ToTensor(), download=True)
+
+test_dataset = datasets.MNIST(
+    root='./data', train=False, transform=transforms.ToTensor())
+
+train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
+test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False)
+
+
+# 定义有两个隐藏层的前馈神经网络
+class Neuralnetwork(nn.Module):
+    def __init__(self, in_dim, n_hidden_1, n_hidden_2, out_dim):
+        super(Neuralnetwork, self).__init__()
+        self.layer1 = nn.Linear(in_dim, n_hidden_1)
+        self.layer2 = nn.Linear(n_hidden_1, n_hidden_2)
+        self.layer3 = nn.Linear(n_hidden_2, out_dim)
+
+    def forward(self, x):
+        x = self.layer1(x)
+        x = self.layer2(x)
+        x = self.layer3(x)
+        return x
+
+
+model = Neuralnetwork(28 * 28, 300, 100, 10)
+if torch.cuda.is_available():
+    model = model.cuda()
+
+criterion = nn.CrossEntropyLoss()
+optimizer = optim.SGD(model.parameters(), lr=learning_rate)
+
+for epoch in range(num_epoches):
+    print('epoch {}'.format(epoch + 1))
+    print('*' * 10)
+    running_loss = 0.0
+    running_acc = 0.0
+    for i, data in enumerate(train_loader, 1):
+        img, label = data
+        img = img.view(img.size(0), -1)
+        if torch.cuda.is_available():
+            img = Variable(img).cuda()
+            label = Variable(label).cuda()
+        else:
+            img = Variable(img)
+            label = Variable(label)
+        # 向前传播
+        out = model(img)
+        loss = criterion(out, label)
+        running_loss += loss.data[0] * label.size(0)
+        _, pred = torch.max(out, 1)
+        num_correct = (pred == label).sum()
+        running_acc += num_correct.data[0]
+        # 向后传播
+        optimizer.zero_grad()
+        loss.backward()
+        optimizer.step()
+
+        if i % 300 == 0:
+            print('[{}/{}] Loss: {:.6f}, Acc: {:.6f}'.format(
+                epoch + 1, num_epoches, running_loss / (batch_size * i),
+                running_acc / (batch_size * i)))
+    print('Finish {} epoch, Loss: {:.6f}, Acc: {:.6f}'.format(
+        epoch + 1, running_loss / (len(train_dataset)), running_acc / (len(
+            train_dataset))))
+    model.eval()
+    eval_loss = 0.
+    eval_acc = 0.
+    #测试准确度
+    for data in test_loader:
+        img, label = data
+        img = img.view(img.size(0), -1)
+        if torch.cuda.is_available():
+            img = Variable(img, volatile=True).cuda()
+            label = Variable(label, volatile=True).cuda()
+        else:
+            img = Variable(img, volatile=True)
+            label = Variable(label, volatile=True)
+        out = model(img)
+        loss = criterion(out, label)
+        eval_loss += loss.data[0] * label.size(0)
+        _, pred = torch.max(out, 1)
+        num_correct = (pred == label).sum()
+        eval_acc += num_correct.data[0]
+    print('Test Loss: {:.6f}, Acc: {:.6f}'.format(eval_loss / (len(
+        test_dataset)), eval_acc / (len(test_dataset))))
+    print()
+
+# 保存模型
+torch.save(model.state_dict(), './neural_network.pth')
+
+```
+
+    epoch 1
+    **********
+    [1/5] Loss: 1.979078, Acc: 0.575208
+    [1/5] Loss: 1.522938, Acc: 0.669792
+    [1/5] Loss: 1.234902, Acc: 0.724028
+    [1/5] Loss: 1.057250, Acc: 0.758333
+    [1/5] Loss: 0.934288, Acc: 0.782396
+    [1/5] Loss: 0.849782, Acc: 0.798906
+    Finish 1 epoch, Loss: 0.830498, Acc: 0.802717
+    Test Loss: 0.380436, Acc: 0.891900
+    
+    epoch 2
+    **********
+    [2/5] Loss: 0.390259, Acc: 0.887604
+    [2/5] Loss: 0.382902, Acc: 0.892031
+    [2/5] Loss: 0.379776, Acc: 0.892951
+    [2/5] Loss: 0.374602, Acc: 0.894245
+    [2/5] Loss: 0.369959, Acc: 0.894979
+    [2/5] Loss: 0.361477, Acc: 0.897691
+    Finish 2 epoch, Loss: 0.360649, Acc: 0.897817
+    Test Loss: 0.318385, Acc: 0.907200
+    
+    epoch 3
+    **********
+    [3/5] Loss: 0.335388, Acc: 0.907813
+    [3/5] Loss: 0.332117, Acc: 0.906354
+    [3/5] Loss: 0.328162, Acc: 0.907222
+    [3/5] Loss: 0.325127, Acc: 0.907943
+    [3/5] Loss: 0.324431, Acc: 0.907937
+    [3/5] Loss: 0.321871, Acc: 0.908490
+    Finish 3 epoch, Loss: 0.322517, Acc: 0.908300
+    Test Loss: 0.300236, Acc: 0.913500
+    
+    epoch 4
+    **********
+    [4/5] Loss: 0.304570, Acc: 0.913229
+    [4/5] Loss: 0.301410, Acc: 0.914010
+    [4/5] Loss: 0.305969, Acc: 0.911979
+    [4/5] Loss: 0.305297, Acc: 0.912370
+    [4/5] Loss: 0.306589, Acc: 0.912208
+    [4/5] Loss: 0.305735, Acc: 0.912778
+    Finish 4 epoch, Loss: 0.306012, Acc: 0.912817
+    Test Loss: 0.290204, Acc: 0.918800
+    
+    epoch 5
+    **********
+    [5/5] Loss: 0.295045, Acc: 0.917708
+    [5/5] Loss: 0.298658, Acc: 0.915365
+    [5/5] Loss: 0.298322, Acc: 0.915069
+    [5/5] Loss: 0.294236, Acc: 0.916979
+    [5/5] Loss: 0.295296, Acc: 0.917125
+    [5/5] Loss: 0.296174, Acc: 0.916806
+    Finish 5 epoch, Loss: 0.295844, Acc: 0.916900
+    Test Loss: 0.286714, Acc: 0.918400
+    
+
+
+
+　　
+版权声明：本文为博主原创文章，转载请注明出处。 [旭日酒馆](https://xueyp.github.io/)
