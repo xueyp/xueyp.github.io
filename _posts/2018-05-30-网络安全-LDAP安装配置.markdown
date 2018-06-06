@@ -64,6 +64,7 @@ LDAP
 
 1 安装OpenLDAP
 
+　　首先配置/etc/hostname为域名，例如 privis.com
 ```
 # yum install -y openldap openldap-clients openldap-servers migrationtools  
 cp /usr/share/openldap-servers/DB_CONFIG.example /var/lib/ldap/DB_CONFIG  
@@ -332,8 +333,17 @@ Creating directory '/home/cent'.
 
 - 查询LDAP信息
 
+　　首先，测试我们与ldapwhoami的LDAP连接，该连接应该返回我们连接的用户名：
 ```
-$ ldapsearch -x -b "dc=privis,dc=com" -H ldap://172.17.0.6
+ldapwhoami -H ldap:// -x
+返回结果：
+anonymous
+```
+
+　　anonymous是我们anonymous的结果，因为我们运行ldapwhoami而不登录到LDAP服务器。 这意味着服务器正在运行并应答查询。 接下来，我们将设置一个Web界面来管理LDAP数据。
+
+```
+$ ldapsearch -x -b "dc=privis,dc=com" -H ldap://192.168.21.18
 # extended LDIF
 #
 # LDAPv3
@@ -472,7 +482,9 @@ gecos: ldapuser
 
 [openldap IBM教程](https://www.privis.com/developerworks/cn/linux/l-openldap/)
 [openldap 官方文档](http://www.openldap.org/doc/admin24/)
+[Ubuntu openLDAP指南](https://help.ubuntu.com/lts/serverguide/openldap-server.html)
 
+若为Ubuntu安装，在配置/etc/hostname为域名，例如 privis.com之后，在dpkg-reconfigure slapd 过程中，dns服务器也要输入privis.com。
 
 
 版权声明：本文为博主原创文章，转载请注明出处。 [旭日酒馆](https://xueyp.github.io/)
