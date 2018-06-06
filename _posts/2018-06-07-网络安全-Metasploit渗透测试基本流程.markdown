@@ -10,7 +10,7 @@ description: OpenVAS和Metasploit的基本使用方法.
 概念
 ============
 
-- OpenVAS
+- **OpenVAS**
 
 　　漏洞扫描器是用来找出指定系统或应用中安全漏洞的自动化工具。漏洞扫描器通常通过获取目标系统的操作系统指纹信息来判断其类型与版本，以及上面所运行的各种服务，一旦以及获取目标系统的操作系统与服务类型，你就可以使用漏洞扫描器来执行一些特定的检查，来确定那些安全漏洞。当然，这些检查历程的质量取决于他们的开发者，而且与任何完全自动化的解决方案一样，他们在很多时候回漏掉或错误标识系统上的安全漏洞。
 
@@ -18,18 +18,20 @@ description: OpenVAS和Metasploit的基本使用方法.
 
 [ArchLinux中OpenVAS安装指南](https://wiki.archlinux.org/index.php/OpenVAS)
 
-- Metasploit
+- **Metasploit**
 
 　　Metasploit是一款开源的安全漏洞检测工具，可以帮助安全和IT专业人士识别安全性问题，验证漏洞的缓解措施，并管理专家驱动的安全性进行评估，提供真正的安全风险情报。这些功能包括智能开发，代码审计，Web应用程序扫描，社会工程。团队合作，在Metasploit和综合报告提出了他们的发现。
 
 　　Metasploit系统架构如下图：
 ![png]({{"/assets/images/my/20180607_01.png"| absolute_url }})
 　　
-虚拟机运行kali比较慢的话，可以在实体机上安装。[ArchLinux中Metasploit安装指南](https://wiki.archlinux.org/index.php/Metasploit_Framework)
+虚拟机运行kali比较慢的话，可以在实体机上安装。
+
+[ArchLinux中Metasploit安装指南](https://wiki.archlinux.org/index.php/Metasploit_Framework)
 
 
 
-- Metasploit术语
+- **Metasploit术语**
 
 **Exploit（渗透攻击）**
 
@@ -51,7 +53,7 @@ description: OpenVAS和Metasploit的基本使用方法.
 
 　　监听器是Metasploit中用来等待接入网络连接主机的组件，举例来说，在目标系统主机被渗透攻击之后，他可能会通过互联网回连到攻击主机上，而监听器组件在攻击主机上等待被渗透攻击的系统来连接，并负责处理这些网络连接。
 
-- 用户接口
+- **用户接口**
  
 **Msfconsole**
 
@@ -66,7 +68,7 @@ description: OpenVAS和Metasploit的基本使用方法.
 
 　　Metasploit还提供了Web界面操作方式，使用方式很直观，此处不需要说明。
 
-- 功能程序
+- **功能程序**
 
 **MSF攻击载荷生成器（msfpayload）**
 
@@ -131,7 +133,8 @@ description: OpenVAS和Metasploit的基本使用方法.
 
 　　靶机部署于vmware,[靶机镜像下载](https://sourceforge.net/projects/metasploitable/?source=directory)。
 
-　　配置ip:靶机172.16.1.96
+　　配置ip:靶机:172.16.1.96
+
 　　　　　　运行metasploit的操作机：172.16.1.253
 
 
@@ -693,7 +696,7 @@ Meterpreter命令详解
 
 1 background,session
 
-background命令将Meterpreter终端隐藏在后台,session命令可以查看已经成功获取的会话，如果想继续与某会话进行交互，可以使用“session -i”命令查看会话，之后使用“sessions ID”之后重新开启会话。
+　　background命令将Meterpreter终端隐藏在后台,session命令可以查看已经成功获取的会话，如果想继续与某会话进行交互，可以使用“session -i”命令查看会话，之后使用“sessions ID”之后重新开启会话。
 
 ```
 meterpreter > background
@@ -715,15 +718,15 @@ meterpreter >
 
 2 quit命令
 
-quit命令直接关闭当前的Meterpreter会话，返回MSF终端
+　　quit命令直接关闭当前的Meterpreter会话，返回MSF终端
 
 3 shell命令
 
-shell命令可以获取系统的控制台shell，如果目标系统上的命令可执行程序不存在或禁止访问，那么shell命令会出错。
+　　shell命令可以获取系统的控制台shell，如果目标系统上的命令可执行程序不存在或禁止访问，那么shell命令会出错。
 
 4 irb命令
 
-irb命令可以在Meterpreter会话里与Ruby终端进行交互，直接调用Metasploit封装好的函数，如下显示了使用irb命令调用client.sys.config。sysinfo()函数获取系统配置信息的结果：
+　　irb命令可以在Meterpreter会话里与Ruby终端进行交互，直接调用Metasploit封装好的函数，如下显示了使用irb命令调用client.sys.config。sysinfo()函数获取系统配置信息的结果：
 ```
 meterpreter > irb
 [*] Starting IRB shell
@@ -783,6 +786,7 @@ portfwd add -l 8022 -p 22 -r 172.16.1.96
 ============
 
 [openvas官方手册](http://www.openvas.org/documentation.html)
+
 [Metasploit官方手册](https://metasploit.help.rapid7.com/docs/getting-started)
 
 
