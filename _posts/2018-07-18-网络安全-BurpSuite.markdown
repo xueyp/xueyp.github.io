@@ -7,7 +7,7 @@ author: xueyp
 description: BurpSuite简介和使用
 ---
 
-代码审计
+BurpSuite
 ============
 
 　　Burp Suite 是用于攻击web 应用程序的集成平台。它包含了许多Burp工具，这些不同的burp工具通过协同工作，有效地分享信息，支持以某种工具中的信息为基础供另一种工具使用的方式发起攻击。这些工具设计了许多接口，以促进加快攻击应用程序的过程。所有的工具都共享一个能处理并显示HTTP 消息，持久性，认证，代理，日志，警报的一个强大的可扩展的框架。它主要用来做安全性渗透测试。
@@ -45,12 +45,13 @@ description: BurpSuite简介和使用
 ============
 
 　　Burp支持手动的Web应用程序测试的活动。它可以让你有效地结合手动和自动化技术，使你可以完全控制所有的BurpSuite执行的行动，并提供有关所测试的应用程序的详细信息和分析。 Burp Suite的测试流程过程如下图
+
 ![png]({{"/assets/images/my/20180718_2.png"| absolute_url }})
 
 
 BurpSuite教程
 ============
 
-github上有个免费的[burpsuite教程](https://legacy.gitbook.com/book/t0data/burpsuite/details)，详细介绍了各功能模块的用法。
+　　github上有个免费的[burpsuite教程](https://legacy.gitbook.com/book/t0data/burpsuite/details)，详细介绍了各功能模块的用法。
 
 版权声明：本文为博主原创文章，转载请注明出处。 [旭日酒馆](https://xueyp.github.io/)
