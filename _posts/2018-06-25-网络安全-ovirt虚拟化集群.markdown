@@ -54,9 +54,7 @@ oVirt
 安装过程
 ============
 
-0 安装准备
-
-1 安装准备
+1 **安装准备**
 
 - 在3台服务器中安装centos7,并配置各主机/etc/hostname分别为v1,v2,v3，/etc/hosts内容为：
   ```
@@ -86,23 +84,24 @@ oVirt
 ```
 Permissive               #返回该结果说明配置正确
 ```
-2 配置ssh免密互访
+2 **配置ssh免密互访**
 
+　详见之前的hadoop安装那篇。
 
-3 将ovirt官方的源添加到v1,v2,v3系统yum源库中
+3 **将ovirt官方的源添加到v1,v2,v3系统yum源库中**
 
 ```
 # yum install -y http://resources.ovirt.org/pub/yum-repo/ovirt-release42.rpm &nbsp;
 # yum -y update
 ```
 
-4 安装ovirt-engine
+4 **安装ovirt-engine**
 
 ```
 # yum install -y ovirt-engine 
 ```
 
-5 在v1上配置ovirt-engine
+5 **在v1上配置ovirt-engine**
 
 ovirt-engine安装完成后需要运行首次配置向导
 ```
@@ -303,14 +302,14 @@ ovirt-engine安装完成后需要运行首次配置向导
 [ INFO  ] Execution of setup completed successfully
 ```
 
-6 在v2,v3上安装vdsm
+6 **在v2,v3上安装vdsm**
 
 - 确保第1，2步已经完成。
 - 将v2,v3的ip添加到oVirt-Engine管理系统中:直接在主机中点击新建，输入ip和root用户ssh密码即可自动加入集群，并自动安装vdsm。
 
-7 配置数据存储域
+7 **配置数据存储域**
 
-  经过前面几步，oVirt集群已经安装好了，但是，离能够使用还差一点，需要配置集群运行时的存储域，主要有数据域(Data Domain)和iso域(ISO Domain)两个。数据域是用来运行虚拟机的，iso用于存放系统光盘，另外还有一个导入导出域(Export Domain)用于oVirt在不同oVirt集群之间导入导出虚拟机。存储域支持iSCSI,NFS,FC等类型协议，使用专用存储服务器存储性能和数据安全性会更好，这里因为只有3台服务器，使用v2兼作存储域了。
+　　经过前面几步，oVirt集群已经安装好了，但是，离能够使用还差一点，需要配置集群运行时的存储域，主要有数据域(Data Domain)和iso域(ISO Domain)两个。数据域是用来运行虚拟机的，iso用于存放系统光盘，另外还有一个导入导出域(Export Domain)用于oVirt在不同oVirt集群之间导入导出虚拟机。存储域支持iSCSI,NFS,FC等类型协议，使用专用存储服务器存储性能和数据安全性会更好，这里因为只有3台服务器，使用v2兼作存储域了。
 
 ```
 # yum install -y nfs-utils    //安装nfs相关程序包
@@ -329,21 +328,23 @@ ovirt-engine安装完成后需要运行首次配置向导
 # systemctl enable rpcbind nfs-server    //设置服务开机自动启动
 ```
 
-1 进入**存储-域-新建域**,选择域功能:Data、存储类型:NFS，使用的主机:v2,填入名称和描述，在导出路径中填入：v2:/var/oVirtData 保存即完成了data存储域的创建。
+- 进入**存储-域-新建域**,选择域功能:Data、存储类型:NFS，使用的主机:v2,填入名称和描述，在导出路径中填入：v2:/var/oVirtData 保存即完成了data存储域的创建。
 
-2 同样的过程，在v2，或v3上创建一个iso域并加入集群中。此处创建了v3:/var/oVirtISO作为iso域.
+- 同样的过程，在v2，或v3上创建一个iso域并加入集群中。此处创建了v3:/var/oVirtISO作为iso域.
 
-8 网络配置
+8 **网络配置**
 
-  因为组网环境比较简单,默认使用ovirtmgmt网络，即虚拟机加入ovirtmgmt网络，和物理主机共用同一个网段，类似于桥接模式。
+　　因为组网环境比较简单,默认使用ovirtmgmt网络，即虚拟机加入ovirtmgmt网络，和物理主机共用同一个网段，类似于桥接模式。
 
-9 完成
+9 **完成**
 
-  至此，oVirt虚拟化集群就搭建完成了，先通过scp传输一个系统光盘到v1，然后用root权限运行：
+　　至此，oVirt虚拟化集群就搭建完成了，先通过scp传输一个系统光盘到v1，然后用root权限运行：
   ```
   engine-iso-uploader upload -i v2iso cn_windows_server_2012_r2_vl_with_update_x64_dvd_6052729.iso
   ```
-  上传开始时需要输入安装engine过程中输入的管理员密码，等上传完成后即可新建虚拟机开始安装了。其他虚拟机配置、迁移等界面都很直观，此处就不再说述了。
+　　其中，v2iso为创建iso域时填入的名称，上传开始时需要输入安装engine过程中输入的管理员密码，等上传完成后即可新建虚拟机开始安装了。其他虚拟机配置、迁移等界面都很直观，此处就不再说述了。
+
+　　另外也可以用windows连接nfs服务器直接传文件，直接传到/var/oVirtISO/33ca****/images/11111**1111/的文件夹下即可使用，速度比用上面的命令传要快不少。
 
 参考
 ============
