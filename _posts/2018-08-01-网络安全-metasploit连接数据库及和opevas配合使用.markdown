@@ -127,7 +127,7 @@ msf >load openvas
 
 ![png]({{"/assets/images/my/20180801_1.png"| absolute_url }})
 
-2．连接OpenVAS
+2. 连接OpenVAS
 ```
 msf > openvas_connect hostname password host port <ssl-confirm>
 ```
@@ -143,62 +143,70 @@ msf > openvas_connect hostname password host port <ssl-confirm>
 ```
 msf > openvas_target_create <name> <hosts> <comment>
 ```
+
 ![png]({{"/assets/images/my/20180801_3.png"| absolute_url }})
 
-　2．创建扫描任务
+2. 创建扫描任务
 
 　　创建扫描任务，需要关联扫描目标和选择扫描策略，默认有8种扫描策略，输入以下命令可以查看扫描策略：
 ```
 msf > openvas_config_list
 ```
+
 ![png]({{"/assets/images/my/20180801_4.png"| absolute_url }})
 
 　　选择一个扫描策略然后通过以下命令进行扫描任务的创建：
 ```
 msf > openvas_task_create <name> <comment> <config_id> <target_id>
 ```
+
 ![png]({{"/assets/images/my/20180801_5.png"| absolute_url }})
 
-3．启动扫描并且查看进度
+3. 启动扫描并且查看进度
 
 　　使用以下命令启动扫描任务：
 ```
 msf > openvas_task_start <id>
 ```
+
 ![png]({{"/assets/images/my/20180801_6.png"| absolute_url }})
 
 　　可以使用以下命令查看扫描进度：
 ```
 msf > openvas_task_list
 ```
+
 ![png]({{"/assets/images/my/20180801_7.png"| absolute_url }})
 
 　　status是扫描状态，当为done的时候表示扫描完毕，progress表示扫描的进度，status状态为new和done的时候progress均为-1。
 
-4．查看报告
+4. 查看报告
 
 使用以下命令可以查看报告列表：
 ```
 msf > openvas_report_list
 ```
+
 ![png]({{"/assets/images/my/20180801_8.png"| absolute_url }})
 
-5．下载报告
+5. 下载报告
 
 　　下载报告的时候需要知道openVAS支持哪些文件格式的下载，通过以下命令查看可以下载的文件格式：
 ```
 msf > openvas_format_list
 ```
+
 ![png]({{"/assets/images/my/20180801_9.png"| absolute_url }})
 
 　　使用以下可以选择对应的文件格式进行报告的下载：
 ```
 msf > openvas_report_download <report_id> <format_id> <path> <report_name>
 ```
+
 ![png]({{"/assets/images/my/20180801_10.png"| absolute_url }})
 
 
-6．导入报告
+6. 导入报告
 
 　　将报告导入metasploit的数据库中，首先要保证数据库是启动的，通过以下命令查看当前数据库的连接情况：
 ```
@@ -216,6 +224,7 @@ msf > openvas_report_import <report_id> <format_id>
 ```
 msf > vulns
 ```
+
 ![png]({{"/assets/images/my/20180801_11.png"| absolute_url }})
 
 
