@@ -113,6 +113,70 @@ metasploit连接数据库
 
 　　主要修改database、password、host三个值，然后重新执行msfconsole即可直接连接数据库。
 
+OpenVAS配置外部访问
+============
+
+　　安装完成之后，OpenVAS默认设置的监听地址为127.0.0.1，为了使用方便，需要手动配置外部访问，Openvas修改以下四个配置文件中的监听ip，由127.0.0.1改为0.0.0.0（表示任意IP），保存之后，重新加载systemctl，重启openvas即可。
+```
+vi /lib/systemd/system/greenbone-security-assistant.service
+```
+
+![png]({{"/assets/images/my/20180801_12.png"| absolute_url }})
+
+需要注意的是，新版的OpenVAS需要增加host 头主机地址（IP或域名）
+
+　　在--mlisten=0.0.0.0 后增加“--allow-header-host=外部访问的地址IP或域名”，本次测试本机地址为：192.168.200.221，即外部访问的IP为192.168.200.221。
+
+![png]({{"/assets/images/my/20180801_13.png"| absolute_url }})
+
+否则会报错：The request contained an unknown or invalid Host header. If you are trying to access GSA via its hostname or a proxy, make sure GSA is set up to allow it.
+
+```
+vi /etc/default/greenbone-security-assistant
+```
+　　此文件是访问web 端接口(gsad):访问opebvas 服务层的web 接口，默认监听地址为127.0.0.1，端口为9392。需要修改两处：GSA_ADDRESS和MANAGER_ADDRESS
+
+![png]({{"/assets/images/my/20180801_14.png"| absolute_url }})
+
+![png]({{"/assets/images/my/20180801_15.png"| absolute_url }})
+
+　　同样修改　/lib/systemd/system/openvas-manager.service　和 /etc/default/openvas-manager文件中的127.0.0.1为0.0.0.0，
+
+重新加载systemctl：
+```
+#openvas-stop
+#systemctl daemon-reload
+```
+重新启动openvas：
+```
+#openvas-stop
+#openvas-start
+```
+安装完整性检测
+```
+# openvas-check-setup
+```
+修改密码
+```
+openvasmd --user=admin --new-password=admin
+```
+升级插件和漏洞库
+
+- 方法一：
+```
+# openvas-feed-update //初始化安装，可以不用更新
+```
+- 方法二：
+```
+# greenbone-nvt-sync
+
+# greenbone-scapdata-sync  
+
+# greenbone-certdata-sync
+```
+建议使用方法一进行升级。
+
+
 metasploit连接OpenVAS
 ============
 
@@ -129,7 +193,7 @@ msf >load openvas
 
 2. 连接OpenVAS
 ```
-msf > openvas_connect hostname password host port <ssl-confirm>
+msf > openvas_connect user password host port <ssl-confirm>
 ```
 当连接到外部的openVAS时，最后一个参数必须为“ok”，代表你信任该连接。
 
