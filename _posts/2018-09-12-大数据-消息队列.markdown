@@ -89,13 +89,13 @@ description: ActiveMQ，RabbitMQ，ZeroMQ，Kafka，MetaMQ，RocketMQ
 ## 消息通讯
 消息通讯是指，消息队列一般都内置了高效的通信机制，因此也可以用在纯的消息通讯。比如实现点对点消息队列，或者聊天室等。
 
-点对点通讯：
+**点对点通讯：**
 
 ![png]({{"/assets/images/my/20180912_8.png"| absolute_url }})
 
 客户端A和客户端B使用同一队列，进行消息通讯。
 
-聊天室通讯：
+**聊天室通讯：**
 
 ![png]({{"/assets/images/my/20180912_9.png"| absolute_url }})
 
@@ -103,7 +103,8 @@ description: ActiveMQ，RabbitMQ，ZeroMQ，Kafka，MetaMQ，RocketMQ
 
 以上实际是消息队列的两种消息模式，点对点或发布订阅模式。模型为示意图，供参考。
 
-#　消息中间件示例 
+
+# 消息中间件示例 
 
 ## 电商系统
 
