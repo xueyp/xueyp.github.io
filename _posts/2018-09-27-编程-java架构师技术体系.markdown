@@ -1,0 +1,58 @@
+---
+layout: post
+title:  "编程-java架构师技术体系"
+categories: 编程
+tags: java
+author: xueyp
+description: java技术体系
+---
+
+重温了下java方面的知识，网上整理了些技术体系。
+
+# java架构师知识图谱
+
+![png]({{"/assets/images/my/20180927_1.jpg"| absolute_url }})
+
+# 架构开发技术之路的学习经验 
+
+![png]({{"/assets/images/my/20180927_2.jpg"| absolute_url }})
+
+## 阅读源码
+
+阅读、分析源码是程序员最基本的码代码能力也是码农的根本所在，学习经典源码中所用到的经典设计思想及常用设计模式,学习高手的思路和方法。
+
+![png]({{"/assets/images/my/20180927_3.jpg"| absolute_url }})
+
+## 分布式架构
+
+当前分布式架构成为主流，分布式架构中有很多知识都是必须要去了解与学习的。 
+
+
+![png]({{"/assets/images/my/20180927_4.jpg"| absolute_url }})
+
+## 微服务架构
+
+微服务是现在互联网架构技术中最火热的话题之一，作为一名架构师或开发者，微服务架构是必须要去了解的主流技术。
+
+![png]({{"/assets/images/my/20180927_5.jpg"| absolute_url }})
+
+## 并发编程
+
+并发编程是Java程序员最重要的技能之一，也是最难掌握的一种技能。它要求编程者对计算机最底层的运作原理有深刻的理解，同时要求编程者逻辑清晰、思维缜密，这样才能写出高效、安全、可靠的多线程并发程序。目前网上没有系统的全面的并发编程学习大纲。
+
+![png]({{"/assets/images/my/20180912_8.png"| absolute_url }})
+
+## 性能优化
+
+性能一直是让程序员比较头疼的问题。当系统架构变得复杂而庞大之后，性能方面就会下降，性能优化一定是要去深入学习与理解的一环，
+
+![png]({{"/assets/images/my/20180927_7.jpg"| absolute_url }})
+
+## Java开发工具
+
+工欲善其事必先利其器，java开发常用的工具：
+
+![png]({{"/assets/images/my/20180927_6.jpg"| absolute_url }})
+
+
+版权声明：本文为博主原创文章，转载请注明出处。 [旭日酒馆](https://xueyp.github.io/)
