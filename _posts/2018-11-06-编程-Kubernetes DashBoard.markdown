@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "编程-Kubernetes基本使用"
+title:  "编程-Kubernetes Dashboard"
 categories: 编程
 tags: kubernetes 微服务
 author: xueyp

