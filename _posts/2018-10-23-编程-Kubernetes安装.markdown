@@ -429,6 +429,13 @@ kubectl delete node v2
 
 >    如果连--discovery-token-ca-cert-hash的值也忘记了，那就用命令openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2&gt;/dev/null | openssl dgst -sha256 -hex | sed 's/^.* //'查看吧！然后用新的token和ca-hash加入集群
 
+国内翻墙安装困难级数大增，可以考虑使用minikube
+============
+
+[国内阿里云源minikube](https://yq.aliyun.com/articles/221687)
+
+[minikube体验](https://www.cnblogs.com/cocowool/p/minikube_setup_and_first_sample.html)
+
 参考
 ============
 
@@ -441,3 +448,4 @@ kubectl delete node v2
 [docker启动参数](https://docs.docker.com/engine/reference/commandline/dockerd/)
 
 版权声明：本文为博主原创文章，转载请注明出处。 [旭日酒馆](https://xueyp.github.io/)
+
