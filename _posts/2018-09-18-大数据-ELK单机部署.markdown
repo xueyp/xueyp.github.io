@@ -92,7 +92,7 @@ sysctl -p
 
 >Note: /etc/security/limits.conf does not work if systemd exists. The files /etc/systemd/system.conf, /etc/systemd/user.conf, and /etc/systemd/<systemd_unit>/override.conf would control the limit. See the systemd-system.conf(5) man page for details.
 
-具体来说是要在/etc/systemd/system.conf中修改相应限制。
+具体来说是要在/etc/systemd/system.conf中修改相应限制。还有部分限制在/etc/security/limits.conf中。
 对于vm.max_map_count,
 ```
 # sysctl -w vm.max_map_count=262144

@@ -158,7 +158,37 @@ gpgkey=http://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg
 
 6. 下载好所需的镜像，并修改tag
 
-kubernetes 服务启动依赖很多镜像，但是这些镜像要是在国内没有翻墙的话，是下载不下来的。这里我们可以去 Docker Hub 下载指定版本的镜像替代，下载完成后，通过 docker tag ... 命令修改成指定名称的镜像即可。也可以用如下脚本下载。
+**注意:**此种安装方式比较复杂，不推荐使用，推荐使用科学上网全局代理的方式从官方下载，省事省心。具体方法为 export all_proxy=<代理地址>：
+
+具体代理地址的格式如下：
+
+	- user:pass@10.0.0.10:8080
+	
+	- socks4://10.0.0.51:1080
+	
+	- socks5://192.168.1.1:1080
+
+	例如我有一个1080端口的无需账号密码的socks5代理服务器：
+```
+ export all_proxy=socks5://172.16.1.252:1080
+ export no_proxy="localhost,127.0.0.1,::1,172.16.0.0/16,10.0.0.0/8"
+```
+
+其中，no_proxy需要加入不通过代理访问的地址，包括本机地址、局域网地址，和用于Pod Network的地址段。当然了如果没有科学上网代理的话，就只有用如下方式了。
+
+kubernetes 服务启动依赖很多镜像，但是这些镜像要是在国内没有翻墙的话，是下载不下来的。,如果没有科学上网代理的话，就只有下面的两种方式了。
+
+- 初始化时指定镜像地址
+
+即跳过一步，在kubeadm init通過--image-repository設置從其他倉庫拉去鏡像。例如
+
+```
+kubeadm init --image-repository="mirrorgooglecontainers"
+```
+
+- 下载并tag
+
+这里我们可以去 Docker Hub 下载指定版本的镜像替代，下载完成后，通过 docker tag ... 命令修改成指定名称的镜像即可。也可以用如下脚本下载。
 
 参考： [gcr.io mirror](https://github.com/anjia0532/gcr.io_mirror)
 
@@ -235,8 +265,13 @@ docker info | grep -i cgroup
 Cgroup Driver: cgroupfs
 ```
 
+修改配置文件:
 
-修改配置文件
+```
+ sed -i 's/cgroup-driver=systemd/cgroup-driver=cgroupfs/g' /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
+```
+
+或者打开文件修改:
 
 ```
 vi /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
@@ -261,7 +296,7 @@ systemctl enable kubelet.service && systemctl start kubelet.service
 配置完主机后，我们可以启动 Master 节点了。在执行初始化 init 时，kubernetes 并没有选择默认的 Pod Network，它支持很多种，这里我们选择 Flannel 作为 Pod Network，按照文档说明，执行 init 时，需要带上参数 --pod-network-cidr，即指定网络区间，同时我们也可以通过 --kubernetes-version 指定选择 kubernetes 的版本号，因为我们镜像以及 rpm 包都是指定 1.12.2  的版本，所以最终执行命令如下：
 
 ```
-kubeadm init --apiserver-advertise-address=172.16.1.240 --pod-network-cidr=10.244.0.0/16
+kubeadm init --image-repository="mirrorgooglecontainers" --apiserver-advertise-address=172.16.1.240 --pod-network-cidr=10.244.0.0/16
 
 [init] using Kubernetes version: v1.12.2
 [preflight] running pre-flight checks
@@ -344,6 +379,9 @@ as root:
 ```
 kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 ```
+
+**注意，此虚拟网络配置文件根据版本不同可能不同，需要查看下官方文档确定适用的版本 **
+
 - 使用命令 kubectl get node 查看集群节点信息.
 
 ```
@@ -423,11 +461,17 @@ kubectl delete node v2
 
 - 如果忘记了kubeadm join怎么办？
 
->    kubeadm join使用的token默认有效期24小时，过期后可使用kubeadm token creat创建
+>    kubeadm join使用的token默认有效期24小时，过期后可使用kubeadm token creat创建。
 
->    如果忘记了可使用kubeadm token list查看，如果过期了还是得重新创建
+>    如果忘记了可使用kubeadm token list查看，如果过期了还是得重新创建。
 
->    如果连--discovery-token-ca-cert-hash的值也忘记了，那就用命令openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2&gt;/dev/null | openssl dgst -sha256 -hex | sed 's/^.* //'查看吧！然后用新的token和ca-hash加入集群
+>    如果连--discovery-token-ca-cert-hash的值也忘记了，就需要用命令
+
+```
+openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2&gt;/dev/null | openssl dgst -sha256 -hex | sed 's/^.* //'
+```
+
+查看,然后用新的token和ca-hash加入集群。
 
 国内翻墙安装困难级数大增，可以考虑使用minikube
 ============
@@ -440,6 +484,8 @@ kubectl delete node v2
 ============
 
 [官方安装文档](https://kubernetes.io/docs/setup/independent/install-kubeadm/)
+
+[how-to-install-a-kubernetes-cluster-on-centos-7](https://www.techrepublic.com/article/how-to-install-a-kubernetes-cluster-on-centos-7/)
 
 [Github Release](https://github.com/kubernetes/release)
 
