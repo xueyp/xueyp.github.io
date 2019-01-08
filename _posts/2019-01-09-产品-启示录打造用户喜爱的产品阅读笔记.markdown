@@ -414,5 +414,7 @@ description:
 - 产品是公司领导需要，而不是用户的需求
 - 产品是自己需要，而不是大众
 - 想做一个完全创新的产品
+
+随书示例产品资料可在：[https://svpg.com/examples/](https://svpg.com/examples/)下载，也可在[随书示例产品资料](https://pan.baidu.com/s/18ft7a69NOXRsJ8J5c5MpWA)下载
  
 版权声明：本文为博主原创文章，转载请注明出处。 [旭日酒馆](https://xueyp.github.io/)

@@ -9,6 +9,7 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
+badd +418 ~/xueyp.github.io/_posts/2019-01-09-产品-启示录打造用户喜爱的产品阅读笔记.markdown
 argglobal
 silent! argdel *
 $argadd 2019-01-09-产品-启示录打造用户喜爱的产品阅读笔记.markdown

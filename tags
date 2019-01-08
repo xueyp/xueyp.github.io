@@ -7709,7 +7709,6 @@ rsyslogd -v	_posts/2018-12-26-大数据-日志采集和转发rsyslog-auditd.mark
 rsyslog发送日志到logstash	_posts/2018-12-26-大数据-日志采集和转发rsyslog-auditd.markdown	/^## rsyslog发送日志到logstash$/;"	s
 s	_site/assets/js/jquery.min.js	/^!function(a,b){"object"==typeof module&&"object"==typeof module.exports?module.exports=a.documen/;"	f
 s	assets/js/jquery.min.js	/^!function(a,b){"object"==typeof module&&"object"==typeof module.exports?module.exports=a.documen/;"	f
-s:l	_posts/session.vim	/^let s:l = 418 - ((53 * winheight(0) + 27) \/ 54)$/;"	v
 s:so_save	_posts/session.vim	/^let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0$/;"	v
 s:sx	_posts/session.vim	/^let s:sx = expand("<sfile>:p:r")."x.vim"$/;"	v
 s:wipebuf	_posts/session.vim	/^  let s:wipebuf = bufnr('%')$/;"	v
