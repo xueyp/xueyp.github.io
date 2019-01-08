@@ -7106,6 +7106,7 @@ description:	_posts/2018-10-18-编程-Kubernetes简介.markdown	/^description: $
 description:	_posts/2018-10-23-编程-Kubernetes安装.markdown	/^description: $/;"	s
 description:	_posts/2018-11-02-编程-Kubernetes基本使用.markdown	/^description: $/;"	s
 description:	_posts/2018-11-06-编程-Kubernetes DashBoard.markdown	/^description: $/;"	s
+description:	_posts/2019-01-09-产品-启示录打造用户喜爱的产品阅读笔记.markdown	/^description: $/;"	s
 description: ActiveMQ，RabbitMQ，ZeroMQ，Kafka，MetaMQ，RocketMQ	_posts/2018-09-12-大数据-消息队列.markdown	/^description: ActiveMQ，RabbitMQ，ZeroMQ，Kafka，MetaMQ，RocketMQ$/;"	s
 description: BurpSuite简介和使用	_posts/2018-07-18-网络安全-BurpSuite.markdown	/^description: BurpSuite简介和使用$/;"	s
 description: CSRF原理及介绍	_posts/2018-06-13-网络安全-CSRF.markdown	/^description: CSRF原理及介绍$/;"	s
@@ -7708,7 +7709,7 @@ rsyslogd -v	_posts/2018-12-26-大数据-日志采集和转发rsyslog-auditd.mark
 rsyslog发送日志到logstash	_posts/2018-12-26-大数据-日志采集和转发rsyslog-auditd.markdown	/^## rsyslog发送日志到logstash$/;"	s
 s	_site/assets/js/jquery.min.js	/^!function(a,b){"object"==typeof module&&"object"==typeof module.exports?module.exports=a.documen/;"	f
 s	assets/js/jquery.min.js	/^!function(a,b){"object"==typeof module&&"object"==typeof module.exports?module.exports=a.documen/;"	f
-s:l	_posts/session.vim	/^let s:l = 195 - ((189 * winheight(0) + 26) \/ 52)$/;"	v
+s:l	_posts/session.vim	/^let s:l = 418 - ((53 * winheight(0) + 27) \/ 54)$/;"	v
 s:so_save	_posts/session.vim	/^let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0$/;"	v
 s:sx	_posts/session.vim	/^let s:sx = expand("<sfile>:p:r")."x.vim"$/;"	v
 s:wipebuf	_posts/session.vim	/^  let s:wipebuf = bufnr('%')$/;"	v
@@ -7920,6 +7921,8 @@ then	_site/assets/js/jquery.min.js	/^!function(a,b){"object"==typeof module&&"ob
 then	assets/js/jquery.min.js	/^!function(a,b){"object"==typeof module&&"object"==typeof module.exports?module.exports=a.documen/;"	m	class:AnonymousFunction43d59b50af00.d
 tip	_site/assets/js/bootstrap.min.js	/^if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires jQuery");+functio/;"	m	class:c
 tip	assets/js/bootstrap.min.js	/^if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires jQuery");+functio/;"	m	class:c
+tips	_posts/2019-01-09-产品-启示录打造用户喜爱的产品阅读笔记.markdown	/^### tips $/;"	S
+tips	_posts/2019-01-09-产品-启示录打造用户喜爱的产品阅读笔记.markdown	/^### tips$/;"	S
 title	_site/assets/js/bootstrap.min.js	/^if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires jQuery");+functio/;"	p	class:c.DEFAULTS
 title	assets/js/bootstrap.min.js	/^if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires jQuery");+functio/;"	p	class:c.DEFAULTS
 title for the plots	_posts/2018-05-09-机器学习-支持向量机.markdown	/^# title for the plots$/;"	c
@@ -8014,6 +8017,8 @@ yum install rsyslog	_posts/2018-12-26-大数据-日志采集和转发rsyslog-aud
 {{ trans.recent_posts }}	_includes/sidebar.html	/^    <h1>{{ trans.recent_posts }}<\/h1>$/;"	h
 {{ trans.top_posts }}	_includes/sidebar.html	/^    <h1>{{ trans.top_posts }}<\/h1>$/;"	h
 ”Fabric”以太网架构	_posts/2018-09-12-大数据-数据中心网络架构演进.markdown	/^## ”Fabric”以太网架构$/;"	s
+一个成功的产品团队应有的关键角色和职责	_posts/2019-01-09-产品-启示录打造用户喜爱的产品阅读笔记.markdown	/^### 一个成功的产品团队应有的关键角色和职责$/;"	S
+一款大众的产品应该具备以下特点：	_posts/2019-01-09-产品-启示录打造用户喜爱的产品阅读笔记.markdown	/^### 一款大众的产品应该具备以下特点：$/;"	S
 三大最常见机器学习任务	_posts/2018-05-04-机器学习-基本概念和流程.markdown	/^三大最常见机器学习任务$/;"	c
 下载训练集 MNIST 手写数字训练集	_posts/2018-05-16-机器学习-PyTorch-CNN.markdown	/^# 下载训练集 MNIST 手写数字训练集$/;"	c
 不知道用的哪种类型？	_posts/2018-12-13-数据库-redis及python操作.markdown	/^# 不知道用的哪种类型？$/;"	c
@@ -8031,6 +8036,14 @@ yum install rsyslog	_posts/2018-12-26-大数据-日志采集和转发rsyslog-aud
 二项检验	_posts/2018-05-04-机器学习-基本概念和流程.markdown	/^#### 二项检验$/;"	t
 交叉验证	_posts/2018-05-04-机器学习-基本概念和流程.markdown	/^#### 交叉验证$/;"	t
 交叉验证t检验	_posts/2018-05-04-机器学习-基本概念和流程.markdown	/^#### 交叉验证t检验$/;"	t
+产品与产品营销：两者不是一回事　	_posts/2019-01-09-产品-启示录打造用户喜爱的产品阅读笔记.markdown	/^### 产品与产品营销：两者不是一回事　$/;"	S
+产品管理与产品设计：理解用户体验设计	_posts/2019-01-09-产品-启示录打造用户喜爱的产品阅读笔记.markdown	/^### 产品管理与产品设计：理解用户体验设计$/;"	S
+产品管理与软件开发：正确地开发产品	_posts/2019-01-09-产品-启示录打造用户喜爱的产品阅读笔记.markdown	/^### 产品管理与软件开发：正确地开发产品$/;"	S
+产品管理与项目管理：互联网让两者变得不同	_posts/2019-01-09-产品-启示录打造用户喜爱的产品阅读笔记.markdown	/^### 产品管理与项目管理：互联网让两者变得不同$/;"	S
+产品经理应该思考的问题：	_posts/2019-01-09-产品-启示录打造用户喜爱的产品阅读笔记.markdown	/^### 产品经理应该思考的问题：$/;"	S
+产品设计	_posts/2019-01-09-产品-启示录打造用户喜爱的产品阅读笔记.markdown	/^### 产品设计$/;"	S
+产品评审	_posts/2019-01-09-产品-启示录打造用户喜爱的产品阅读笔记.markdown	/^### 产品评审$/;"	S
+产品验证	_posts/2019-01-09-产品-启示录打造用户喜爱的产品阅读笔记.markdown	/^### 产品验证$/;"	S
 从网络连接:	_posts/2018-04-29-python多线程、多进程、协程及分布式编程.markdown	/^# 从网络连接:$/;"	c
 代价敏感错误率与代价曲线	_posts/2018-05-04-机器学习-基本概念和流程.markdown	/^#### 代价敏感错误率与代价曲线$/;"	t
 代码审计	_posts/2018-07-10-网络安全-代码审计.markdown	/^代码审计$/;"	c
@@ -8054,10 +8067,14 @@ yum install rsyslog	_posts/2018-12-26-大数据-日志采集和转发rsyslog-aud
 修剪列表	_posts/2018-12-13-数据库-redis及python操作.markdown	/^# 修剪列表$/;"	c
 偏函数	_posts/2018-12-04-编程-函数式编程.markdown	/^## 偏函数$/;"	s
 偏差与方差	_posts/2018-05-04-机器学习-基本概念和流程.markdown	/^## 偏差与方差$/;"	s
+全书概要	_posts/2019-01-09-产品-启示录打造用户喜爱的产品阅读笔记.markdown	/^# 全书概要$/;"	c
 全局最小与局部极小	_posts/2018-05-09-机器学习-神经网络.markdown	/^## 全局最小与局部极小$/;"	s
 公链，联盟链和私链常用算法	_posts/2018-07-26-区块链-区块链主要共识算法.markdown	/^## 公链，联盟链和私链常用算法$/;"	s
 共享/排他锁（shared and exclusion locks）	_posts/2018-09-07-数据库-mysql的各种锁.markdown	/^### 共享\/排他锁（shared and exclusion locks）$/;"	S
 共识算法	_posts/2018-07-26-区块链-区块链主要共识算法.markdown	/^共识算法$/;"	c
+关于产品	_posts/2019-01-09-产品-启示录打造用户喜爱的产品阅读笔记.markdown	/^## 关于产品$/;"	s
+关于人员	_posts/2019-01-09-产品-启示录打造用户喜爱的产品阅读笔记.markdown	/^## 关于人员$/;"	s
+关于流程	_posts/2019-01-09-产品-启示录打造用户喜爱的产品阅读笔记.markdown	/^## 关于流程$/;"	s
 其他	_posts/2018-05-30-网络安全-LDAP安装配置.markdown	/^其他$/;"	c
 其他	_posts/2018-11-06-编程-Kubernetes DashBoard.markdown	/^# 其他$/;"	c
 其他	_posts/2018-12-13-数据库-redis及python操作.markdown	/^# 其他$/;"	c
@@ -8174,6 +8191,7 @@ yum install rsyslog	_posts/2018-12-26-大数据-日志采集和转发rsyslog-aud
 导入镜像	_posts/2018-11-06-编程-Kubernetes DashBoard.markdown	/^## 导入镜像$/;"	s
 将Queue对象在网络中暴露	_posts/2018-04-29-python多线程、多进程、协程及分布式编程.markdown	/^# 将Queue对象在网络中暴露$/;"	c
 工作量证明（Proof of Work,POW）	_posts/2018-07-26-区块链-区块链主要共识算法.markdown	/^工作量证明（Proof of Work,POW）$/;"	c
+市场调研	_posts/2019-01-09-产品-启示录打造用户喜爱的产品阅读笔记.markdown	/^### 市场调研$/;"	S
 常用代码审计工具	_posts/2018-07-10-网络安全-代码审计.markdown	/^常用代码审计工具$/;"	c
 常用工具	_posts/2018-06-06-网络安全-渗透测试基础.markdown	/^常用工具$/;"	c
 常用工具	_posts/2018-08-29-软件开发-DevOps.markdown	/^## 常用工具$/;"	s
@@ -8208,10 +8226,12 @@ yum install rsyslog	_posts/2018-12-26-大数据-日志采集和转发rsyslog-aud
 感知机	_posts/2018-05-09-机器学习-神经网络.markdown	/^#### 感知机$/;"	t
 感知机与多层网络	_posts/2018-05-09-机器学习-神经网络.markdown	/^## 感知机与多层网络$/;"	s
 所用软件	_posts/2018-11-20-网络安全-局域网https嗅探.markdown	/^## 所用软件$/;"	s
+打造企业级产品的十大要点：	_posts/2019-01-09-产品-启示录打造用户喜爱的产品阅读笔记.markdown	/^### 打造企业级产品的十大要点：$/;"	S
 技术发展对网络架构的影响	_posts/2018-09-12-大数据-数据中心网络架构演进.markdown	/^# 技术发展对网络架构的影响 $/;"	c
 把x加到y上,任何在原地(in-place)改变张量的操作都有一个’_’后缀。例如x.copy_(y), x.t_()操作将改变x.	_posts/2018-05-16-机器学习-PyTorch基础.markdown	/^# 把x加到y上,任何在原地(in-place)改变张量的操作都有一个’_’后缀。例如/;"	c
 拉格朗日乘子法（Lagrange Multiplier) 和KKT条件	_posts/2018-05-09-机器学习-支持向量机.markdown	/^## 拉格朗日乘子法（Lagrange Multiplier) 和KKT条件$/;"	s
 拉格朗日乘子法（Lagrange Multiplier) 和KKT条件	_posts/2018-05-09-机器学习-支持向量机.markdown	/^### 拉格朗日乘子法（Lagrange Multiplier) 和KKT条件$/;"	S
+招聘产品经理：寻找出色的产品经理	_posts/2019-01-09-产品-启示录打造用户喜爱的产品阅读笔记.markdown	/^### 招聘产品经理：寻找出色的产品经理$/;"	S
 持续交付	_posts/2018-08-29-软件开发-DevOps.markdown	/^### 持续交付$/;"	S
 持续集成	_posts/2018-08-29-软件开发-DevOps.markdown	/^### 持续集成$/;"	S
 按微服务拆分应用	_posts/2018-08-15-软件开发-Web系统架构演进.markdown	/^## 按微服务拆分应用$/;"	s
@@ -8245,6 +8265,9 @@ yum install rsyslog	_posts/2018-12-26-大数据-日志采集和转发rsyslog-aud
 最新发表	_site/大数据/2018/04/26/hadoop-spark集群安装配置(二).html	/^    <h1>最新发表<\/h1>$/;"	h
 服务器配置	_posts/2018-05-27-网络安全-openvpn安装配置.markdown	/^服务器配置$/;"	c
 服务器配置	_posts/2018-05-30-网络安全-LDAP安装配置.markdown	/^服务器配置$/;"	c
+本书对产品和产品经理、项目经理概念做出了清晰的定义	_posts/2019-01-09-产品-启示录打造用户喜爱的产品阅读笔记.markdown	/^## 本书对产品和产品经理、项目经理概念做出了清晰的定义$/;"	s
+本书将产品分为大众网络服务产品、企业级产品、平台产品。处理不同步类型的产品，要点不同	_posts/2019-01-09-产品-启示录打造用户喜爱的产品阅读笔记.markdown	/^## 本书将产品分为大众网络服务产品、企业级产品、平台产品。处理不同/;"	s
+本书还讲述了产品开发流程，讲述如何探索、定义一款用户喜爱的产品	_posts/2019-01-09-产品-启示录打造用户喜爱的产品阅读笔记.markdown	/^## 本书还讲述了产品开发流程，讲述如何探索、定义一款用户喜爱的产品$/;"	s
 权益证明（Proof of Stake,POS）	_posts/2018-07-26-区块链-区块链主要共识算法.markdown	/^权益证明（Proof of Stake,POS）$/;"	c
 架构开发技术之路的学习经验	_posts/2018-09-27-编程-java架构师技术体系.markdown	/^# 架构开发技术之路的学习经验 $/;"	c
 查准率，查全率，F1	_posts/2018-05-04-机器学习-基本概念和流程.markdown	/^#### 查准率，查全率，F1$/;"	t
@@ -8319,6 +8342,7 @@ yum install rsyslog	_posts/2018-12-26-大数据-日志采集和转发rsyslog-aud
 算法工程师	_posts/2018-10-03-机器学习-机器学习算法水平.markdown	/^# 算法工程师$/;"	c
 算法工程师的水平等级	_posts/2018-10-03-机器学习-机器学习算法水平.markdown	/^# 算法工程师的水平等级$/;"	c
 算法思想——基于概率的预测	_posts/2018-05-09-机器学习-朴素贝叶斯.markdown	/^## 算法思想——基于概率的预测$/;"	s
+管理产品经理	_posts/2019-01-09-产品-启示录打造用户喜爱的产品阅读笔记.markdown	/^### 管理产品经理$/;"	S
 索引	_posts/2018-09-07-数据库-mysql的各种锁.markdown	/^### 索引$/;"	S
 累积BP算法	_posts/2018-05-09-机器学习-神经网络.markdown	/^#### 累积BP算法$/;"	t
 级联相关网络	_posts/2018-05-09-机器学习-神经网络.markdown	/^#### 级联相关网络$/;"	t
@@ -8347,9 +8371,11 @@ yum install rsyslog	_posts/2018-12-26-大数据-日志采集和转发rsyslog-aud
 设置不同学习速率的参数组	_posts/2018-05-09-机器学习-神经网络.markdown	/^# 设置不同学习速率的参数组$/;"	c
 设计目标	_posts/2018-09-07-数据库-mysql的各种锁.markdown	/^### 设计目标$/;"	S
 访问Dashboard	_posts/2018-11-06-编程-Kubernetes DashBoard.markdown	/^## 访问Dashboard$/;"	s
+评估产品机会	_posts/2019-01-09-产品-启示录打造用户喜爱的产品阅读笔记.markdown	/^### 评估产品机会$/;"	S
 评估方法	_posts/2018-05-04-机器学习-基本概念和流程.markdown	/^## 评估方法$/;"	s
 误差	_posts/2018-05-04-机器学习-基本概念和流程.markdown	/^## 误差$/;"	s
 误差逆传播算法	_posts/2018-05-09-机器学习-神经网络.markdown	/^## 误差逆传播算法$/;"	s
+读书笔记	_posts/2019-01-09-产品-启示录打造用户喜爱的产品阅读笔记.markdown	/^# 读书笔记$/;"	c
 读进程代码:	_posts/2018-04-29-python多线程、多进程、协程及分布式编程.markdown	/^# 读进程代码:$/;"	c
 调参和最终模型	_posts/2018-05-04-机器学习-基本概念和流程.markdown	/^#### 调参和最终模型$/;"	t
 调用abs()函数	_posts/2018-12-04-编程-函数式编程.markdown	/^# 调用abs()函数$/;"	c
@@ -8377,6 +8403,7 @@ yum install rsyslog	_posts/2018-12-26-大数据-日志采集和转发rsyslog-aud
 配置为客户端	_posts/2018-12-26-大数据-日志采集和转发rsyslog-auditd.markdown	/^## 配置为客户端$/;"	s
 配置为服务器	_posts/2018-12-26-大数据-日志采集和转发rsyslog-auditd.markdown	/^## 配置为服务器$/;"	s
 采用Clos架构的数据中心网络架构的优势：	_posts/2018-09-12-大数据-数据中心网络架构演进.markdown	/^## 采用Clos架构的数据中心网络架构的优势：$/;"	s
+重新定义产品说明文档	_posts/2019-01-09-产品-启示录打造用户喜爱的产品阅读笔记.markdown	/^### 重新定义产品说明文档$/;"	S
 链接	_site/404.html	/^<h1>链接<\/h1>$/;"	h
 链接	_site/about.html	/^<h1>链接<\/h1>$/;"	h
 链接	_site/archive.html	/^<h1>链接<\/h1>$/;"	h
