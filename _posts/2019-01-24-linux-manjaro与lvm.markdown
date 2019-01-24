@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "linux-Manjaro与lvm"
+title:  "Linux-Manjaro安装于lvm"
 categories: linux
 tags:linux 
 author: xueyp

@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "linux-切换到zsh"
+title:  "Linux-zsh与bash共用"
 categories: linux
 tags:linux 
 author: xueyp
