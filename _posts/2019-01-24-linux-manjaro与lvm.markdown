@@ -1,10 +1,10 @@
 ---
 layout: post
-title:  "linux-Manjaro与lvm"
+title: "linux-Manjaro与lvm"
 categories: linux
 tags:linux 
 author: xueyp
-description: 
+description: Manjaro不能安装于lvm的问题
 ---
 
 # 介绍 

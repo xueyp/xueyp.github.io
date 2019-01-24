@@ -4,7 +4,7 @@ title:  "linux-切换到zsh"
 categories: linux
 tags:linux 
 author: xueyp
-description: 
+description:zsh与bash共用自定义配置 
 ---
 
 # zsh介绍 
