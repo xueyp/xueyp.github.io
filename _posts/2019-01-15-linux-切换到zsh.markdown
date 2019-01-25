@@ -2,9 +2,9 @@
 layout: post
 title:  "Linux-zsh与bash共用"
 categories: linux
-tags:linux 
+tags: linux 
 author: xueyp
-description:zsh与bash共用自定义配置 
+description: zsh与bash共用自定义配置 
 ---
 
 # zsh介绍 

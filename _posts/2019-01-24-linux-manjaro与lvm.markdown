@@ -2,7 +2,7 @@
 layout: post
 title:  "Linux-Manjaro安装于lvm"
 categories: linux
-tags:linux 
+tags: linux 
 author: xueyp
 description: Manjaro不能安装于lvm的问题
 ---
