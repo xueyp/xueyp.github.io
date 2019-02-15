@@ -1,10 +1,10 @@
 ---
 layout: post
-title:  "英语-洋腔洋调的秘诀笔记"
+title:  "英语-英语流利说方法笔记"
 categories: 英语
 tags: 英语 
 author: xueyp
-description: 英语-洋腔洋调的秘诀笔记
+description: 英语-英语流利说方法笔记
 ---
 
 年前发现个不错的英语口语教程，看了一下觉得挺好的，节日期间顺便用其课程资料加强下口语。
@@ -13,17 +13,16 @@ description: 英语-洋腔洋调的秘诀笔记
 ## 前言
 
 - 连读、略读、浊化
-
 - 学英语就是学说话
 - 学说话就像达芬奇画蛋，一遍又一遍
 
-为什么你能学会任何一门语言
+**为什么你能学会任何一门语言**
 
 1. 情景对话+英文电影、电视剧
 2. 循环模仿
 3. 学了就要用
 
-英语听说训练的8个要点即提升听说能力的训练方法
+**英语听说训练的8个要点即提升听说能力的训练方法**
 
 1. 听力
     1. 只能听到个别词汇或短语，听不懂句子：
@@ -72,7 +71,7 @@ description: 英语-洋腔洋调的秘诀笔记
 
 ### 根治中式英语
 
-地道表达=用词+思维通路
+**地道表达=用词+思维通路**
 
 - 词汇
     - 从具体实物开始 :apple
@@ -128,7 +127,7 @@ description: 英语-洋腔洋调的秘诀笔记
     - 失爆破(略读):/p,b,t,d,k,g/+辅音 停顿，例如：complete menu /t/音听不到,notebook,laptop
     - 顶舌音/l/ 舌尖顶住上齿龈：love,apple light,lay
 
-### SI四步滚动互译训练
+### SI(Simultaneous interpretation)四步滚动互译训练
 
 1. 先读一遍中英文（建立初步认知）
 2. 由中文（表达的目的）复述式抄写英语（中到英，过脑子）
@@ -149,12 +148,79 @@ description: 英语-洋腔洋调的秘诀笔记
 - 从最高频的词汇和句子开始练习
 - 学了就要用
 
+## 6节示范课的知识点
+
+**同化现象**
+
+- /t/+/j/=/tʃ/ nice to meet you,last year
+- /d/+/j/=/dʒ/ would/could/did+you
+- /s/+/j/=/ʃ/ this year,I miss you
+- /z/+/j/=/ʒ/ as you like,becaouse you
+
+**击穿**
+
+- /h/ 被击穿，没有口型，在语音当中没有地位,at home,tell hime,teach her a lesson
+- /h/被击穿，/v/不发音 
+       - would have=woulda,should have=shoulda,you coulda done better
+       - 否定形式：shouldn't have,shouldn'ta,wouldn't have=wouldn'ta,couldn't have=couldn'ta
+
+**数字条件反射**
+- 1-90的27个数字滚瓜烂熟，形成表达习惯
+- cellphone NO:建议2位一停顿，最后一位单独报
+- ID Card NO:
+
+
+**分数的构成:分子用基数词，分母用复数词，分子大于1时，分母用系数形式。 **
+- 1/3:a third, one third,one over three(有over分母不用复数)
+- 3/5:three fifths
+- 1/2:a half,one half
+- 复杂分数加over,39/7: thirty-nine over seven,18/19:eighteen over nineteen
+- 2又1/2: two and a half 
+
+**美国货币体系：cent美分**
+
+- 5 cents= 1 nickel
+- 10 cents= 1 dime
+- 25 cents= 1 quarter
+- 1 美元 = 1 dollar/buck
+
+**道路**
+
+- street,两旁有房屋的街道
+- road，城市或乡村之间的大路，有无房屋都可
+- avenue,-Ave. 宽阔而繁华的林荫大街
+
+**读音原则：清清浊浊**
+
+- 名词后加-s(-es)变成复数，动词单数第三人称加-s(-es)
+       - cats:[s],因为前面的音是清辅音[t]
+       - beds:[z],前面的音是浊辅音[d]
+- 规则动词后加-ed变成过去式或过去分词
+       - looked:[lukt]
+       - pulled:[puld]
+- 元音后读/z/
+- 以s,sh,ch,x等结尾的词，加-es读/iz/
+       - bus-buses
+       - watch-watches
+- 以ce,se,ze,读/iz/
+       - closes
+- 以辅音字母+y,变y为i结尾的词，再加-es读/z/
+       - baby-babies
+- 以o结尾的动词，加es读/z/
+       - go-goes[z]
+       - do[du:]-does[dz]
+       - say[sei]-says[sez]
+
 参考
 ============
 
 [英语流利说](https://pan.baidu.com/s/1t8z5e0igijuwYR8-0IVmqA)
 
 [诸葛亮记单词套装资料](https://pan.baidu.com/s/1NMK1Hfh0RChI6Pa0g0HhQQ)
+
+[突破核心词汇](https://pan.baidu.com/s/1Lr3ieGhz4hUR8dSW8C1M-Q)
+
+[语法成功导图](https://pan.baidu.com/s/1wg7qp1qU3Ta011976NVWZQ)
 
 版权声明：本文为博主原创文章，转载请注明出处。 [旭日酒馆](https://xueyp.github.io/)
 
