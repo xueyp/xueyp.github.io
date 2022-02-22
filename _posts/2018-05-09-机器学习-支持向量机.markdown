@@ -1,0 +1,633 @@
+---
+layout: post
+title:  "机器学习－支持向量机"
+categories: Python
+tags: Python ML 机器学习 支持向量机
+author: xueyp
+description: 
+---
+
+概念
+============
+
+# 1.支持向量机
+
+　　支持向量机（Support Vector Machine，简称SVM）是通过支持向量运算的分类器。其中“机”的意思是机器，可以理解为分类器。
+什么是支持向量呢？在求解的过程中，会发现只根据部分数据就可以确定分类器，这些数据称为支持向量。
+见下图，在一个二维环境中，其中点R，S，G点和其它靠近中间黑线的点可以看作为支持向量，它们可以决定分类器，也就是黑线的具体参数。
+![png]({{"/assets/images/my/20180509_04.png"| absolute_url }})
+
+分类器：就是分类函数。
+
+线性分类：可以理解为在2维空间中，可以通过一条直线来分类。在p维空间中，可以通过一个p-1维的超平面来分类。
+
+在训练数据中，每个数据都有n个的属性和一个二类类别标志，我们可以认为这些数据在一个n维空间里。我们的目标是找到一个n-1维的超平面（hyperplane），这个超平面可以将数据分成两部分，每部分数据都属于同一个类别。
+
+其实这样的超平面有很多，我们要找到一个最佳的。因此，增加一个约束条件：这个超平面到每边最近数据点的距离是最大的。也成为最大间隔超平面（maximum-margin hyperplane）。这个分类器也成为最大间隔分类器（maximum-margin classifier）。
+支持向量机是一个二类分类器。
+
+非线性分类：SVM的一个优势是支持非线性分类。它结合使用拉格朗日乘子法和KKT条件，以及核函数可以产生非线性分类器。
+
+向量相乘: $xw^{T}=\sum_{i=1}^{n}w_{i}x_{i}$
+
+内积: $⟨x,y⟩=\sum_{i=1}^{n}x_{i}y_{i}$
+
+## 向量计算
+
+> 由向量加法定义可得 $\mathbf{x} = \mathbf{x_0} + \mathbf{r}$。
+
+> 那么向量 $\mathbf{r}$ 等于什么呢？它等于这个方向的单位向量乘上 $r$，也即有 $\mathbf{r} = \frac{\mathbf{w}}{\Vert \mathbf{w} \Vert} \cdot r$
+
+> 因此又有 $\mathbf{x} = \mathbf{x_0} + \frac{\mathbf{w}}{\Vert \mathbf{w} \Vert} \cdot r$。
+
+> 由于点 $x_0$ 在超平面上，所以有 $\mathbf{w}^T\mathbf{x_0}+b=0$
+
+> 由 $\mathbf{x} = \mathbf{x_0} + \frac{\mathbf{w}}{\Vert \mathbf{w} \Vert} \cdot r$ 可得 $\mathbf{x_0} = \mathbf{x} - \frac{\mathbf{w}}{\Vert \mathbf{w} \Vert} \cdot r$，代入直线方程消去 $\mathbf{x_0}$：
+
+$$
+> \mathbf{w}^T\mathbf{x_0}+b
+= \mathbf{w}^T(\mathbf{x} - \frac{\mathbf{w}}{\Vert \mathbf{w} \Vert} \cdot r)+b
+= 0
+$$
+
+> 简单变换即可得到:
+
+$$
+> r = \frac{\mathbf{w}^T\mathbf{x}+b}{\Vert \mathbf{w} \Vert}
+$$
+
+> 又因为我们取距离为正值，所以要加上绝对值符号：
+
+$$
+r = \frac{|\mathbf{w}^T\mathbf{x}+b|}{\Vert \mathbf{w} \Vert}
+$$
+
+## 点到直线距离公式
+
+> 假设直线方程为 $ax_1 + bx_2 + c= 0$，那么有点到直线距离公式：
+
+$$
+r = \frac{|ax + bx_2 + c|}{\sqrt{a^2+b^2}}
+$$
+
+> 令 $\mathbf{w} = (a,b)$，$\mathbf{x} = (x_1,x_2)$，则可以把 $ax_1 + bx_2$ 写成向量形式 $\mathbf{w}^T\mathbf{x}$。把截距项设为$b$，则直线方程变为 $\mathbf{w}^T\mathbf{x}+b=0$，代入距离公式可得：
+
+$$r = \frac{|\mathbf{w}^T\mathbf{x}+b|}{\sqrt{\mathbf{w}^T\mathbf{w}}} = \frac{|\mathbf{w}^T\mathbf{x}+b|}{\Vert \mathbf{w} \Vert}
+$$
+
+> 该式扩展到多维情况下也是通用的。
+
+## 间隔
+
+欲实现的是**最大化两类支持向量到超平面的距离之和**，而根据定义，所有支持向量都满足：
+
+$$
+\mathbf{w}^T\mathbf{x}+b = +1,\quad y_i = +1
+$$
+$$
+\mathbf{w}^T\mathbf{x}+b = -1,\quad y_i = -1
+$$
+
+代入前面的距离公式可以得到支持向量到超平面的距离为 $\frac{1}{\Vert \mathbf{w} \Vert}$。
+
+定义**间隔（margin）**为**两个异类支持向量到超平面的距离之和**：
+
+$$
+\gamma = 2 \cdot \frac{1}{\Vert \mathbf{w} \Vert} = \frac{2}{\Vert \mathbf{w} \Vert}
+$$
+
+SVM的目标便是找到**具有最大间隔（maximum margin）**的划分超平面，也即找到使 $\gamma$ 最大的参数 $\mathbf{w}$ 和 $b$：
+
+$$
+\max_{\mathbf{w},b} \frac{2}{\Vert \mathbf{w} \Vert} \quad s.t. \quad y_i(\mathbf{w}^T\mathbf{x}+b) \geq 1, \quad  i=1,2,...,m
+$$
+
+约束部分指的是全部样本都被正确分类，此时标记乘上预测值必定是一个大于等于1的数值。
+
+看上去间隔只与 $\mathbf{w}$ 有关，但实际上位移项 $b$ 也通过约束影响着 $\mathbf{w}$ 的取值，进而对间隔产生影响。
+
+由于最大化 $\Vert \mathbf{w} \Vert^{-1}$ 等价于最小化 $\Vert \mathbf{w} \Vert^{2}$，所以可以重写**目标函数**为：
+
+$$
+\min_{\mathbf{w},b} \frac{1}{2} \Vert \mathbf{w} \Vert^2 \quad s.t. \quad y_i(\mathbf{w}^T\mathbf{x}+b) \geq 1, \quad  i=1,2,...,m\qquad(1)
+$$
+
+这便是**支持向量机的基本型**。
+
+特别地，还有以下定义：
+
+**函数间隔**：$y_i(\mathbf{w}^T\mathbf{x}+b)$
+
+**几何间隔**：$\frac{y_i(\mathbf{w}^T\mathbf{x}+b)}{\Vert \mathbf{w} \Vert^2}$
+## 拉格朗日乘子法（Lagrange Multiplier) 和KKT条件
+
+在求取有约束条件的优化问题时，拉格朗日乘子法（Lagrange Multiplier) 和KKT条件是非常重要的两个求取方法，对于等式约束的优化问题，可以应用拉格朗日乘子法去求取最优值；如果含有不等式约束，可以应用KKT条件去求取。当然，这两个方法求得的结果只是必要条件，只有当是凸函数的情况下，才能保证是充分必要条件。KKT条件是拉格朗日乘子法的泛化。
+
+### 拉格朗日乘子法（Lagrange Multiplier) 和KKT条件
+
+通常我们需要求解的最优化问题有如下几类：
+
+(i) 无约束优化问题，可以写为:
+
+                                      min f(x);  
+
+(ii) 有等式约束的优化问题，可以写为:
+
+                                       min f(x), 
+
+                                            s.t. h_i(x) = 0; i =1, ..., n 
+
+(iii) 有不等式约束的优化问题，可以写为：
+
+                                      min f(x), 
+
+                                            s.t. g_i(x) <= 0; i =1, ..., n
+
+                                                  h_j(x) = 0; j =1, ..., m
+
+对于第(i)类的优化问题，常常使用的方法就是Fermat定理，即使用求取f(x)的导数，然后令其为零，可以求得候选最优值，再在这些候选值中验证；如果是凸函数，可以保证是最优解。
+
+对于第(ii)类的优化问题，常常使用的方法就是拉格朗日乘子法（Lagrange Multiplier) ，即把等式约束h_i(x)用一个系数与f(x)写为一个式子，称为拉格朗日函数，而系数称为拉格朗日乘子。通过拉格朗日函数对各个变量求导，令其为零，可以求得候选值集合，然后验证求得最优值。
+
+对于第(iii)类的优化问题，常常使用的方法就是KKT条件。同样地，我们把所有的等式、不等式约束与f(x)写为一个式子，也叫拉格朗日函数，系数也称拉格朗日乘子，通过一些条件，可以求出最优值的必要条件，这个条件称为KKT条件。
+
+- 拉格朗日乘子法（Lagrange Multiplier)
+
+对于等式约束，我们可以通过一个拉格朗日系数a 把等式约束和目标函数组合成为一个式子L(a, x) = f(x) + a*h(x), 这里把a和h(x)视为向量形式，a是横向量，h(x)为列向量。
+
+然后求取最优值，可以通过对L(a,x)对各个参数求导取零，联立等式进行求取。
+
+- KKT条件
+
+对于含有不等式约束的优化问题，如何求取最优值呢？常用的方法是KKT条件，同样地，把所有的不等式约束、等式约束和目标函数全部写为一个式子L(a, b, x)= f(x) + a*g(x)+b*h(x)，KKT条件是说最优值必须满足以下条件：
+
+1. L(a, b, x)对x求导为零；
+
+2. h(x) =0;
+
+3. a*g(x) = 0;
+
+求取这三个等式之后就能得到候选最优值。其中第三个式子非常有趣，因为g(x)<=0，如果要满足这个等式，必须a=0或者g(x)=0. 这是SVM的很多重要性质的来源，如支持向量的概念。
+
+- 为什么拉格朗日乘子法（Lagrange Multiplier) 和KKT条件能够得到最优值？
+
+为什么要这么求能得到最优值？先说拉格朗日乘子法，设想我们的目标函数z = f(x), x是向量, z取不同的值，相当于可以投影在x构成的平面（曲面）上，即成为等高线，如下图，目标函数是f(x, y)，这里x是标量，虚线是等高线，现在假设我们的约束g(x)=0，x是向量，在x构成的平面或者曲面上是一条曲线，假设g(x)与等高线相交，交点就是同时满足等式约束条件和目标函数的可行域的值，但肯定不是最优值，因为相交意味着肯定还存在其它的等高线在该条等高线的内部或者外部，使得新的等高线与目标函数的交点的值更大或者更小，只有到等高线与目标函数的曲线相切的时候，可能取得最优值，如下图所示，即等高线和目标函数的曲线在该点的法向量必须有相同方向，所以最优值必须满足：f(x)的梯度 = a* g(x)的梯度，a是常数，表示左右两边同向。这个等式就是L(a,x)对参数求导的结果。（上述描述，我不知道描述清楚没，如果与我物理位置很近的话，直接找我，我当面讲好理解一些，注：下图来自wiki）。
+![lm]({{"/assets/images/my/20180509_05.png"| absolute_url }})
+
+而KKT条件是满足强对偶条件的优化问题的必要条件，可以这样理解：我们要求min f(x), L(a, b, x) = f(x) + a*g(x) + b*h(x)，a>=0，我们可以把f(x)写为：max_{a,b} L(a,b,x)，为什么呢？因为h(x)=0, g(x)<=0，现在是取L(a,b,x)的最大值，a*g(x)是<=0，所以L(a,b,x)只有在a*g(x) = 0的情况下才能取得最大值，否则，就不满足约束条件，因此max_{a,b} L(a,b,x)在满足约束条件的情况下就是f(x)，因此我们的目标函数可以写为 min_x max_{a,b} L(a,b,x)。如果用对偶表达式： max_{a,b} min_x  L(a,b,x)，由于我们的优化是满足强对偶的（强对偶就是说对偶式子的最优值是等于原问题的最优值的），所以在取得最优值x0的条件下，它满足 f(x0) = max_{a,b} min_x  L(a,b,x) = min_x max_{a,b} L(a,b,x) =f(x0)，我们来看看中间两个式子发生了什么事情：
+
+ f(x0) = max_{a,b} min_x  L(a,b,x) =  max_{a,b} min_x f(x) + a*g(x) + b*h(x) =  max_{a,b} f(x0)+a*g(x0)+b*h(x0) = f(x0)
+
+可以看到上述加黑的地方本质上是说 min_x f(x) + a*g(x) + b*h(x) 在x0取得了最小值，用fermat定理，即是说对于函数 f(x) + a*g(x) + b*h(x)，求取导数要等于零，即
+
+f(x)的梯度+a*g(x)的梯度+ b*h(x)的梯度 = 0
+
+这就是kkt条件中第一个条件：L(a, b, x)对x求导为零。
+
+而a*g(x) = 0，这时kkt条件的第3个条件，当然已知的条件h(x)=0必须被满足，所有上述说明，满足强对偶条件的优化问题的最优值都必须满足KKT条件，即上述说明的三个条件。可以把KKT条件视为是拉格朗日乘子法的泛化。
+
+### 核函数
+
+- 如何处理非线性划分
+
+在现实任务中，我们更常遇到的是**在原始样本空间中非线性可分**的问题。对这样的问题，一种常用的思路是将样本从原始空间映射到一个更高维的特征空间，使得样本在该特征空间中线性可分。幸运的是，**只要原始空间是有限维的（也即属性数目有限），那就必然存在一个高维特征空间使样本线性可分**。
+
+举个例子，二维平面上若干样本点呈如下分布：
+
+![lm]({{"/assets/images/my/20180509_06.png"| absolute_url }})
+
+此时要划分两类样本，需要一个非线性的圆型曲线。假设原始空间中两个属性是 $x$ 和 $y$，如果我们做一个映射，把样本点都映射到一个三维特征空间，维度取值分别为 $x^2$，$y^2$ 和 $y$，则得到下面的分布：
+
+![lm]({{"/assets/images/my/20180509_07.gif"| absolute_url }})
+
+可以看到这个时候，我们只需要一个线性超平面就可以将两类样本完全分开了，也就是说可以用前面的方法来求解了。
+
+- 什么是核函数
+
+在上面的例子中，我们是把每个样本对应的二维的特征向量 $\mathbf{x}$ 映射为一个三维的特征向量，假设我们**用 $\phi(\mathbf{x})$ 来表示映射所得的特征向量**。则**在映射的高维特征空间中**，用于划分的线性超平面可以表示为：
+
+$$
+f(\mathbf{x}) = \mathbf{w}^T \phi(\mathbf{x}) + b
+$$
+
+类似式（1），可以得到此时的目标函数为：
+
+$$
+\min_{\mathbf{w},b} \frac{1}{2} \Vert \mathbf{w} \Vert^2 \quad s.t. \quad y_i(\mathbf{w}^T\phi(\mathbf{x})+b) \geq 1, \quad  i=1,2,...,m\qquad(9)
+$$
+
+对应的对偶问题为：
+
+$$
+\max_{\mathbf{a}} \sum_{i=1}^m a_i - \frac{1}{2} \sum_{i=1}^m\sum_{j=1}^m a_i a_j y_i y_j \phi(\mathbf{x}_i)^T \phi(\mathbf{x}_j) \quad s.t. \quad \sum_{i=1}^m a_i y_i = 0, \quad a_i \geq 0, \quad i=1,2,...,m \qquad (10)
+$$
+
+注意到对偶问题中，涉及到 $\phi(\mathbf{x}_i)^T \phi(\mathbf{x}_j)$ 的计算，也即 $x_i$ 和 $x_j$ 映射到高维特征空间后的内积（比如 $x_i = (1,2,3)$，$x_j = (4,5,6)$，那么内积 $x_i^Tx_j$ 就等于 $1*4+2*5+3*6=32$），由于**特征空间维数可能很高**，所以**直接计算映射后特征向量的内积是很困难的**，如果映射后的特征空间是无限维，根本无法进行计算。
+
+为了解决这样的问题，就引入了**核函数（kernel function）**。
+
+打个比方，假设输入空间是二维的，每个样本点有两个属性 $x$ 和 $y$，存在映射将每个样本点映射到三维空间：
+
+$$
+\phi(\mathbf{x}) = \phi(x, y) = (x^2, \sqrt{2}xy, y^2)
+$$
+
+给定原始空间中的两个样本点 $\mathbf{v}_1=(x_1,y_1)$ 和 $\mathbf{v}_2=(x_2,y_2)$，则它们映射到高维特征空间后的内积可以写作：
+
+$\quad \phi(\mathbf{v}_1)^T \phi(\mathbf{v}_2) = <\phi(\mathbf{v}_1),\phi(\mathbf{v}_2)>$
+
+$=<(x_1^2, \sqrt{2}x_1y_1, y_1^2),(x_2^2, \sqrt{2}x_2y_2, y_2^2)>$
+
+$= x_1^2x_2^2 + 2x_1x_2y_1y_2 + y_1^2y_2^2
+= (x_1x_2 + y_1y_2)^2$
+
+$= <\mathbf{v}_1,\mathbf{v}_2>^2$
+
+$= \kappa(\mathbf{v}_1,\mathbf{v}_2)$
+
+可以看到在这个例子里，高维特征空间中两个点的内积，可以写成一个**关于原始空间中两个点的函数** $\kappa(\cdot;\cdot)$，这就是核函数。
+
+特别地，上面的例子中，映射用的是**多项式核**，多项式的次数 $d$ 取2。
+
+- 为什么需要核函数
+
+这里的例子为了计算方便，映射的空间维数依然很低，这里稍微解释一下**为什么需要核函数**？假设原始空间是二维的，那么对于两个属性 $x$ 和 $y$，取一阶二阶的组合只有5个（也即 $x^2$，$y^2$，$x$，$y$，$xy$）。但当原始空间是三维的时候，仍然取一阶二阶，组合就多达19个了（也即 $x$，$y$，$z$，$xy$，$xz$，$yz$，$x^2y$，$x^2z$，$y^2x$，$y^2z$，$z^2x$，$z^2y$，$x^2yz$，$xy^2z$，$xyz^2$，$x^2y^2z$，$x^2yz^2$，$xy^2z^2$，$xyz$）。**随着原始空间维数增长，新空间的维数是呈爆炸性上升的**。何况现实中我们遇到的问题的原始空间往往本来就已经是高维的，如果再进行映射，新特征空间的维度是难以想象的。
+
+然而有了核函数，我们就可以在原始空间中通过函数 $\kappa(\cdot;\cdot)$ 计算（这称为**核技巧（kernel trick）**），而**不必直接计算高维甚至无穷维特征空间中的内积**。
+
+使用核函数后，对偶问题式（10）可以重写为：
+
+$$
+\max_{\mathbf{a}} \sum_{i=1}^m a_i - \frac{1}{2} \sum_{i=1}^m\sum_{j=1}^m a_i a_j y_i y_j \kappa(\mathbf{x}_i;\mathbf{x}_j) \quad s.t. \quad \sum_{i=1}^m a_i y_i = 0, \quad a_i \geq 0, \quad i=1,2,...,m \qquad (11)
+$$
+
+求解后得到的模型可以表示为：
+
+$$
+f(\mathbf{x}) = \mathbf{w}^T \phi(\mathbf{x}) + b = \sum_{i=1}^m a_i y_i \phi(\mathbf{x}_i)^T \phi(\mathbf{x}) + b = \sum_{i=1}^m a_i y_i \kappa(\mathbf{x}_i;\mathbf{x}) + b
+$$
+
+这条式子表明了**模型最优解可通过训练样本的核函数展开**，称为**支持向量展式（support vector expansion）**。
+
+在需要对新样本进行预测时，我们**无须计算 $\mathbf{w}$ 和新样本映射到高维（甚至无限维）空间后的内积**，而是最后一个等式的方式，**利用保存下来的训练样本中的支持向量进行求解**。
+
+**核函数本身不等于映射！！！**它只是用来**计算两个数据点映射到高维空间之后的内积**的一种简便方法。
+当我们发现数据在原始空间线性不可分时，会有把数据映射到高维空间来实现线性可分的想法，比方说引入原有属性的幂或者原有属性之间的乘积作为新的维度。假设我们把数据点都映射到了一个维数很高甚至无穷维的特征空间，而**模型求解和预测的过程需要用到映射后两个数据点的内积**，这时直接计算就没辙了。但我们又幸运地发现，原来**高维空间中两点的内积在数值上等于原始空间通过某个核函数算出的函数值**，无需先映射再求值，就很好地解决了计算的问题了。
+
+- 核函数的性质
+
+**核函数定理**：给定一个输入空间 $\mathcal{X}$，函数 $\kappa(\cdot;\cdot)$ 是定义在 $\mathcal{X} \times \mathcal{X}$ 上的**对称函数**。当且仅当对于任意数据集 $D = \{\mathbf{x}_1,\mathbf{x}_2,...,\mathbf{x}_m\}$, 对应的**核矩阵（kernel matrix）**都是半正定的时候，$\kappa$ 是核函数。
+
+核矩阵是一个规模为 $m \times m$ 的函数矩阵，每个元素都是一个函数，比如第 $i$ 行 $j$ 列的元素是 $\kappa(\mathbf{x}_i,\mathbf{x}_j)$。也即是说，**任何一个核函数都隐式地定义了一个称为“再生核希尔伯特空间（Reproducing Kernel Hilbert Space，简称RKHS）”的特征空间**。
+
+做映射的初衷是希望**样本在新特征空间上线性可分**，新特征空间的好坏直接决定了支持向量机的性能，但是我们并**不知道怎样的核函数是合适的**。一般来说有以下几种常用核函数：
+
+| 名称 | 表达式 | 参数 |
+|:-:|:-:|:-:|
+| 线性核 | $\kappa(\mathbf{x}_i,\mathbf{x}_j)=\mathbf{x}_i^T\mathbf{x}_j$ |-|
+| 多项式核 | $\kappa(\mathbf{x}_i,\mathbf{x}_j)=(\mathbf{x}_i^T\mathbf{x}_j)^d$ | $d \geq 1$为多项式的次数，d=1时退化为线性核 |
+| 高斯核（亦称RBF核） | $\kappa(\mathbf{x}_i,\mathbf{x}_j)=\exp (-\frac{\Vert \mathbf{x}_i-\mathbf{x}_j \Vert ^2}{2\sigma^2})$ | $\sigma>0$ 为高斯核的带宽（width） |
+| 拉普拉斯核 | $\kappa(\mathbf{x}_i,\mathbf{x}_j)=\exp (-\frac{\Vert \mathbf{x}_i-\mathbf{x}_j \Vert}{\sigma})$| $\sigma>0$ |
+| Sigmoid核 | $\kappa(\mathbf{x}_i,\mathbf{x}_j)=\tanh(\beta \mathbf{x}_i^T\mathbf{x}_j+\theta)$ | $tanh$ 为双曲正切函数，$\beta>0,\theta<0$ |
+
+特别地，**文本数据一般用线性核**，**情况不明可尝试高斯核**。
+
+除了这些常用的核函数，要**产生核函数还可以使用组合的方式**：
+
+- 1)若 $\kappa_1$ 和 $\kappa_2$ 都是核函数，则 $a\kappa_1+b\kappa_2$ 也是核函数，其中 $a>0,b>0$。
+
+- 2)若 $\kappa_1$ 和 $\kappa_2$ 都是核函数，则其直积 $\kappa_1 \otimes \kappa_2(\mathbf{x},\mathbf{z}) = \kappa_1(\mathbf{x},\mathbf{z})\kappa_2(\mathbf{x},\mathbf{z})$ 也是核函数。
+
+- 3)若 $\kappa_1$ 是核函数，则对于任意函数 $g(\mathbf{x})$，$\kappa(\mathbf{x},\mathbf{z}) = g(\mathbf{x}) \kappa_1(\mathbf{x},\mathbf{z}) g(\mathbf{z})$ 也是核函数。
+
+### 软间隔与正则化
+
+上一节中，通过利用核函数映射来解决非线性可分的问题，但现实中很难找到合适的核函数，即使某个核函数能令训练集在新特征空间中线性可分，也难保这不是**过拟合**造成的结果。
+
+![lm]({{"/assets/images/my/20180509_09.png"| absolute_url }})
+
+比方说上面这张图，黑色虚线是此时的划分超平面，最大间隔很小。但事实上，黑色圆圈圈起的蓝点是一个 **outlier**，可能是噪声的原因，它**偏离了正确的分布**。而训练模型时，我们并没有考虑这一点，这就导致**把训练样本中的 outlier当成数据的真实分布拟合了**，也即过拟合。
+
+但当我们**允许这个 outlier 被误分类**时，得到的划分超平面可能就如图中深红色线所示，此时的最大间隔更大，预测新样本时误分类的概率也会降低很多。
+
+**在实际任务中，outlier 的情况可能更加严重**。比方说，如果图中的 outlier 再往右上移动一些距离的话，我们甚至会**无法构造出一个能将数据划分开的超平面**。
+
+缓解该问题的一个思路就是**允许支持向量机在一些样本上出错**，为此，引入**软间隔（soft margin）**的概念。软间隔是相对于**硬间隔（hard margin）**的一个概念，**硬间隔要求所有样本都必须划分正确**，也即约束：
+
+$$
+y_i(\mathbf{w}^T\mathbf{x}_i+b) \geq 1
+$$
+
+软间隔则**允许某些样本不满足约束**（根据约束条件的不同，有可能某些样本出现在间隔内，甚至被误分类）。此时目标函数可以重写为：
+
+$$
+\min_{\mathbf{w},b} \frac{1}{2} \Vert \mathbf{w} \Vert^2 + C \sum_{i=1}^m \ell_{0/1}(y_i(\mathbf{w}^T\mathbf{x}+b)-1) \qquad (12)
+$$
+
+其中 $\ell_{0/1}$ 是**0/1损失函数**：
+
+$$
+\ell_{0/1}(z)=
+\left
+\{\begin{array}
+\\1, \quad if\ z<0;
+\\0, \quad otherwise.
+\end{array}
+\right.
+$$
+
+它的含义很简单：如果分类正确，那么函数间隔必定大于等于1，此时损失为0；如果分类错误，那么函数间隔必定小于等于-1，此时损失为1。
+
+而 $C$ 则是一个大于0的常数，当 $C$ 趋于无穷大时，式（12）等效于带约束的式（1），因为此时对误分类的惩罚无限大，也即要求全部样本分类正确。**当 $C$ 取有限值时，允许某些样本分类错误**。
+
+由于**0/1损失函数是一个非凸不连续函数**，所以式（12）难以求解，于是在实际任务中，我们采用一些**凸的连续函数**来取替它，这样的函数就称为**替代损失（surrogate loss）函数**。
+
+最常用的有以下三种：
+
+- hinge损失：$\ell_{hinge}(z) = \max (0,1-z)$
+
+- 指数损失（exponential loss）：$\ell_{\exp}(z) = \exp (-z)$
+
+- 对率损失（logistic loss）：$\ell_{\log}(z) = \log (1+\exp (-z) )$
+
+- 求解软间隔支持向量机
+
+类似于前面的做法，分以下几步：
+
+1. 通过拉格朗日乘子法把 $m$ 个约束转换 $m$ 个拉格朗日乘子，得到该问题的拉格朗日函数。
+
+2. 分别对 $\mathbf{w}, b, \xi$ 求偏导，代入拉格朗日函数得到对偶问题。
+
+3. 使用SMO算法求解对偶问题，解出所有样本对应的拉格朗日乘子。
+
+4. 需要进行新样本预测时，使用支持向量及其对应的拉格朗日乘子进行求解。
+
+特别地，因为式（14）有**两组 $m$ 个不等式约束**（一组是函数间隔，一组是 $\xi$），所以该问题的拉格朗日函数有 $a_i \geq 0$ 和 $\mu_i \geq 0$ 两组拉格朗日乘子。对 $\xi$ 求导会得到一条约束式：
+
+$$
+C = a_i + \mu_i \qquad (15)
+$$
+
+有意思的是，**软间隔支持向量机的对偶问题和硬间隔几乎没有不同**，只是约束条件修改了一下：
+
+$$
+\max_{\mathbf{a}} \sum_{i=1}^m a_i - \frac{1}{2} \sum_{i=1}^m\sum_{j=1}^m a_i a_j y_i y_j \mathbf{x}_i^T \mathbf{x}_j \quad s.t. \quad \sum_{i=1}^m a_i y_i = 0, \quad 0 \leq a_i \leq C, \quad i=1,2,...,m \qquad (16)
+$$
+
+这里的 $a_i$ 不仅要求大于等于0，还要求小于等于 $C$。
+
+类似地，由于式（14）的约束条件是**不等式约束**，所以求解过程要求满足**KKT（Karush-Kuhn-Tucker）条件**：
+
+$$
+\left
+\{\begin{array}
+\\a_i \geq 0,\ \mu_i \geq 0;
+\\y_i f(\mathbf{x}_i)-1+\xi_i \geq 0;
+\\a_i (y_i f(\mathbf{x}_i)-1+\xi_i) = 0;
+\\\xi_i \geq 0,\ \mu_i\xi_i = 0.
+\end{array}
+\right.
+$$
+
+### 正则化
+
+事实上，无论使用何种损失函数，SVM的目标函数都可以描述为以下形式：
+
+$$
+\min_f \Omega(f) + C \sum_{i=1}^m \ell(f(\mathbf{x}_i), y_i) \qquad (17)
+$$
+
+在SVM中第一项用于描述划分超平面的“间隔”的大小，第二项用于描述在训练集上的误差。
+
+更一般地，第一项称为**结构风险（structural risk）**，用来描述**模型的性质**。第二项称为**经验风险（empirical risk）**，用来描述**模型与训练数据的契合程度**。参数 $C$ 用于权衡这两种风险。
+
+前面学习的模型大多都是在最小化经验风险的基础上，再考虑结构风险（避免过拟合）。而SVM则是从最小化结构风险来展开的。
+
+从最小化经验风险的角度来看，$\Omega(f)$ 表述了我们希望得到具有何种性质的模型（例如复杂度较小的模型），为引入领域知识和用户意图提供了路径（比方说贝叶斯估计中的先验概率）。
+
+另一方面，$\Omega(f)$ 还可以帮我们削减假设空间，从而降低模型过拟合的风险。从这个角度来看，可以称 $\Omega(f)$ 为**正则化（regularization）项**，$C$ 为正则化常数。正则化可以看作一种**罚函数法**，即对不希望出现的结果施以惩罚，从而使优化过程趋向于期望的目标。
+
+$L_p$ 范数是常用的正则化项，其中 $L_2$ 范数 $\Vert \mathbf{w} \Vert_2$ 倾向于 $\mathbf{w}$ 的分量取值尽量稠密，即非零分量个数尽量多； $L_0$ 范数 $\Vert \mathbf{w} \Vert_0$ 和 $L_1$ 范数 $\Vert \mathbf{w} \Vert_1$ 则倾向于 $\mathbf{w}$ 的分量取值尽量稀疏，即非零分量个数尽量少。
+
+### 支持向量回归
+
+同样是利用线性模型 $f(\mathbf{x}) = \mathbf{w}^T\mathbf{x}+b$
+ 来预测，回归问题希望预测值和真实值 $y$ 尽可能相近，而不是像分类任务那样，旨在令不同类的预测值可以被划分开。
+
+传统的回归模型计算损失时直接取真实值和预测值的差，**支持向量回归（Support Vector Regression，简称SVR）**则不然。SVR假设我们能容忍最多有 $\epsilon$ 的偏差，**只有当真实值和预测值之间相差超出了 $\epsilon$ 时才计算损失**。
+
+![lm]({{"/assets/images/my/20180509_08.png"| absolute_url }})
+
+如图所示，以SVR拟合出的直线为中心，两边各构建出一个宽度为 $\epsilon$ 的地带，落在这个**宽度为 $2\epsilon$ 的间隔带**内的点都被认为是预测正确的。
+
+因此，问题可以形式化为目标函数：
+
+$$
+\min_{\mathbf{w},b} \frac{1}{2} \Vert \mathbf{w} \Vert^2 + C \sum_{i=1}^m \ell_{\epsilon}(f(\mathbf{x}_i) - y_i) \qquad (18)
+$$
+
+其中 $C$ 为正则化常数， $\ell_{\epsilon}$ 称为 **$\epsilon-$不敏感损失（$\epsilon-$insensitive loss）**函数。定义如下：
+
+$$
+\ell_{、epsilon}(z)=
+\left
+\{\begin{array}
+\\0, \quad if\ |z| \leq \epsilon;
+\\|z|-\epsilon, \quad otherwise.
+\end{array}
+\right.
+$$
+
+引入松弛变量 $\xi_i$ 和 $\hat{\xi}_i$，分别表示**间隔带两侧的松弛程度**，它们**可以设定为不同的值**。此时，目标函数式（18）可以重写为：
+
+$$
+\min_{\mathbf{w},b} \frac{1}{2} \Vert \mathbf{w} \Vert^2 + C \sum_{i=1}^m (\xi_i + \hat{\xi}_i) \qquad (19)\\
+s.t.\ f(\mathbf{x}_i) - y_i \leq \epsilon + \xi_i,\\
+\qquad \quad y_i - f(\mathbf{x}_i) \leq \epsilon + \xi_i\\
+\qquad \qquad \qquad \xi_i \geq 0, \hat{\xi}_i \geq 0, i=1,2,...,m.
+$$
+
+注意这里有四组 $m$ 个约束条件，所以对应地有四组拉格朗日乘子。
+
+接下来就是用拉格朗日乘子法获得问题对应的拉格朗日函数，然后求偏导再代回拉格朗日函数，得到对偶问题。然后使用SMO算法求解拉格朗日乘子，最后得到模型，这里不一一详述了。
+
+特别地，**SVR中同样有支持向量的概念**，解具有稀疏性，所以训练好模型后不需保留所有训练样本。此外，SVR同样可以通过引入核函数来获得拟合非线性分布数据的能力。
+
+### 核方法
+
+无论是SVM还是SVR，如果不考虑偏置项b，我们会发现模型总能表示为核函数的线性组合。更一般地，存在**表示定理（representer theorem）**：
+
+令 $\mathbb{H}$ 为核函数 $\kappa$ 对应的再生希尔伯特空间， $\Vert h \Vert_{\mathbb{H}}$ 表示 $\mathbb{H}$ 空间中关于 $h$ 的范数，对于任意**单调递增**函数 $\Omega:[0,\infty] \longmapsto \mathbb{R}$ 和任意**非负**损失函数 $\ell:\mathbb{R}^m \longmapsto [0,\infty]$，优化问题
+
+$$
+min_{h \in \mathbb{H}} F(h) = \Omega(\Vert h \Vert_mathbb{H}) + \ell(h(mathbf{x}_1,h(mathbf{x}_2,...,h(mathbf{x}_m)) \qquad (20)
+$$
+
+的解总可写为：
+
+$$
+h^x(\mathbf{x}) = \sum_{i=1}^m a_i \kappa(\mathbf{x},\mathbf{x}_i)
+$$
+
+这个定理表明，对于形如式（20），旨在最小化损失和正则化项之和的优化问题，解都可以表示为核函数的线性组合。
+
+基于核函数的学习方法，统称为**核方法（kernal methods）**。最常见的就是通过**核化**（引入核函数），将线性学习器扩展为非线性学习器。这不仅限于SVM，事实上LR和LDA也都可以采用核函数，只是SVM使用hinge损失，解具有稀疏性所以用得更多。
+
+1 算法流程
+
+　　SVM的目的是要找到一个线性分类的最佳超平面 $f(x)=xw^{T}+b=0$。求 w 和 b
+。
+- 首先通过两个分类的最近点，找到f(x)的约束条件。
+- 有了约束条件，就可以通过[拉格朗日乘子](https://zh.wikipedia.org/zh-hans/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B9%98%E6%95%B0)法和KKT条件来求解，问题变成了求[拉格朗日乘子](https://zh.wikipedia.org/zh-hans/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B9%98%E6%95%B0)$α_{i}$和 b。
+- 对于异常点的情况，加入松弛变量ξ来处理。
+- 使用SMO来求拉格朗日乘子$α_{i}$和b。这时，我们会发现有些$α_{i}$=0，这些点就可以不用在分类器中考虑了。
+- 不用求w了，可以使用[拉格朗日乘子](https://zh.wikipedia.org/zh-hans/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B9%98%E6%95%B0)$α_{i}$和b作为分类器的参数。
+- 非线性分类的问题：映射到高维度、使用核函数。
+
+2 优点
++ 对于线性不可分的情况可以通过核函数，映射到高维特征空间实现线性可分
++ SVM学习问题可以表示为凸优化问题，因此可以利用已知的有效算法发现目标函数的全局最小值。而其他分类方法（如基于规则的分类器和人工神经网络）都采用一种基于贪心学习的策略来搜索假设空间，这种方法一般只能获得局部最优解
++ 小集群分类效果好
++ 使用训练样本的子集构建决策函数（这些样本点被称之为支持向量），因此它的内存效率很高
++ SVM是一个全能型的机器学习算法：可以指定不同的核函数的决策函数，提供了常见的核函数，但是也可以指定自定义的核函数
+
+3 缺点
+- SVM仅仅只限于一个二类分类问题，对于多分类问题解决效果并不好。
+- 仅局限于小集群样本，对于观测样本太多时，效率较低。
+- 寻求合适的核函数相对困难。
+- SVM不直接提供概率估计，这些都是使用昂贵的5折交叉验证计算得到的
+
+
+# 2.支持向量机和逻辑回归的联系与区别
+
+上面用的是hinge损失，不过还有其他一些替代损失函数，事实上，使用对率损失时，SVM得到的模型和LR是非常类似的。
+
+支持向量机和逻辑回归的**相同点**：
+
+- 都是线性分类器，模型求解出一个划分超平面
+- 两种方法都可以增加不同的正则化项
+- 通常来说性能相当
+
+支持向量机和逻辑回归的**不同点**：
+
+- LR使用对率损失，SVM一般用hinge损失
+
+- 在LR的模型求解过程中，每个训练样本都对划分超平面有影响，影响力随着与超平面的距离增大而减小，所以说**LR的解受训练数据本身的分布影响**；SVM的模型只与占训练数据少部分的支持向量有关，所以说，**SVM不直接依赖数据分布**，所得的划分超平面不受某一类点的影响
+
+- 如果数据**类别不平衡**比较严重，LR需要先做相应处理再训练，SVM则不用
+
+- SVM依赖于**数据表达的距离测度**，需要先把数据**标准化**，LR则不用（但实际任务中可能会为了方便选择优化过程的初始值而进行标准化）。如果数据的距离测度不明确（特别是高维数据），那么最大间隔可能就变得没有意义
+
+- LR的输出有**概率意义**，SVM的输出则没有
+
+- LR可以直接用于**多分类任务**，SVM则需要进行扩展（但更常用one-vs-rest）
+
+- LR使用的对率损失是光滑的单调递减函数，**无法导出支持向量**，解依赖于所有样本，因此预测开销较大；SVM使用的hinge损失有“零区域”，因此**解具有稀疏性**，从而不需用到所有训练样本。
+
+在实际运用中，LR更常用于大规模数据集，速度较快；SVM适用于规模小，维度高的数据集。
+
+在 Andrew NG 的课里讲到过：
+
+1. 如果Feature的数量很大，跟样本数量差不多，这时候选用LR或者是Linear Kernel的SVM
+
+2. 如果Feature的数量比较小，样本数量一般，不算大也不算小，选用SVM+Gaussian Kernel
+
+3. 如果Feature的数量比较小，而样本数量很多，需要手工添加一些feature变成第一种情况
+
+scikit-learn示例
+============
+
+Scikit-learn中的SVM支持稠密和稀疏两种向量作为输入。但是使用SVM为稀疏数据做预测，他一定是符合这样的数据（scipy.sparse）。为了最佳的性能，使用numpy.ndarray作为稠密向量以及scipy.sparse.csr_matrix 作为稀疏向量，并且dtype=float64。
+
+SVC，NuSVC和LinearSVC是三种在数据集上进行多分类的分类器。SVC和NuSVC是相类似的方法，但是它们接受不同的参数并且它们的数学公式也不一样。
+
+作为分类器，SVC, NuSVC and LinearSVC 都接收两个数组作为输入：训练样本 X [n_samples, n_features], 结果类标 y [n_samples] （可以是字符串或者是整数）。
+
+SVM决策函数依赖于训练数据的某个子集：称之为支持向量。这些支持向量的属性可以从一下三个成员中获取： support_vectors_, support_ 以及 n_support。
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn import svm, datasets
+
+#画网格函数
+def make_meshgrid(x, y, h=.02):
+    """Create a mesh of points to plot in
+
+    Parameters
+    ----------
+    x: data to base x-axis meshgrid on
+    y: data to base y-axis meshgrid on
+    h: stepsize for meshgrid, optional
+
+    Returns
+    -------
+    xx, yy : ndarray
+    """
+    x_min, x_max = x.min() - 1, x.max() + 1
+    y_min, y_max = y.min() - 1, y.max() + 1
+    xx, yy = np.meshgrid(np.arange(x_min, x_max, h),
+                         np.arange(y_min, y_max, h))
+    return xx, yy
+
+#画边界的函数
+def plot_contours(ax, clf, xx, yy, **params):
+    """Plot the decision boundaries for a classifier.
+
+    Parameters
+    ----------
+    ax: matplotlib axes object
+    clf: a classifier
+    xx: meshgrid ndarray
+    yy: meshgrid ndarray
+    params: dictionary of params to pass to contourf, optional
+    """
+    Z = clf.predict(np.c_[xx.ravel(), yy.ravel()])
+    Z = Z.reshape(xx.shape)
+    out = ax.contourf(xx, yy, Z, **params)
+    return out
+
+
+iris = datasets.load_iris()
+X = iris.data[:, :2]
+y = iris.target
+
+# 创建svm训练模型集，分别采用不同的核函数
+C = 1.0  # SVM regularization parameter
+models = (svm.SVC(kernel='linear', C=C),
+          svm.LinearSVC(C=C),
+          svm.SVC(kernel='rbf', gamma=0.7, C=C),
+          svm.SVC(kernel='poly', degree=3, C=C))
+models = (clf.fit(X, y) for clf in models)
+
+# title for the plots
+titles = ('SVC with linear kernel',
+          'LinearSVC (linear kernel)',
+          'SVC with RBF kernel',
+          'SVC with polynomial (degree 3) kernel')
+
+# Set-up 2x2 grid for plotting.
+fig, sub = plt.subplots(2, 2)
+plt.subplots_adjust(wspace=0.4, hspace=0.4)
+
+X0, X1 = X[:, 0], X[:, 1]
+xx, yy = make_meshgrid(X0, X1)
+
+for clf, title, ax in zip(models, titles, sub.flatten()):
+    plot_contours(ax, clf, xx, yy,
+                  cmap=plt.cm.coolwarm, alpha=0.8)
+    ax.scatter(X0, X1, c=y, cmap=plt.cm.coolwarm, s=20, edgecolors='k')
+    ax.set_xlim(xx.min(), xx.max())
+    ax.set_ylim(yy.min(), yy.max())
+    ax.set_xlabel('Sepal length')
+    ax.set_ylabel('Sepal width')
+    ax.set_xticks(())
+    ax.set_yticks(())
+    ax.set_title(title)
+
+plt.show()
+```
+
+![png]({{"/assets/images/my/20180509_20.png"| absolute_url }})
+　　
+版权声明：本文为博主原创文章，转载请注明出处。 [旭日酒馆](https://xueyp.github.io/)

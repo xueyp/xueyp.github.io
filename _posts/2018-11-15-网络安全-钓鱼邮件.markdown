@@ -1,0 +1,157 @@
+---
+layout: post
+title:  "网络安全-钓鱼邮件"
+categories: 网络安全
+tags: 网络安全 钓鱼邮件
+author: xueyp
+description: 钓鱼邮件和swaks
+---
+
+# 伪造邮件 
+
+- **邮件服务商之间转发邮件是不需要认证的，**也就是说MTA(Mail Transfer Agent, 通过SMTP协议发送、转发邮件)到MTA之间转发邮件是不需要认证的，这是SMTP协议本身定义的。所以协议钓鱼邮件就可以伪称来自某某MTA发送钓鱼邮件。
+
+- **互联网上有一些邮件域名没有配置SPF(Sender Policy Framework，发信人策略框架)记录或者SPF记录值设置不当**，就会被用作伪造邮件的mail_from 后缀域名。
+
+- **SMTP协议本身不需要身份认证**.我们平常用的MUA（Mail User Agent,接收邮件所使用的邮件客户端，使用IMAP或POP3协议与服务器通信)，比如foxmail等，发送邮件需要谁是邮件服务商人为要求的，不是SMTP协议本身要求的。
+
+- **mail_from 和from 的区别**
+
+mail_from： 是信封上的发件人，由[前缀@域名]组成，是实际发件人
+
+from： 信封内容里的发件人。 也就是我们平时收到邮件所看到的发件人，称为：显示发件人
+
+如果mail_from （实际发件人） 和 from （显示发件人） 不一致，则收到的邮件会显示 本邮件由<实际发件人>代发， 以提醒收件人两者的不同。
+
+有的ESP（邮件服务商）并不会要求mail_from 和from完全一致，而只是要求两者的域名相同（比如QQ 邮箱 和Gmail邮箱）。
+
+- **reply-to**： 信件回复的收件人， 用户直接回复邮件时，reply-to就是默认收件人。 如果用户不指定它, from就是默认收件人.
+
+- **mail_to 和 to的区别**
+
+mail_to 是实际收件人（信封上的收件人）， 而 to 是显示收件人（即信封内容中的收件人）,     to 也是可以伪造的（to 支持别名显示，别名也是可以伪造的），类似于from.
+
+现如今的钓鱼邮件都是通过注册相似的邮箱，或者设置邮箱的显示名称，盼着被害人有看走眼的那一刻，轻信邮件的内容。这种方法需要一定的社工技巧，以及诱导性的语言来诱使被害人上钩。但是对于有一定的经验以及眼力的人来说，还是可以识破骗子的伎俩。
+
+swaks是由John Jetmore编写和维护的一种功能强大，灵活，可脚本化，面向事务的SMTP测试工具。可向任意目标发送任意内容的邮件。“swaks”这个名字是”SWiss Army Knife Smtp”的首字母缩略词.
+
+[官方网站](http://www.jetmore.org/john/code/swaks/) 
+
+swaks可以最大程度的欺骗你的邮箱，更不要提你的眼睛。当然，此方法不是适用于任何邮箱，毕竟每种邮箱的过滤机制都不相同。
+
+# swaks 
+
+## 安装
+
+kali自带swaks工具，其他发行版可以自行安装，在我的manjaro中安装很简单， yaourt swaks即可搞定。
+
+## 基本用法
+
+基本方法：swaks --to <要测试的邮箱> 用来测试邮箱的连通性，或直接输入swaks会提示输入to的目标邮箱：
+
+```
+$swaks
+To: xxxxx@qq.com
+=== Trying xxxxx.qq.com:25...
+=== Connected to xxxxx.qq.com.
+<-  220 bizmx23.qq.com MX QQ Mail Server
+ -> EHLO localhost.localdomain
+<-  250-bizmx23.qq.com
+<-  250-SIZE 73400320
+<-  250-STARTTLS
+<-  250 OK
+ -> MAIL FROM:<x@localhost.localdomain>
+<-  250 Ok
+ -> RCPT TO:<xxxxx@qq.com>
+<-  250 Ok
+ -> DATA
+<-  354 End data with <CR><LF>.<CR><LF>
+ -> Date: Tue, 20 Nov 2018 14:32:44 +0800
+ -> To: xxxxx@qq.com
+ -> From: x@localhost.localdomain
+ -> Subject: test Tue, 20 Nov 2018 14:32:44 +0800
+ -> Message-Id: <20181120143244.008303@localhost.localdomain>
+ -> X-Mailer: swaks v20181104.0 jetmore.org/john/code/swaks/
+ -> 
+ -> This is a test mailing
+ -> 
+ -> 
+ -> .
+<-  250 Ok: queued as 
+ -> QUIT
+<-  221 Bye
+=== Connection closed with remote host.
+
+```
+
+然后登陆邮箱，没有问题的话即可成功收到测试邮件。
+
+## 选项
+
+使用命令swaks --help可以查看详细的帮助说明。比较常用的选项如下：
+
+-t –to 目标地址 -t xxx@xxx.com
+
+-f –from 来源地址 (发件人) -f "xxx<xxx@xxx.com>"
+
+-h –helo 邮件头
+
+–timeout 设置超时,单位是秒,默认30s
+
+–protocol 设定协议
+
+-d –data 设定邮件内容,\n换行,一些常用内容如下:
+
+>    To:收件人\n
+
+>    From:发件人\n
+
+>    Subject:主题\n
+
+>    Date:日期\n
+
+>    Subject:标题\n
+
+–body 邮件内容,如果参数为-,则可以手动输入内容,直到按Ctrl+D结束输入后自动发送;或者使用swaks --body - <文件名> 将文件内容输入为邮件内容.
+
+–attach 包含附件
+
+-ah –add-header 添加邮件头内容
+
+–header 邮件头内容 --header "Subject:主题" 可设定邮件主题
+
+-stl –show-time-lapse显示每个操作的时间间隔
+
+-ha –hide-all 隐藏所有输出
+
+-S –silent 自定义输出,参数如下: 
+
+> 1,直到发生错误才输出; 
+
+> 2,只输出错误; 
+
+> 3,不输出.
+
+–help 显示命令帮助
+
+–verison 显示版本信息
+
+输出内容的含义:
+
+> “===”:swaks输出的信息行 
+
+> “*“:swaks中产生的错误 
+
+> ” ->”:发送到目标的预期行(无错误) 
+
+> “<- “:服务器的预期回复(无错误) 
+
+> “<**”:服务器返回的错误信息
+
+## 使用示例
+
+```
+swaks --body "test message 1" --header "Subject:test subject" -t xxxxx@xx.com -f "fffff@fff.com"
+```
+
+版权声明：本文为博主原创文章，转载请注明出处。 [旭日酒馆](https://xueyp.github.io/)

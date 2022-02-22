@@ -1,0 +1,356 @@
+---
+layout: post
+title:  "网络安全－oVirt虚拟化集群"
+categories: 网络安全
+tags: 网络安全 oVirt虚拟化集群
+author: xueyp
+description: oVirt虚拟化集群的安装、配置和使用
+---
+
+oVirt
+============
+
+　　oVirt是一个开源的虚拟化管理平台，是redhat 虚拟化管理平台RHEV的开源版本。oVirt由两部分组成，客户端oVirt-node 类似于vmware esxi，在linux系统上安装vdsm服务同样可以作为一个oVirt客户端。管理端overt-engine 类似于 vmware vcenter，提供基于web页面的集群管理方式。
+
+
+**oVirt已经比较完善，能够用作生产环境，现在已有的功能：**
+
+1 对宿主机节点的管理，支持基于数据中心，集群的管理，比较有特色的一个功能是可以管理ilo idarc等硬件管理卡；
+
+2 对虚拟机的管理，可以完成虚拟机的创建、快照、删除、基于模版的克隆等常见操作；
+
+3 迁移，在线及离线迁移虚拟机；
+
+4 高可用，当一台宿主机宕机，在另外一台宿主机上自动开启虚机；
+
+5 宿主机、虚拟机性能查看及统计;
+
+6 支持nfs,iscsi,fc等存储方式；
+
+7 支持多端口的网口绑定；
+
+8 提供一个命令行，可以完成图形界面的大部分功能；
+
+9 活动目录集成；
+
+10 提供python api接口，可以api编程；
+
+11 没有授权限制；
+
+**和成熟的vmware相比，相对需要提升的部分：**
+
+1 稳定目前较差，经常出现崩溃，连接出现问题；
+
+2 易用性较差，设计不人性化；
+
+3 没有cpu 内存很精细的调节限制功能；
+
+4 没有FT(Fault Tolerance)功能；
+
+5 宿主机、虚拟机性能查看及统计功能很简单，远没有vmware丰富；
+
+6 不支持分布式交换机；
+
+安装过程
+============
+
+1 **安装准备**
+
+- 在3台服务器中安装centos7,并配置各主机/etc/hostname分别为v1,v2,v3，/etc/hosts内容为：
+  ```
+172.16.1.240 v1
+172.16.1.241 v2
+172.16.1.242 v3
+  ```
+
+- 关闭所有主机防火墙：
+```
+#systemctl stop firewalld.service
+#systemctl disable firewalld.service
+```
+
+- 关闭SElinux
+
+    执行命令：     
+```
+     # setenforce 0    
+```
+    #vi /etc/selinux/config         #修改配置文件，保证重启后状态不变
+```   
+     # SELINUX =enforcing           #注释掉改行内容，并在其下部添加信息
+    SELINUX=permissive
+```
+保存退出后。执行命令：     #getenforce
+```
+Permissive               #返回该结果说明配置正确
+```
+2 **配置ssh免密互访**
+
+　详见之前的hadoop安装那篇。
+
+3 **将ovirt官方的源添加到v1,v2,v3系统yum源库中**
+
+```
+# yum install -y http://resources.ovirt.org/pub/yum-repo/ovirt-release42.rpm &nbsp;
+# yum -y update
+```
+
+4 **安装ovirt-engine**
+
+```
+# yum install -y ovirt-engine 
+```
+
+5 **在v1上配置ovirt-engine**
+
+ovirt-engine安装完成后需要运行首次配置向导
+```
+[root@localhost yum.repos.d]# engine-setup 
+[ INFO  ] Stage: Initializing
+[ INFO  ] Stage: Environment setup
+          Configuration files: [‘/etc/ovirt-engine-setup.conf.d/10-packaging-jboss.conf’, ‘/etc/ovirt-engine-setup.conf.d/10-packaging.conf’]
+          Log file: /var/log/ovirt-engine/setup/ovirt-engine-setup-20180420195341-6bsbdg.log
+          Version: otopi-1.7.7 (otopi-1.7.7-1.el7.centos)
+[ INFO  ] Stage: Environment packages setup
+[ INFO  ] Stage: Programs detection
+[ INFO  ] Stage: Environment setup
+[ INFO  ] Stage: Environment customization
+         
+          –== PRODUCT OPTIONS ==–
+         
+          Configure Engine on this host (Yes, No) [Yes]: 回车 
+          Configure ovirt-provider-ovn (Yes, No) [Yes]: 回车(OVN:Open Virtual Network,配置虚拟网络)
+          Configure Image I/O Proxy on this host (Yes, No) [Yes]: 回车(Image I/O Proxy可以支持向oVirt平台中上传虚拟机的磁盘镜像)
+          Configure WebSocket Proxy on this host (Yes, No) [Yes]: 回车(WebSocket Proxy用来支持使用noVNC远程登录虚拟机图形界面管理)
+         
+          * Please note * : Data Warehouse is required for the engine.
+          If you choose to not configure it on this host, you have to configure
+          it on a remote host, and then configure the engine on this host so
+          that it can access the database of the remote Data Warehouse host.
+          Configure Data Warehouse on this host (Yes, No) [Yes]: 回车(在本机配置数据库)
+          Configure VM Console Proxy on this host (Yes, No) [Yes]: 回车(支持访问虚拟机的串口console通信)
+         
+          –== PACKAGES ==–
+         
+[ INFO  ] Checking for product updates…
+[ INFO  ] No product updates found
+         
+          –== NETWORK CONFIGURATION ==–
+         
+          Host fully qualified DNS name of this server [localhost.localdomain]: 回车(使用默认hostname就行,反正是准备用IP地址访问无所谓)
+[WARNING] Failed to resolve localhost.localdomain using DNS, it can be resolved only locally
+          Setup can automatically configure the firewall on this system.
+          Note: automatic configuration of the firewall may overwrite current settings.
+          NOTICE: iptables is deprecated and will be removed in future releases
+          Do you want Setup to configure the firewall? (Yes, No) [Yes]: no回车(因为之前已经把防火墙服务给关掉了,所以就不用再配置防火墙的具体设置了)
+         
+          –== DATABASE CONFIGURATION ==–
+         
+          Where is the DWH database located? (Local, Remote) [Local]: 回车(DWH:Data WareHouse使用本地数据库)
+          Setup can configure the local postgresql server automatically for the DWH to run. This may conflict with existing applications.
+          Would you like Setup to automatically configure postgresql and create DWH database, or prefer to perform that manually? (Automatic, Manual) [Automatic]: 回车(自动配置PostGreSQL数据库)
+          Where is the Engine database located? (Local, Remote) [Local]: 回车(Engine用到的数据库位于本机)
+          Setup can configure the local postgresql server automatically for the engine to run. This may conflict with existing applications.
+          Would you like Setup to automatically configure postgresql and create Engine database, or prefer to perform that manually? (Automatic, Manual) [Automatic]: 回车(使用安装程序自动创建Engine数据库)
+         
+          –== OVIRT ENGINE CONFIGURATION ==–
+         
+          Engine admin password: 输入后台管理员admin的密码回车
+          Confirm engine admin password: 再输入一遍密码回车
+          Application mode (Virt, Gluster, Both) [Both]: 回车
+          Use default credentials (admin@internal) for ovirt-provider-ovn (Yes, No) [Yes]: 回车(使用默认的admin@internal内部管理员账号)
+         
+          –== STORAGE CONFIGURATION ==–
+         
+          Default SAN wipe after delete (Yes, No) [No]: 回车(yes的话在删除虚拟机的虚拟磁盘后会擦除存储设备上的对应块)
+         
+          –== PKI CONFIGURATION ==–
+         
+          Organization name for certificate [localdomain]: 回车
+         
+          –== APACHE CONFIGURATION ==–
+         
+          Setup can configure the default page of the web server to present the application home page. This may conflict with existing applications.
+          Do you wish to set the application as the default page of the web server? (Yes, No) [Yes]: 回车(使用apache作为web服务器)
+          Setup can configure apache to use SSL using a certificate issued from the internal CA.
+          Do you wish Setup to configure that, or prefer to perform that manually? (Automatic, Manual) [Automatic]: 回车(自动配置CA证书)
+         
+          –== SYSTEM CONFIGURATION ==–
+         
+         
+          –== MISC CONFIGURATION ==–
+         
+          Please choose Data Warehouse sampling scale:
+          (1) Basic
+          (2) Full
+          (1, 2)[1]: 回车(使用基本的数据库示例初始化数据)
+         
+          –== END OF CONFIGURATION ==–
+         
+[ INFO  ] Stage: Setup validation
+[WARNING] Cannot validate host name settings, reason: resolved host does not match any of the local addresses
+[WARNING] Warning: Not enough memory is available on the host. Minimum requirement is 4096MB, and 16384MB is recommended.
+          Do you want Setup to continue, with amount of memory less than recommended? (Yes, No) [No]: yes回车(因为是在虚拟机上装的,内存有点小,才会提示这个)
+         
+          –== CONFIGURATION PREVIEW ==–
+         
+          Application mode                        : both
+          Default SAN wipe after delete           : False
+          Update Firewall                         : False
+          Host FQDN                               : localhost.localdomain
+          Configure local Engine database         : True
+          Set application as default page         : True
+          Configure Apache SSL                    : True
+          Engine database secured connection      : False
+          Engine database user name               : engine
+          Engine database name                    : engine
+          Engine database host                    : localhost
+          Engine database port                    : 5432
+          Engine database host name validation    : False
+          Engine installation                     : True
+          PKI organization                        : localdomain
+          Set up ovirt-provider-ovn               : True
+          Configure WebSocket Proxy               : True
+          DWH installation                        : True
+          DWH database host                       : localhost
+          DWH database port                       : 5432
+          Configure local DWH database            : True
+          Configure Image I/O Proxy               : True
+          Configure VMConsole Proxy               : True
+         
+          Please confirm installation settings (OK, Cancel) [OK]: 回车
+[ INFO  ] Stage: Transaction setup
+[ INFO  ] Stopping engine service
+[ INFO  ] Stopping ovirt-fence-kdump-listener service
+[ INFO  ] Stopping dwh service
+[ INFO  ] Stopping Image I/O Proxy service
+[ INFO  ] Stopping vmconsole-proxy service
+[ INFO  ] Stopping websocket-proxy service
+[ INFO  ] Stage: Misc configuration
+[ INFO  ] Stage: Package installation
+[ INFO  ] Stage: Misc configuration
+[ INFO  ] Upgrading CA
+[ INFO  ] Initializing PostgreSQL
+[ INFO  ] Creating PostgreSQL ‘engine’ database
+[ INFO  ] Configuring PostgreSQL
+[ INFO  ] Creating PostgreSQL ‘ovirt_engine_history’ database
+[ INFO  ] Configuring PostgreSQL
+[ INFO  ] Creating CA
+[ INFO  ] Creating/refreshing DWH database schema
+[ INFO  ] Configuring Image I/O Proxy
+[ INFO  ] Setting up ovirt-vmconsole proxy helper PKI artifacts
+[ INFO  ] Setting up ovirt-vmconsole SSH PKI artifacts
+[ INFO  ] Configuring WebSocket Proxy
+[ INFO  ] Creating/refreshing Engine database schema
+[ INFO  ] Creating/refreshing Engine ‘internal’ domain database schema
+[ INFO  ] Adding default OVN provider to database
+[ INFO  ] Adding OVN provider secret to database
+[ INFO  ] Setting a password for internal user admin
+[ INFO  ] Generating post install configuration file ‘/etc/ovirt-engine-setup.conf.d/20-setup-ovirt-post.conf’
+[ INFO  ] Stage: Transaction commit
+[ INFO  ] Stage: Closing up
+[ INFO  ] Starting engine service
+[ INFO  ] Starting dwh service
+[ INFO  ] Restarting ovirt-vmconsole proxy service
+         
+          –== SUMMARY ==–
+         
+[ INFO  ] Restarting httpd
+          In order to configure firewalld, copy the files from
+              /etc/ovirt-engine/firewalld to /etc/firewalld/services
+              and execute the following commands:
+              firewall-cmd –permanent –add-service ovirt-postgres
+              firewall-cmd –permanent –add-service ovirt-https
+              firewall-cmd –permanent –add-service ovn-central-firewall-service
+              firewall-cmd –permanent –add-service ovirt-fence-kdump-listener
+              firewall-cmd –permanent –add-service ovirt-imageio-proxy
+              firewall-cmd –permanent –add-service ovirt-websocket-proxy
+              firewall-cmd –permanent –add-service ovirt-http
+              firewall-cmd –permanent –add-service ovirt-vmconsole-proxy
+              firewall-cmd –permanent –add-service ovirt-provider-ovn
+              firewall-cmd –reload
+          The following network ports should be opened:
+              tcp:2222
+              tcp:35357
+              tcp:443
+              tcp:5432
+              tcp:54323
+              tcp:6100
+              tcp:6641
+              tcp:6642
+              tcp:80
+              tcp:9696
+              udp:7410
+          An example of the required configuration for iptables can be found at:
+              /etc/ovirt-engine/iptables.example
+          Please use the user ‘admin@internal’ and password specified in order to login
+          Web access is enabled at:
+              http://localhost.localdomain:80/ovirt-engine
+              https://localhost.localdomain:443/ovirt-engine
+          Internal CA 95:CB:1A:EA:A7:CC:48:A3:14:8F:79:8D:BC:07:4F:98:D7:EB:B4:19
+          SSH fingerprint: SHA256:ltDYySFckI6bPO0OV+yzErG3YVqgA8zBnHZkEK3bWRs
+[WARNING] Warning: Not enough memory is available on the host. Minimum requirement is 4096MB, and 16384MB is recommended.
+         
+          –== END OF SUMMARY ==–
+         
+[ INFO  ] Stage: Clean up
+          Log file is located at /var/log/ovirt-engine/setup/ovirt-engine-setup-20180420195341-6bsbdg.log
+[ INFO  ] Generating answer file ‘/var/lib/ovirt-engine/setup/answers/20180420195951-setup.conf’
+[ INFO  ] Stage: Pre-termination
+[ INFO  ] Stage: Termination
+
+[ INFO  ] Execution of setup completed successfully
+```
+
+6 **在v2,v3上安装vdsm**
+
+- 确保第1，2步已经完成。
+- 将v2,v3的ip添加到oVirt-Engine管理系统中:直接在主机中点击新建，输入ip和root用户ssh密码即可自动加入集群，并自动安装vdsm。
+
+7 **配置数据存储域**
+
+　　经过前面几步，oVirt集群已经安装好了，但是，离能够使用还差一点，需要配置集群运行时的存储域，主要有数据域(Data Domain)和iso域(ISO Domain)两个。数据域是用来运行虚拟机的，iso用于存放系统光盘，另外还有一个导入导出域(Export Domain)用于oVirt在不同oVirt集群之间导入导出虚拟机。存储域支持iSCSI,NFS,FC等类型协议，使用专用存储服务器存储性能和数据安全性会更好，这里因为只有3台服务器，使用v2兼作存储域了。
+
+```
+# yum install -y nfs-utils    //安装nfs相关程序包
+# mkdir /var/oVirtData    //新建文件夹用来共享
+# chown 36:36 /var/oVirtData   //必须将该文件夹所有者修改为vdsm和其对应的组kvm,默认编号都是36,否则在oVirt后台中将无法添加该存储域
+# chmod 755 /var/oVirtData    //权限设置同样至关重要,否则无法添加
+
+
+# vi /etc/exports    //编辑配置文件,定义哪些目录需要通过NFS服务访问
+    /var/oVirtData 0.0.0.0/0.0.0.0(rw,sync)     //0.0.0.0/0.0.0.0不限制允许连接的客户端IP地址
+
+
+# exportfs -a               //使上面写的配置生效
+# service rpcbind start      //启动NFS服务前必须先启动rpcbind服务
+# service nfs-server start    //启动NFS服务
+# systemctl enable rpcbind nfs-server    //设置服务开机自动启动
+```
+
+- 进入**存储-域-新建域**,选择域功能:Data、存储类型:NFS，使用的主机:v2,填入名称和描述，在导出路径中填入：v2:/var/oVirtData 保存即完成了data存储域的创建。
+
+- 同样的过程，在v2，或v3上创建一个iso域并加入集群中。此处创建了v3:/var/oVirtISO作为iso域.
+
+8 **网络配置**
+
+　　因为组网环境比较简单,默认使用ovirtmgmt网络，即虚拟机加入ovirtmgmt网络，和物理主机共用同一个网段，类似于桥接模式。
+
+9 **完成**
+
+　　至此，oVirt虚拟化集群就搭建完成了，先通过scp传输一个系统光盘到v1，然后用root权限运行：
+  ```
+  engine-iso-uploader upload -i v2iso cn_windows_server_2012_r2_vl_with_update_x64_dvd_6052729.iso
+  ```
+　　其中，v2iso为创建iso域时填入的名称，上传开始时需要输入安装engine过程中输入的管理员密码，等上传完成后即可新建虚拟机开始安装了。其他虚拟机配置、迁移等界面都很直观，此处就不再说述了。
+
+　　另外也可以用windows连接nfs服务器直接传文件，直接传到/var/oVirtISO/33ca****/images/11111**1111/的文件夹下即可使用，速度比用上面的命令传要快不少。
+
+参考
+============
+[oVirt官网](http://www.ovirt.org/)
+
+[oVirt官网部署手册](http://www.ovirt.org/documentation/install-guide/Installation_Guide/)
+
+
+版权声明：本文为博主原创文章，转载请注明出处。 [旭日酒馆](https://xueyp.github.io/)

@@ -1,0 +1,127 @@
+---
+layout: post
+title:  "编程-scrapy可视化管理工具"
+categories: 编程
+tags: python scrapy
+author: xueyp
+description: scrapy可视化管理工具汇总
+---
+
+# scrapyd
+
+官方网站：https://github.com/scrapy/scrapyd
+
+Scrapyd 是业内最优秀的爬虫框架之一 Scrapy 官方出品的部署管理平台。有了它，你就可以通过 API 向指定的爬虫发起指令，并且可以通过 Web 页面来查看爬虫的运行记录与状态等信息。
+
+scrapyd相当于scrapy server，可以同时运行多个爬虫。
+
+安装:
+
+```
+$ pip install scrapyd
+```
+
+启动：
+
+```
+$ scrapyd  # 启动服务
+```
+
+访问地址：http://localhost:6800/
+
+# ScrapydArt
+
+官方网站：https://github.com/dequinns/ScrapydArt
+
+ScrapydArt在Scrapyd基础上新增了权限验证、筛选过滤、排序、数据统计以及排行榜等功能，并且有了更强大的API
+
+安装：
+
+```
+$ pip install scrapydart 
+```
+
+启动：
+
+```
+$ scrapydart  # 启动
+```
+
+访问地址：http://localhost:6800
+
+# ScrapydWeb
+
+官方网站：https://github.com/my8100/scrapydweb
+
+Scrapyd 集群管理webUI,支持Scrapy 日志分析，支持所有 Scrapyd API，支持 Basic Auth
+
+安装：
+
+```
+pip install scrapydweb
+```
+
+启动：
+
+```
+$ scrapydweb -h    # 初始化
+$ scrapydweb  # 启动
+```
+
+访问地址：http://127.0.0.1:5000
+
+# Gerapy
+
+官方网站：https://github.com/Gerapy/Gerapy
+
+分布式爬虫管理框架,具有控制爬虫运行,查看爬虫状态,查看爬取结果,项目部署,主机管理,编写爬虫代码等功能。
+
+安装：
+
+```
+pip3 install gerapy
+```
+
+启动：
+
+```
+$ gerapy init
+$ cd gerapy
+$ gerapy migrate
+$ gerapy runserver
+```
+
+访问地址： http://localhost:8000
+
+# SpiderKeeper
+
+官方网站：https://github.com/DormyMo/SpiderKeeper
+
+spiderkeeper是一款开源的spider管理工具，可以方便的进行爬虫的启动，暂停，定时，同时可以查看分布式情况下所有爬虫日志，查看爬虫执行情况等功能。
+
+安装：
+
+```
+pip install spiderkeeper
+```
+
+启动：
+
+```
+$ spiderkeeper  # 启动
+```
+
+访问地址 : http://localhost:5000
+
+
+参考
+============
+
+[scrapyd](https://scrapyd.readthedocs.io/en/stable/)
+
+[ScrapydWeb使用示例](http://blog.51cto.com/14090467/2321849?source=drh)
+
+[scrapy resources](https://scrapy.org/resources/)
+
+
+版权声明：本文为博主原创文章，转载请注明出处。 [旭日酒馆](https://xueyp.github.io/)

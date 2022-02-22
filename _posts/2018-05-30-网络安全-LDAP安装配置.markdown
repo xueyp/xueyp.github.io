@@ -1,0 +1,490 @@
+---
+layout: post
+title:  "网络安全－LDAP安装配置"
+categories: 网络安全
+tags: 网络安全 LDAP
+author: xueyp
+description: LDAP在centos的安装配置
+---
+
+LDAP
+============
+　　LDAP是轻量目录访问协议，英文全称是Lightweight Directory Access Protocol，都简称为LDAP。LDAP 的设计目的是提供一种有效的方法来查找和管理信息，它基于X.500标准，并可以根据需要定制。与X.500不同，LDAP支持TCP/IP，这对访问Internet是必须的。LDAP的核心规范在RFC中都有定义，所有与LDAP相关的RFC都可以在LDAPman RFC网页中找到。
+
+　　Linux 发行版中提供的 OpenLDAP 软件按照一个客户机/服务器模型实现了轻量级目录访问协议（LDAP）。OpenLDAP 软件和包提供了创建目录信息树（一个主要进行读操作的数据库）的工具。
+
+　　LDAP 信息被组织成属性和值的组合，称为 条目（entry）。条目可能会具有必须的属性或可选属性。一个条目的属性必须要遵循 /etc/openldap/schema/ 模式文件中定义的规则。规则包含在条目的 objectclass 属性中。 posixAccount objectclass 中包含了密码文件条目的信息（posixAccount userPassword 是文件条目的 base64 编码）。LDAP 目录条目和 Linux 密码文件之间的关系见下图：
+
+![png]({{"/assets/images/my/20180527_1.jpg"| absolute_url }})
+
+- OpenLDAP组成
+
+　　openldap：包含 OpenLDAP 配置文件、库和文档
+
+　　openldap-servers：包含 slapd 和 slurpd 服务器、迁移脚本和相关文件
+
+　　openldap-clients：包含客户机程序，用来访问和修改 OpenLDAP 目录
+
+- OpenLDAP 运行的程序：
+
+　　守护进程：
+
+　　　　slapd：主 LDAP 服务器
+
+　　　　slurpd：负责与复制 LDAP 服务器保持同步的服务器
+
+　　对网络上的目录进行操作的客户机程序。下面这两个程序是一对儿：
+
+　　　　ldapadd：打开一个到 LDAP 服务器的连接，绑定、修改或增加条目
+
+　　　　ldapsearch：打开一个到 LDAP 服务器的连接，绑定并使用指定的参数进行搜索
+
+　　对本地系统上的数据库进行操作的几个程序：
+
+　　　　slapadd：将以 LDAP 目录交换格式（LDIF）指定的条目添加到 LDAP 数据库中
+
+　　　　slapcat：打开 LDAP 数据库，并将对应的条目输出为 LDIF 格式
+
+- DN,CN,OU
+
+　　CN, OU, DC 都是 LDAP 连接服务器的端字符串中的区别名称（DN, distinguished   name）。LDAP连接服务器的连接字串格式为：ldap://servername/DN ,其中DN有三个属性，分别是CN,OU,DC
+
+　　DC (Domain Component)
+
+　　CN (Common Name)
+
+　　OU (Organizational Unit)
+
+　　LDAP 目录类似于文件系统目录。LDAP目录：DC=redmond,DC=wa,DC=microsoft,DC=com 如果类比文件系统的话，可被看作文件路径:  Com/Microsoft/Wa/Redmond  
+
+　　例如：CN=test,OU=developer,DC=domainname,DC=com, cn=test 可能代表一个用户名，ou=developer 代表一个 active directory 中的组织单位。这条配置的含义就是 test 这个对象处在domainname.com 域的 developer 组织单元中。
+
+服务器配置
+============
+
+1 安装OpenLDAP
+
+　　首先配置/etc/hostname为域名，例如 privis.com
+```
+# yum install -y openldap openldap-clients openldap-servers migrationtools  
+cp /usr/share/openldap-servers/DB_CONFIG.example /var/lib/ldap/DB_CONFIG  
+chown ldap. /var/lib/ldap/DB_CONFIG  
+systemctl start slapd   
+systemctl enable slapd  
+```
+
+查看端口使用情况,slapd使用389端口
+
+```
+# netstat -tlnp | grep slapd
+tcp        0      0 0.0.0.0:389             0.0.0.0:*               LISTEN      227/slapd           
+tcp6       0      0 :::389                  :::*                    LISTEN      227/slapd
+```
+2 设置 OpenLDAP 的管理员密码
+
+　　首先要生成经处理后的明文密码：
+```
+# slappasswd    
+New password:   
+Re-enter new password:   
+{SSHA}cMBKOMQtXy6CcBP2MKEaV3eiydMhdWHq  
+```
+　　其中 {SSHA}xxxxxxxxxxxxxxxxxxxxxxxx 就是加密处理后的明文密码，之后会用到这个密码。
+之后再新建如下文件: 
+
+```
+touch chrootpw.ldif  
+echo "dn: olcDatabase={0}config,cn=config" >> chrootpw.ldif  
+echo "changetype: modify" >> chrootpw.ldif  
+echo "add: olcRootPW" >> chrootpw.ldif  
+echo "olcRootPW: {SSHA}cMBKOMQtXy6CcBP2MKEaV3eiydMhdWHq " >> chrootpw.ldif  
+```
+
+　　最后导入该文件：
+
+```
+# ldapadd -Y EXTERNAL -H ldapi:/// -f chrootpw.ldif
+SASL/EXTERNAL authentication started
+SASL username: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth
+SASL SSF: 0
+modifying entry "olcDatabase={0}config,cn=config"
+```
+就完成了密码更改，后续需要输入时，输入加密前的密码即可。
+
+- 导入基本Schema，可根据情况有选择地导入。
+
+```
+cd /etc/openldap/schema/
+ldapadd -Y EXTERNAL -H ldapi:/// -D "cn=config" -f cosine.ldif
+ldapadd -Y EXTERNAL -H ldapi:/// -D "cn=config" -f nis.ldif
+ldapadd -Y EXTERNAL -H ldapi:/// -D "cn=config" -f collective.ldif
+ldapadd -Y EXTERNAL -H ldapi:/// -D "cn=config" -f corba.ldif
+ldapadd -Y EXTERNAL -H ldapi:/// -D "cn=config" -f core.ldif
+ldapadd -Y EXTERNAL -H ldapi:/// -D "cn=config" -f duaconf.ldif
+ldapadd -Y EXTERNAL -H ldapi:/// -D "cn=config" -f dyngroup.ldif
+ldapadd -Y EXTERNAL -H ldapi:/// -D "cn=config" -f inetorgperson.ldif
+ldapadd -Y EXTERNAL -H ldapi:/// -D "cn=config" -f java.ldif
+ldapadd -Y EXTERNAL -H ldapi:/// -D "cn=config" -f misc.ldif
+ldapadd -Y EXTERNAL -H ldapi:/// -D "cn=config" -f openldap.ldif
+ldapadd -Y EXTERNAL -H ldapi:/// -D "cn=config" -f pmi.ldif
+ldapadd -Y EXTERNAL -H ldapi:/// -D "cn=config" -f ppolicy.ldif
+```
+ 
+- 设置自己的Domain Name
+
+　　首先要生成LDAP管理者的加密后的明文密码：
+
+```
+# slappasswd
+New password: 
+Re-enter new password: 
+{SSHA}ZhmO2UeH4tsyy5ly0fTwdkO10WJ69V6U
+```
+
+　　然后　**vim chdomain.ldif** 新建文件，内容如下：
+
+　　**注意**，要使用自己的域名替换掉所有的 "dc=***,dc=***"，并且使用上一步生成的密码，替换 "olcRootPW" 部分：
+```
+# replace to your own domain name for "dc=***,dc=***" section
+# specify the password generated above for "olcRootPW" section
+dn: olcDatabase={1}monitor,cn=config
+changetype: modify
+replace: olcAccess
+olcAccess: {0}to * by dn.base="gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth"
+  read by dn.base="cn=Manager,dc=privis,dc=com" read by * none
+
+dn: olcDatabase={2}hdb,cn=config
+changetype: modify
+replace: olcSuffix
+olcSuffix: dc=privis,dc=com
+
+dn: olcDatabase={2}hdb,cn=config
+changetype: modify
+replace: olcRootDN
+olcRootDN: cn=Manager,dc=privis,dc=com
+
+dn: olcDatabase={2}hdb,cn=config
+changetype: modify
+add: olcRootPW
+olcRootPW: {SSHA}ZhmO2UeH4tsyy5ly0fTwdkO10WJ69V6U
+
+dn: olcDatabase={2}hdb,cn=config
+changetype: modify
+add: olcAccess
+olcAccess: {0}to attrs=userPassword,shadowLastChange by
+  dn="cn=Manager,dc=privis,dc=com" write by anonymous auth by self write by * none
+olcAccess: {1}to dn.base="" by * read
+olcAccess: {2}to * by dn="cn=Manager,dc=privis,dc=com" write by * read
+```
+
+　　最后导入此文件：
+
+```
+# ldapmodify -Y EXTERNAL -H ldapi:/// -f chdomain.ldif  
+SASL/EXTERNAL authentication started
+SASL username: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth
+SASL SSF: 0
+modifying entry "olcDatabase={1}monitor,cn=config"
+
+modifying entry "olcDatabase={2}hdb,cn=config"
+
+modifying entry "olcDatabase={2}hdb,cn=config"
+
+modifying entry "olcDatabase={2}hdb,cn=config"
+
+modifying entry "olcDatabase={2}hdb,cn=config"
+```
+
+　　至此ＤＣ新配置好了，接下来配置DN
+
+　　**vim basedomain.ldif** 新建文件，同样要使用自己的域名替换掉所有的 "dc=***,dc=***"： 内容如下：
+
+```
+# replace to your own domain name for "dc=***,dc=***" section
+dn: dc=privis,dc=com
+objectClass: top
+objectClass: dcObject
+objectclass: organization
+o: Server World
+dc: privis
+
+dn: cn=Manager,dc=privis,dc=com
+objectClass: organizationalRole
+cn: Manager
+description: Directory Manager
+
+dn: ou=People,dc=privis,dc=com
+objectClass: organizationalUnit
+ou: People
+
+dn: ou=Group,dc=privis,dc=com
+objectClass: organizationalUnit
+ou: Group
+
+```
+
+　　最后导入此文件：
+
+```
+# ldapadd -x -D cn=Manager,dc=privis,dc=com -W -f basedomain.ldif
+Enter LDAP Password: 
+adding new entry "dc=privis,dc=com"
+
+adding new entry "cn=Manager,dc=privis,dc=com"
+
+adding new entry "ou=People,dc=privis,dc=com"
+
+adding new entry "ou=Group,dc=privis,dc=com"
+```
+
+- 开启防火墙相关端口
+
+ **vim /etc/sysconfig/iptables** 加入如下内容:
+
+ ```
+-A INPUT -p tcp -m state --state NEW -m tcp --dport 389 -j ACCEPT  
+ ```
+
+　　重启生效：**systemctl restart iptables  **
+
+- 向OpenLDAP Server添加用户
+
+　　同样地，首先要生成加密后的明文密码：
+
+```
+# slappasswd
+New password: 
+Re-enter new password: 
+{SSHA}ZhmO2UeH4tsyy5ly0fTwdkO10WJ69V6U
+```
+
+　　**vim ldapuser.ldif** 新建文件，同样要使用自己的域名替换掉所有的 "dc=***,dc=***"： 内容如下：
+
+```
+# create new
+# replace to your own domain name for "dc=***,dc=***" section
+dn: uid=cent,ou=People,dc=privis,dc=com
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: shadowAccount
+cn: Cent
+sn: Linux
+userPassword: {SSHA}8TEZlcfO0LLcnby7zDGYkNdd2fiysP4X
+loginShell: /bin/bash
+uidNumber: 1000
+gidNumber: 1000
+homeDirectory: /home/cent
+
+dn: cn=cent,ou=Group,dc=privis,dc=com
+objectClass: posixGroup
+cn: Cent
+gidNumber: 1000
+memberUid: cent
+```
+
+　　最后导入该文件：
+
+```
+# ldapadd -x -D cn=Manager,dc=privis,dc=com -W -f ldapuser.ldif  
+Enter LDAP Password: 
+adding new entry "uid=cent,ou=People,dc=privis,dc=com"
+
+adding new entry "cn=cent,ou=Group,dc=privis,dc=com"
+```
+
+- 删除 LDAP 用户或组
+
+　　删除用户：ldapdelete -x -W -D 'cn=Manager,dc=privis,dc=com' "uid=ldapuser1,ou=People,dc=privis,dc=com"
+
+　　删除组:ldapdelete -x -W -D 'cn=Manager,dc=privis,dc=com' "cn=ldapuser1,ou=Group,dc=privis,dc=com"
+
+客户端配置
+============
+
+　　客户端使用LDAP Server进行认证，LDAP Server 上的任一用户可以直接登录客户端。
+
+　　首先，安装相关包：
+
+```
+yum install -y openldap-clients nss-pam-ldapd authconfig authconfig-gtk  
+```
+
+　　然后　执行下列命令:
+
+```
+authconfig --enableldap \
+--enableldapauth \
+--ldapserver=192.168.21.18 \
+--ldapbasedn="dc=privis,dc=com" \
+--enablemkhomedir \
+--update
+```
+
+　　然后退出客户端控制台。之后就可以在任何一台机器上，使用 LDAP 用户登录客户端了。例如，要从192.168.21.19访问192.168.21.17，刚在17机器上执行上述配置。然后使用 cent 用户（cent 为 LDAP 用户），登录客户端： 
+
+```
+# ssh cent@192.168.21.17  
+cent@192.168.21.17's password: 
+Creating directory '/home/cent'.
+```
+
+其他
+============
+
+- 查询LDAP信息
+
+　　首先，测试我们与ldapwhoami的LDAP连接，该连接应该返回我们连接的用户名：
+```
+ldapwhoami -H ldap:// -x
+返回结果：
+anonymous
+```
+
+　　anonymous是我们anonymous的结果，因为我们运行ldapwhoami而不登录到LDAP服务器。 这意味着服务器正在运行并应答查询。 接下来，我们将设置一个Web界面来管理LDAP数据。
+
+```
+$ ldapsearch -x -b "dc=privis,dc=com" -H ldap://192.168.21.18
+# extended LDIF
+#
+# LDAPv3
+# base <dc=privis,dc=com> with scope subtree
+# filter: (objectclass=*)
+# requesting: ALL
+#
+
+# privis.com
+dn: dc=privis,dc=com
+objectClass: top
+objectClass: dcObject
+objectClass: organization
+......
+......
+```
+
+
+- phpLDAPadmin
+
+1 安装:　**yum install -y phpldapadmin**
+
+2 配置： **vim /etc/phpldapadmin/config.php**  ,添加如下内容：
+```
+Alias /phpldapadmin /usr/share/phpldapadmin/htdocs
+Alias /ldapadmin /usr/share/phpldapadmin/htdocs
+<Directory /usr/share/phpldapadmin/htdocs>
+  <IfModule mod_authz_core.c>
+    # Apache 2.4
+    Require local
+    # 追加内容，设置允许访问 phpLDAPadmin 的 IP 段
+    Require ip 192.168.21.0/8
+```
+
+
+3 重启apache :**systemctl restart httpd**
+
+4 访问地址：http://[your ip]/ldapadmin 或 http://[your ip]/phpldapadmin 
+
+　　**注意** ，登录时输入的是 DN，例如：cn=Manager,dc=privis,dc=com 
+
+- Java LDAP 
+
+　　Java LDAP 库 Maven 地址如下： 
+```
+<!-- https://mvnrepository.com/artifact/com.novell.ldap/jldap -->
+<dependency>
+    <groupId>com.novell.ldap</groupId>
+    <artifactId>jldap</artifactId>
+    <version>4.3</version>
+    <type>jar</type>
+    <scope>compile</scope>
+</dependency>
+```
+
+- 迁移系统密码和 shadow 信息
+
+　　使用 openldap-servers 自带的 MigrationTools 工具。可以将数据从 Linux 系统文件（例如 /etc/group 和 /etc/password）转换成 LDAP LDIF 格式。
+
+　　有一组 Perl 脚本被安装到 /usr/share/migrationtools 中执行迁移。这些 Perl 脚本的配置信息包含在 migrate_common.ph 文件的开头。对于我们的目的来说，只需要修改命名前缀的变量来使用条目的识别名就足够了，修改此文件如下所示：
+```
+　　$DEFAULT_BASE = "dc=privis,dc=com"
+```
+　　在进行这些修改之后，运行脚本 migrate_base.pl，会创建根项，并为 Hosts、Networks、Group 和 People 等创建低一级的组织单元：
+
+```
+migrate_base.pl > base.ldif
+```
+　　编辑 base.ldif，删除除下面之外的所有条目：
+```    
+# cat base.ldif
+dn: dc=privis,dc=com
+dc: privis
+objectClass: top
+objectClass: domain
+ 
+dn: ou=People,dc=privis,dc=com
+ou: People
+objectClass: top
+objectClass: organizationalUnit
+ 
+dn: ou=Group,dc=privis,dc=com
+ou: Group
+objectClass: top
+objectClass: organizationalUnit
+```
+
+　　在 LDAP 服务器上，使用 OpenLDAP 客户机工具 ldapadd 将以下条目插入到数据库中。简单身份验证必须要使用 -x 选项指定。在 slapd.conf 中定义的 rootdn 身份验证识别名是 “cn=Manager,dc=privis,dc=com”。对于简单身份验证来说，必须使用密码。选项 -W 强制提示输入密码。这个密码就是在 slapd.conf 文件中指定的 rootpw 参数的值。包含这些条目的 LDIF 文件是使用 -f 选项指定的：
+``` 
+ldapadd -x -D "cn=Manager,dc=privis,dc=com" -W -f base.ldif
+```
+　　接下来，从 /etc/group 中迁移 ldapuser 组：
+```    
+# grep ldapuser /etc/group > group.in
+# ./migrate_group.pl group.in > group.ldif
+ 
+#  cat group.ldif
+dn: cn=ldapuser,ou=Group,dc=privis,dc=com
+objectClass: posixGroup
+objectClass: top
+cn: ldapuser
+userPassword: {crypt}x
+gidNumber: 500
+ 
+# ldapadd -x -D "cn=Manager,dc=privis,dc=com" -W -f group.ldif
+```
+
+　　最后，从 /etc/passwd 和 /etc/shadow 中迁移 ldapuser 的信息：
+
+```    
+# grep ldapuser /etc/passwd > passwd.in
+# ./migrate_passwd.pl passwd.in > passwd.ldif
+ 
+# cat passwd.ldif
+dn: uid=ldapuser,ou=People,dc=privis,dc=com
+uid: ldapuser
+cn: ldapuser
+objectClass: account
+objectClass: posixAccount
+objectClass: top
+objectClass: shadowAccount
+userPassword: {crypt$1$TeOlOcMc$cpQaa0WpLSFRC1HIHW5bt1
+shadowLastChange: 13048
+shadowMax: 99999
+shadowWarning: 7
+loginShell: /bin/bash
+uidNumber: 500
+gidNumber: 500
+homeDirectory: /home/ldapuser
+gecos: ldapuser
+ 
+# ldapadd -x -D "cn=Manager,dc=privis,dc=com" -W -f passwd.ldif
+```
+参考
+============
+
+[openldap IBM教程](https://www.privis.com/developerworks/cn/linux/l-openldap/)
+[openldap 官方文档](http://www.openldap.org/doc/admin24/)
+[Ubuntu openLDAP指南](https://help.ubuntu.com/lts/serverguide/openldap-server.html)
+
+若为Ubuntu安装，在配置/etc/hostname为域名，例如 privis.com之后，在dpkg-reconfigure slapd 过程中，dns服务器也要输入privis.com。
+
+
+版权声明：本文为博主原创文章，转载请注明出处。 [旭日酒馆](https://xueyp.github.io/)

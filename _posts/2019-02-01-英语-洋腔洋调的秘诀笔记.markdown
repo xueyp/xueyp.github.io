@@ -1,0 +1,134 @@
+---
+layout: post
+title:  "英语-洋腔洋调的秘诀笔记"
+categories: 英语
+tags: 英语 
+author: xueyp
+description: 英语-洋腔洋调的秘诀笔记
+---
+
+年前没什么事情，提高一下英语，重温下英语口语的正音。
+
+# 洋腔洋调的秘诀
+
+1. 元音
+
+- [i:] 唇往两边咧，上下齿一个缝隙，eat
+- [i] 比上一个音短，it
+- [e] 唇往两边咧,上下齿打开，舌抵下齿龈，发音靠前，red
+- [æ] 唇往两边咧，上下齿打开尽可能大，找恶心的感觉，map,happy
+- [ʌ] 唇往两边咧，上下齿打开1-2指宽距离，but
+- [ɔ] 亲嘴动作，not
+- [ɔ:] 音长2秒，because
+- [a:] 上下齿打开，口型张大，发音2秒，part
+- [u] 用气息不用力，push
+- [u:] true
+- [ə] 鹅鹅鹅，曲项向天歌的鹅，短促一些，today
+- [ə:] her
+- [ei] 双元音都要前长后短，前重后轻，夸张饱满，前音滑到后音,lake
+- [ai] die
+- [ɔi] oil
+- [əu] toe
+- [au] out
+- [iə] here
+- [εə] care
+- [uə] poor
+
+2. 辅音
+- [p] 双唇爆破音，音从双唇间爆出,pen
+- [b] 气流受到音带震动，bike
+- [t] 舌尖在上下齿间弹下，take
+- [d] t的相应浊辅音，deep
+- [k] keep
+- [g] k相应浊音，gate
+- [f] 咬唇音，上唇咬下唇,fat
+- [v] vote
+- [sh] shop
+- [ʒ] 日短促，usual
+- [s] seem
+- [z] zone
+- [θ] thin
+- [ð] this
+- [h] home
+- [r] rich
+- [ch] chart
+- [dʒ] 知短促，job
+- [ts] 刺短促，parts
+- [dz] 滋短促，beds
+- [tr] 戳短促,trade
+- [dr] 捉短促，drive
+- [m] 上下唇闭合，鼻腔发音，meet
+- [n] 舌抵上齿龈，鼻腔震动，name
+- [ŋ] 舌尖抵下齿龈，后鼻音，long
+- [l] 舌尖抵上齿龈，气流从口出，late
+- [w] 我短促，week
+
+3. 半元音
+- [j] 叶短促,yes
+
+4. 美语中的4大发音规则
+
+- 连读规则：前尾辅音+后头元音要连读
+    - not-at-all
+    - half-an-hour
+    - i love-you
+    - and-all
+    - after-all
+    - i'm working on-it
+    - i'll think-it-over
+    - what's-up
+- 略读规则1：前尾辅音+同音开头的单词只发后一个单词中的音
+    - bus-stop
+    - keep-peace
+    - part-time
+    - team-member
+- 略读规则2：爆破音(p,b,t,d,k,g)+辅音开头单词，前面的爆破音有气无声
+    - keep fit
+    - rob me
+    - sit down
+    - next door
+- 变音规则：
+    - [i]->[ə]
+        - beaut**i**ful
+        - fam**i**ly
+        - i b**e**lieve
+    - [ʌ]->[ə]
+        - b**u**t
+        - l**o**ve
+        - m**o**ney
+    - [ɔ]->[a]
+        - b**o**x
+        - h**o**t
+        - d**o**g
+    - [a:]在[s][θ][v][f]鼻音[m][n][ŋ]前->[æ]
+        - **a**fter
+        - **a**nswer
+        - p**a**th
+        - p**a**ss
+- 浊化规则：
+    - 第一个字尾有轻辅音/t/，第二个字首是元音，则/t/的发音介于/t/和/d/之间，类似/d/的含糊音
+        - li**tt**le
+        - thir**t**y
+        - ha**pp**y
+    - 以sp-,st-,sk-开头的单词，清辅音/p/,/t/,/k/分别要发浊辅音/b/,/d/,/g/,要注意的是/st/等在词尾通常不需要浊化
+        - s**p**eak [spi:k]
+        - s**t**udy
+        - s**ch**ool
+    - 元音+清辅音+元音，则清辅音要浊化
+        - ta**k**e i**t** easy
+        - thin**k** **a**bou**t** **i**t
+
+**美语中见[r]必卷舌**
+
+学好发音最重要的是**模仿、模仿、再模仿**
+
+参考
+============
+
+[洋腔洋调的秘诀](https://pan.baidu.com/s/104QJa9Am56JM3RmbgzXYMQ)
+
+[英语中的一些变音现象及读音规则](https://www.jianshu.com/p/3883cec23a74)
+
+[英语口音纠正课程[中英文字幕][含全部4DVD内容].mkv](https://pan.baidu.com/s/1XQKU2s-LD37rfzHjTmiCyw)
+版权声明：本文为博主原创文章，转载请注明出处。 [旭日酒馆](https://xueyp.github.io/)
+

@@ -1,0 +1,19 @@
+---
+layout: post
+title:  "机器学习-算法概论和spark快速大数据分析思维导图"
+categories: 机器学习
+tags: 机器学习 spark
+author: xueyp
+description: 两本书的笔记
+---
+
+- Spark快速大数据分析
+
+![png]({{"/assets/images/my/20181009_1.png"| absolute_url }})
+
+- 算法概论
+
+![png]({{"/assets/images/my/20181009_2.png"| absolute_url }})
+
+
+版权声明：本文为博主原创文章，转载请注明出处。 [旭日酒馆](https://xueyp.github.io/)

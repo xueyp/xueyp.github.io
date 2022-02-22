@@ -1,0 +1,310 @@
+---
+layout: post
+title:  "网络安全－Nmap"
+categories: 网络安全
+tags: 网络安全 Nmap
+author: xueyp
+description: Nmap简介和使用
+---
+
+Nmap
+============
+
+　　Nmap是一款网络扫描和主机检测的非常有用的工具，有命令行界面和图形用户界面。 Nmap不局限于仅仅收集信息和枚举，还可以用来作为一个漏洞探测器或安全扫描器。它可以适用于winodws,linux,mac等操作系统。Nmap是一款非常强大的实用工具,可用于：
+
+- 检测活在网络上的主机（主机发现）
+- 检测主机上开放的端口（端口发现或枚举）
+- 检测到相应的端口（服务发现）的软件和版本
+- 检测操作系统，硬件地址，以及软件版本
+- 检测脆弱性的漏洞（Nmap的脚本）
+
+　　输入不含参数的Nmap命令，可以得到帮助：
+```
+# Nmap
+Nmap 7.70 ( https://Nmap.org )
+Usage: Nmap [Scan Type(s)] [Options] {target specification}
+TARGET SPECIFICATION:
+  Can pass hostnames, IP addresses, networks, etc.
+  Ex: scanme.Nmap.org, microsoft.com/24, 192.168.0.1; 10.0.0-255.1-254
+  -iL <inputfilename>: Input from list of hosts/networks
+  -iR <num hosts>: Choose random targets
+  --exclude <host1[,host2][,host3],...>: Exclude hosts/networks
+  --excludefile <exclude_file>: Exclude list from file
+HOST DISCOVERY:
+  -sL: List Scan - simply list targets to scan
+  -sn: Ping Scan - disable port scan
+  -Pn: Treat all hosts as online -- skip host discovery
+  -PS/PA/PU/PY[portlist]: TCP SYN/ACK, UDP or SCTP discovery to given ports
+  -PE/PP/PM: ICMP echo, timestamp, and netmask request discovery probes
+  -PO[protocol list]: IP Protocol Ping
+  -n/-R: Never do DNS resolution/Always resolve [default: sometimes]
+  --dns-servers <serv1[,serv2],...>: Specify custom DNS servers
+  --system-dns: Use OS's DNS resolver
+  --traceroute: Trace hop path to each host
+SCAN TECHNIQUES:
+  -sS/sT/sA/sW/sM: TCP SYN/Connect()/ACK/Window/Maimon scans
+  -sU: UDP Scan
+  -sN/sF/sX: TCP Null, FIN, and Xmas scans
+  --scanflags <flags>: Customize TCP scan flags
+  -sI <zombie host[:probeport]>: Idle scan
+  -sY/sZ: SCTP INIT/COOKIE-ECHO scans
+  -sO: IP protocol scan
+  -b <FTP relay host>: FTP bounce scan
+PORT SPECIFICATION AND SCAN ORDER:
+  -p <port ranges>: Only scan specified ports
+    Ex: -p22; -p1-65535; -p U:53,111,137,T:21-25,80,139,8080,S:9
+  --exclude-ports <port ranges>: Exclude the specified ports from scanning
+  -F: Fast mode - Scan fewer ports than the default scan
+  -r: Scan ports consecutively - don't randomize
+  --top-ports <number>: Scan <number> most common ports
+  --port-ratio <ratio>: Scan ports more common than <ratio>
+SERVICE/VERSION DETECTION:
+  -sV: Probe open ports to determine service/version info
+  --version-intensity <level>: Set from 0 (light) to 9 (try all probes)
+  --version-light: Limit to most likely probes (intensity 2)
+  --version-all: Try every single probe (intensity 9)
+  --version-trace: Show detailed version scan activity (for debugging)
+SCRIPT SCAN:
+  -sC: equivalent to --script=default
+  --script=<Lua scripts>: <Lua scripts> is a comma separated list of
+           directories, script-files or script-categories
+  --script-args=<n1=v1,[n2=v2,...]>: provide arguments to scripts
+  --script-args-file=filename: provide NSE script args in a file
+  --script-trace: Show all data sent and received
+  --script-updatedb: Update the script database.
+  --script-help=<Lua scripts>: Show help about scripts.
+           <Lua scripts> is a comma-separated list of script-files or
+           script-categories.
+OS DETECTION:
+  -O: Enable OS detection
+  --osscan-limit: Limit OS detection to promising targets
+  --osscan-guess: Guess OS more aggressively
+TIMING AND PERFORMANCE:
+  Options which take <time> are in seconds, or append 'ms' (milliseconds),
+  's' (seconds), 'm' (minutes), or 'h' (hours) to the value (e.g. 30m).
+  -T<0-5>: Set timing template (higher is faster)
+  --min-hostgroup/max-hostgroup <size>: Parallel host scan group sizes
+  --min-parallelism/max-parallelism <numprobes>: Probe parallelization
+  --min-rtt-timeout/max-rtt-timeout/initial-rtt-timeout <time>: Specifies
+      probe round trip time.
+  --max-retries <tries>: Caps number of port scan probe retransmissions.
+  --host-timeout <time>: Give up on target after this long
+  --scan-delay/--max-scan-delay <time>: Adjust delay between probes
+  --min-rate <number>: Send packets no slower than <number> per second
+  --max-rate <number>: Send packets no faster than <number> per second
+FIREWALL/IDS EVASION AND SPOOFING:
+  -f; --mtu <val>: fragment packets (optionally w/given MTU)
+  -D <decoy1,decoy2[,ME],...>: Cloak a scan with decoys
+  -S <IP_Address>: Spoof source address
+  -e <iface>: Use specified interface
+  -g/--source-port <portnum>: Use given port number
+  --proxies <url1,[url2],...>: Relay connections through HTTP/SOCKS4 proxies
+  --data <hex string>: Append a custom payload to sent packets
+  --data-string <string>: Append a custom ASCII string to sent packets
+  --data-length <num>: Append random data to sent packets
+  --ip-options <options>: Send packets with specified ip options
+  --ttl <val>: Set IP time-to-live field
+  --spoof-mac <mac address/prefix/vendor name>: Spoof your MAC address
+  --badsum: Send packets with a bogus TCP/UDP/SCTP checksum
+OUTPUT:
+  -oN/-oX/-oS/-oG <file>: Output scan in normal, XML, s|<rIpt kIddi3,
+     and Grepable format, respectively, to the given filename.
+  -oA <basename>: Output in the three major formats at once
+  -v: Increase verbosity level (use -vv or more for greater effect)
+  -d: Increase debugging level (use -dd or more for greater effect)
+  --reason: Display the reason a port is in a particular state
+  --open: Only show open (or possibly open) ports
+  --packet-trace: Show all packets sent and received
+  --iflist: Print host interfaces and routes (for debugging)
+  --append-output: Append to rather than clobber specified output files
+  --resume <filename>: Resume an aborted scan
+  --stylesheet <path/URL>: XSL stylesheet to transform XML output to HTML
+  --webxml: Reference stylesheet from Nmap.Org for more portable XML
+  --no-stylesheet: Prevent associating of XSL stylesheet w/XML output
+MISC:
+  -6: Enable IPv6 scanning
+  -A: Enable OS detection, version detection, script scanning, and traceroute
+  --datadir <dirname>: Specify custom Nmap data file location
+  --send-eth/--send-ip: Send using raw ethernet frames or IP packets
+  --privileged: Assume that the user is fully privileged
+  --unprivileged: Assume the user lacks raw socket privileges
+  -V: Print version number
+  -h: Print this help summary page.
+EXAMPLES:
+  Nmap -v -A scanme.Nmap.org
+  Nmap -v -sn 192.168.0.0/16 10.0.0.0/8
+  Nmap -v -iR 10000 -Pn -p 80
+SEE THE MAN PAGE (https://Nmap.org/book/man.html) FOR MORE OPTIONS AND EXAMPLES
+
+```
+
+Nmap常用方法
+============
+
+　　Nmap使用不同的技术来执行扫描，包括：TCP的connect（）扫描，TCP反向的ident扫描，FTP反弹扫描等。所有这些扫描的类型有自己的优点和缺点。
+
+　　Nmap的使用取决于目标主机,因为有一个简单的（基本）扫描和预先扫描之间的差异。我们需要使用一些先进的技术来绕过防火墙和入侵检测/防御系统，以获得正确的结果。
+
+　　Nmap基本的命令和它们的用法的例子：
+
+- **扫描单一的一个主机**
+
+```
+#nmap cnblogs.com
+
+#nmap 192.168.1.2
+```
+
+- **扫描整个子网**
+
+```
+#nmap 192.168.1.1/24
+```
+
+- **扫描多个目标**
+
+```
+#nmap 192.168.1.2 192.168.1.5
+```
+
+- **扫描一个范围内的目标**
+
+```
+#nmap 192.168.1.1-100 (扫描IP地址为192.168.1.1-192.168.1.100内的所有主机)
+```
+
+- **扫描txt文件中的目标**
+
+　　如果你有一个ip地址列表，将这个保存为一个txt文件，和namp在同一目录下,扫描这个txt内的所有
+主机，命令如下：
+
+```
+#nmap -iL target.txt
+```
+
+- **扫描特定主机上的80,21,23端口**
+
+```
+#nmap -p80,21,23 192.168.1.1
+```
+
+- **Tcp SYN Scan (sS)**
+
+　　这是一个基本的扫描方式,它被称为半开放扫描，因为这种技术使得Nmap不需要通过完整的握手，就能获得远程主机的信息。Nmap发送SYN包到远程主机，但是它不会产生任何会话.因此不会在目标主机上产生任何日志记录,因为没有形成会话。这个就是SYN扫描的优势.
+
+　　如果Nmap命令中没有指出扫描类型,默认的就是Tcp SYN.但是它需要root/administrator权限.
+
+```
+#nmap -sS 192.168.1.1
+```
+
+- **Tcp connect() scan(sT)**
+
+　　如果不选择SYN扫描,TCP connect()扫描就是默认的扫描模式.不同于Tcp SYN扫描,Tcp connect()扫描需要完成三次握手,并且要求调用系统的connect().Tcp connect()扫描技术只适用于找出TCP和UDP端口.
+```
+#nmap -sT 192.168.1.1
+```
+
+- **Udp scan(sU)**
+
+　　这种扫描技术用来寻找目标主机打开的UDP端口.它不需要发送任何的SYN包，因为这种技术是针对UDP端口的。UDP扫描发送UDP数据包到目标主机，并等待响应,如果返回ICMP不可达的错误消息，说明端口是关闭的，如果得到正确的适当的回应，说明端口是开放的.
+
+```
+#nmap -sU 192.168.1.1
+```
+
+- **FIN scan (sF)**
+
+　　有时候Tcp SYN扫描不是最佳的扫描模式,因为有防火墙的存在.目标主机有时候可能有IDS和IPS系统的存在,防火墙会阻止掉SYN数据包。发送一个设置了FIN标志的数据包并不需要完成TCP的握手.
+
+```
+# Nmap -sF 192.168.1.8
+Starting Nmap 5.51  at 2012-07-08 19:21 PKT
+Nmap scan report for 192.168.1.8
+Host is up (0.000026s latency).
+Not shown: 999 closed ports
+PORT STATE SERVICE
+111/tcp open|filtered rpcbind
+```
+
+　　FIN扫描也不会在目标主机上创建日志(FIN扫描的优势之一).个类型的扫描都是具有差异性的,FIN扫描发送的包只包含FIN标识,NULL扫描不发送数据包上的任何字节,XMAS扫描发送FIN、PSH和URG标识的数据包.
+
+- **PING Scan (sP)**
+
+　　PING扫描不同于其它的扫描方式，因为它只用于找出主机是否是存在在网络中的.它不是用来发现是否开放端口的.PING扫描需要ROOT权限，如果用户没有ROOT权限,PING扫描将会使用connect()调用.
+```
+#nmap -sP 192.168.1.1
+```
+
+- **版本检测(sV)**
+
+　　版本检测是用来扫描目标主机和端口上运行的软件的版本.它不同于其它的扫描技术，它不是用来扫描目标主机上开放的端口，不过它需要从开放的端口获取信息来判断软件的版本.使用版本检测扫描之前需要先用TCP SYN扫描开放了哪些端口.
+
+```
+#nmap -sV 192.168.1.1
+```
+
+- **Idle scan (sL)**
+
+　　Idle scan是一种先进的扫描技术，它不是用你真实的主机Ip发送数据包，而是使用另外一个目标网络的主机发送数据包.
+
+```
+#nmap -sL 192.168.1.6 192.168.1.1
+```
+
+　　Idle scan是一种理想的匿名扫描技术,通过目标网络中的192.168.1.6向主机192.168.1.1发送数据，来获取192.168.1.1开放的端口
+
+　　另外Nmap还有其它的扫描技术，如 FTP bounce（FTP反弹）, fragmentation scan（碎片扫描）, IP protocol scan（IP协议扫描）.
+
+- **Nmap的OS检测（O）**
+
+　　Nmap最重要的特点之一是能够远程检测操作系统和软件，Nmap的OS检测技术在渗透测试中用来了解远程主机的操作系统和软件是非常有用的，通过获取的信息你可以知道已知的漏洞。Nmap有一个名为的Nmap-OS-DB数据库，该数据库包含超过2600操作系统的信息。 
+
+　　Nmap把TCP和UDP数据包发送到目标机器上，然后检查结果和数据库对照。
+
+```
+Initiating SYN Stealth Scan at 10:21
+Scanning localhost (www.nxadmin.com) [1000 ports]
+Discovered open port 111/tcp on www.nxadmin.com
+Completed SYN Stealth Scan at 10:21, 0.08s elapsed (1000 total ports)
+Initiating OS detection (try #1) against localhost (www.nxadmin.com)
+Retrying OS detection (try #2) against localhost (www.nxadmin.com)
+```
+
+　　上例清楚地表明，Nmap的首次发现开放的端口，然后发送数据包发现远程操作系统。操作系统检测参数是O（大写O）
+
+－　**Nmap的操作系统指纹识别**
+
+　　Nmap可以识别设备类型（路由器，工作组等）、运行（运行的操作系统）、操作系统的详细信息（操作系统的名称和版本）、网络距离（目标和攻击者之间的距离跳）
+
+　　如果远程主机有防火墙，IDS和IPS系统，可以使用-PN命令来确保不ping远程主机，因为有时候防火
+墙会组织掉ping请求.-PN命令告诉Nmap不用ping远程主机。
+
+```
+# Nmap -O -PN 192.168.1.1/24
+```
+
+　　以上命令告诉发信主机远程主机是存活在网络上的，所以没有必要发送ping请求,使用-PN参数可以绕过PING命令,但是不影响主机的系统的发现.
+
+　　Nmap的操作系统检测的基础是有开放和关闭的端口，如果OS scan无法检测到至少一个开放或者关闭的端口，会返回以下错误：
+```
+Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port
+```
+　　OS Scan的结果是不可靠的，因为没有发现至少一个开放或者关闭的端口.这种情况是非常不理想的，应该是远程主机做了针对操作系统检测的防范。如果Nmap不能检测到远程操作系统类型，那么就不能使用-osscan_limit检测。
+
+　　通过Nmap准确的检测到远程操作系统是比较困难的，需要使用到Nmap的猜测功能选项, –osscan-guess 猜测认为最接近目标的匹配操作系统类型。
+```
+# Nmap -O –osscan-guess 192.168.1.1
+```
+
+　　总的来说，Nmap是一个非常强大的工具，它在信息的收集和统计方面具有重要用途。是进行渗透测试的全过程特别是信息搜集过程中经常乃至的工具.
+
+
+参考
+============
+
+[Nmap](https://Nmap.org/book/man.html)
+
+[Nmap Tutorial: Common Commands](https://www.networkcomputing.com/networking/Nmap-tutorial-common-commands/520799832)
+
+版权声明：本文为博主原创文章，转载请注明出处。 [旭日酒馆](https://xueyp.github.io/)

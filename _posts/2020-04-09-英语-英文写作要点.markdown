@@ -1,0 +1,235 @@
+---
+layout: post
+title:  "英语-英文写作要点"
+categories: 英语
+tags: 英语
+author: xueyp
+description:
+---
+
+## 英文表达的三个基本要素
+- 纯粹（Purity）：指的是地道英语的应用。它排除了一切俚语、粗鄙之语、过时的说法、外地方言、模棱两可的表达和各种不合语法的语言。除此之外，它还会排斥任何新兴词汇，直到它们被一流作家和演讲者使用
+- 清晰（Perspicuity）:要求用最明确的语言表达最清晰的思想，这样的话，说话者和作者想传达的思想或想法就不会产生误解。所有模糊的、有歧义的和可能被误解的词是严格禁止的。清晰要素要求语言风格清楚、完全摆脱浮华，学究和做作的表达和任何变形效应都要避免
+- 准确（Precision）:要求言简意赅，没有冗余和同义重复，风格简洁明了，能让听者或读者立即理解说话者或作者的意思。它一方面禁止所有复杂的长句，另一方面又禁止太短而唐突的句子。它的目的是达到中庸之道，吸引听者或读者的注意力
+
+## 文稿格式
+
+- 题目在第一行中间，各词（包括复合词中连字符后的词）首字母大写，但冠词、并列连词、介词和不定式除外
+- 尽量不移行。在需要移行时，按章节把词分开
+- 大写字母用于句子开头、标题中的实义词、专有名词，包括引语中的句子
+- 两个并列从句的连接，应用逗号加连词，或分号，不能只用逗号
+
+## 词法
+
+英语中的所有词汇被分成九类，称为词类（the Parts of Speech）。这些词类分别是冠词（Article）、名词（Noun）、形容词（Adjective）、代词（Pronoun）、动词（Verb）、副词（Adverb）、介词（Preposition）、连词（Conjunction）和叹词（Interjection）。
+
+名词可根据人称（Person）、数（Number）、性（Gender）和格（Case）进行变化
+- 人称是存在于说话者、听众以及谈话内容之间的关系。有第一人称（First Person）、第二人称（Second Person）和第三人称（Third Person）之分，他们分别代表了说话者、听众以及谈话中提及的人或事
+- 数将大于一的和一区别开，分为单数（singular）、复数（plural）两种，数的变化表明名词是单个还是多个
+- 性与名词的关系和生理性别（sex）与个体的关系相同(2)。区别是生理性别只有两个，而语言学中的性有四个，即阳性（masculine）、阴性（feminine）、无性（neuter）和共性（common）。阳性指所有雄性个体，阴性指所有雌性个体，无性指无生命的个体或所有没有生命形式的存在，共性适用于目前无法确定生理性别的有生命个体，比如fish（鱼）、mouse（老鼠）、bird（鸟）等。有时通过拟人的修辞手法，我们认为的没有生命的个体和严格来说无性的个体在语言中会被赋予阴阳性别。性的变化表明名词是男性、女性、无生命个体还是无性别差异个体的名称
+- 格是名词与名词、名词与动词、名词与介词的关系。格分为三类，主格（Nominative）、所有格（Possessive）和宾格（Objective）。主格是我们谈论的对象，或是动词动作的实施者；所有格表示所有关系；而宾格是被动词动作影响的人或事。格的变化表明名词所代表的人、地点或事物的状态。这些名词在句中的作用是作陈述或疑问的主语、谈话中提及的事物的主人或拥有者、动作或关系的对象
+
+冠词是置于名词前用来表示名词是具体意义还是笼统意义的虚词。冠词分为两类，不定冠词a或an和定冠词the。
+
+形容词是修饰名词的词，用来表示名词的特点、特征
+- 形容词有三种形式，分别是原级（the positive）、比较级（the comparative）和最高级（the superlative）
+- 形容词的变形有两种规则。一种是在原级后加er变为比较级，加est变为最高级；或者在原级前面加more变为比较级，加most变为最高级
+
+代词是用来代替名词、避免重复使用同一个名词的词。和名词一样，代词也有格、数、性和人称的分别
+- 人称代词（personal pronoun），代替人、地点和事物名称的代词。人称代词有I、Thou、He、She和It，以及它们的复数形式We、Ye或You和They
+- 关系代词（relative pronoun），关系代词指代的词或分句被称为先行词（Antecedent）。关系代词有who、which、that和what
+  - 关系代词的单复数同形
+  - who，whose,whom可用于男性和女性
+  - which,whose,which和that可用于男性、女性和中性
+  - what永远用于中性。
+  - that和what没有变形
+- 形容词性代词（adjective pronoun）
+  - 指示形容词代词（Demonstrative Adjective Pronouns），直接指代人或对象，分别为this、that以及它们的复数形式these、those，还有yon、same和selfsame
+  - 分配形容词代词（Distributive Adjective Pronouns）指代单个的对象，分别为each、every、either、neither
+  - 非限定性形容词代词（Indefinite Adjective Pronouns）的使用或多或少不受限制。它们是any、all、few、some、several、one、other、another、none
+  - 形容词性物主代词（The Possessive Adjective Pronouns）指代物主关系。它们是my、thy、his、her、its、our、your、their
+
+动词是用来表示动作或状态的词。动词会根据时态（tense）、语态（mood）、数（number）和人称（person）而变化，后两者严格来说是属于动词的实施者
+- 规则动词指的是在动词原形后面加ed、在以e结尾的动词后加d形成过去式的动词；而不以ed结尾形成过去式的动词则被称为不规则动词
+- 及物动词指的是动作传向或影响某个对象的动词, eg. I struck the table.
+- 不及物动词是指动作留在主语身上的动词, eg. I run.
+- 动词又分为主要动词（principal）和助动词（auxiliary）。主要动词是句子中不可或缺的成分，没有它，句子或分句就毫无主张。助动词的功能是和主要动词的原形或分词一起表达时间和方式。与简单形态的时态和语气相比，它们能更加准确地进行表达
+  - 助动词有九个，即，be、have、do、shall、will、may、can、ought和must。它们被称为助动词是因为它们帮助动词构成了复合时态（the compound tenses）
+  - to be是助动词里最重要的一个。它有11个形态，即，am、art、is、are、was、wast、were、wert、be、being和been。
+- 动词有现在时（the Present Indicative）、过去时（the Past Indicative）和过去分词（the Past Participle）, eg. love,loved,loved
+- 动词有两个分词形态
+  - 现在时（the present）有时被称为现在进行时，以ing结尾
+  - 被动态（the passive）,过去时（the past）或完成时（the perfect）有时被称为被动态，以ed或d结尾
+- **不定式将动词以名词形式呈现，将分词以形容词形式呈现**
+
+副词能修饰动词和形容词，有时也能修饰其他副词。 eg. He writes **well**.
+
+介词将单词（words）、分句（clauses）和句子（sentences）连接起来，并展现它们的关系。
+
+连词能将单词、词组、分句和句子连接起来。最常见的连词有and、also；either、or；neither、nor；though、yet；but、however；for、that；because、since；therefore、wherefore、then；if、unless、lest。
+
+叹词用来表示惊讶或其他突发情感。
+
+## 用词
+- 词按文体分有：正式、一般和口语三种
+- 词有原义和涵义，需要注意涵义暗含的感情或想法
+  - country,nation,state,land
+  - except和besides的区别
+- 恰当使用一般词汇和具体词汇，使表达富有感情，更细致
+  - good food,tasty,delicious,abundant
+- 习语常用于非正式或口语化文体
+- 常见修辞格
+  - 明喻（Simile）：like,as， eg. He is as a great pillar upholding the church.
+  - 隐喻（Metaphor）：不出现like,as，暗含比较, eg. He is a great pillar upholding the church.
+  - 拟人（Personification）：把人的特征用在无生命物体上的拟人，或把其他生命的特征用在无生命物体上的拟人, eg. The mountains sing together, the hills rejoice and clap their hands.
+  - 寓言（Allegory)：隐喻的延伸，不明确指出，但有明确指代
+  - 借喻（Metonymy，又称转喻）：用名称来指代与之密切相关的事物的修辞手法， eg. Gray hairs should be respected.灰头发指代老年人
+  - 提喻（Synechdoche，又称借代）：部分代表整体，或整体代表部分， eg. One of his hands was assassinated.用hand指代他的手下
+  - 感叹（Exclamation): eg. What a sad story!
+  - 顿呼法（Apostrophe）:把缺失的当作存在的、把无生命的当作有生命的、把抽象的当作表面的, eg. O, illustrious Washington! Father of our Country! Could you visit us now!
+  - 想象（Vision）把过去的或未来的当作现在的、把遥远的当作附近的。它非常适合用来描述有生命的物体，因为能够产生一种理想的存在的效果, eg. The old warrior looks down from the canvas and tells us to be men worthy of our sires.
+  - 婉言：to die=to pass away
+  - 反问（Interrogation）:借助疑问句来传达确定信息, eg. Does God not show justice to all?
+  - 夸张（Hyperbole): eg. He was as thin as a poker.
+  - 移位修饰：eg. I've had a busy day.
+  - 对偶（Antithesis）:建立在对比的基础上。它将两个不同的事物放在对立的立场上, eg. Ring out the false, ring in the true.
+  - 警句（Epigram）:散文或诗歌中简短的、带有矛盾意义的句子, eg. Conspicuous for his absence.
+  - 讽刺（Irony）:使用与原本表达意图相反的词。要想达到讽刺的效果，虚假、荒谬的程度要足够明显才行, eg. Benedict Arnold was an honorable man.
+  - 头韵:两个或更多相同辅音字母开头的词连用
+  - 层进法（Climax）:所有想法和观念按照后一个比前一个更强烈、更深刻的顺序排列直到结尾，最后反过来强调前面所有的想法和观念。 eg. He risked truth, he risked honor, he risked fame, he risked all that men hold dear,— yea, he risked life itself, and for what?—for a creature who was not worthy to tie his shoe-latchets when he was his better self.
+- 词典
+  - Longman Dictionary of Contemporary Enaglish(LDOCE)
+  - Oxford Advanced Learner's Dictionary of Current English(ALD)
+  - Collins Dictionary of the English Language(CDOEL)
+
+## 英语语法基础
+语法分为四个部分：
+- 拼写学（Orthography），是研究字母及其组合成单词的学科
+- 词源学（Etymology），是研究词的各个类别和词义变化的学科
+- 句法（Syntax），研究的是句子里单词的连接和排列
+- 韵律结构（Prosody），研究的是说话和朗读的方式以及诗歌的各个种类
+
+时态：
+- 现在时（present tense）
+- 过去时（past tense）
+- 将来时（future tense）
+
+语气：
+- 不定式（the Infinitive），如果动词在使用中范围宽泛模糊，没有任何关于人称、数、时间或地点的说明，那么这就是不定式， eg. to run
+- 陈述语气（the Indicative）,如果动词被用来指示、宣告、询问或做出直接的说明，那么这就是陈述语气, eg. The boy loves his book.
+- 虚拟语气（the Imperative）,如果动词被用来表达疑问、推测、不确定，或当即将发生的动作决定于偶发事件时，这就是虚拟语气， eg. If I come, he shall remain.
+- 祈使语气（the Subjunctive）,如果动词被用来表达命令或请求，那么这就是祈使语气, eg. Give me a penny.
+- 潜在语气（the potential），表达能力、可能性、自由、必要性、意愿或职责。它是通过may、can、ought和must一系列助动词形成的。但总的来说，所有用法又可分别归入陈述语气和虚拟语气。 eg.　I may write if I choose.
+
+## 句法
+句子是单词按照一定规律排列的集合，它能传达确切的意思。也就是说，句子能传达完整的想法或看法。无论句子有多短，它都必须包含一个限定动词（finite verb）和一个主语（subject）或实施者（agent），以引导动词的动作。
+
+一个句子总是包含两个部分，主体和关于主体的陈述或说明。表示主体的词汇被称为主语（subject），表示陈述或说明主体的词汇被称为谓语（predicate）。
+
+句子可分为三种:
+- 简单句（simple sentence），表达单一的想法，包含一个主语和一个谓语， eg. Man is mortal.
+- 并列句（compound sentence），包含两个或以上的简单句，它们在句中的地位相同，且简单句中各个部分的意思都得到了传达和理解, eg. The men work in the fields and the women work in the household.
+- 复合句（complex sentence）,包含两个或以上的简单句，它们的联系过于紧密，以至于它们需要互相结合才能完整地表达句意, eg. When he returns, I shall go on my vacation.
+  - 分句（clasuse）是复合句中独立的部分， eg. When he returns,
+  - 短语（phrase）是一个包含两个或以上单词、没有限定动词的词组
+  - 没有限定动词，就不能陈述任何意义或传达任何思想，因此也就没有完整的句子。动词不定式（infinitives）和分词（participles）是非限定动词，不能作谓语。 eg. A dog running along the street.不是一个句子,因为没有限定动词
+  - 当动词是及物动词，即动词的动作有接收对象时，接收对象就是宾语。eg. Cain killed **Abel**.
+
+单词在句中的排列:
+- 句首和句尾分别是最能够吸引读者注意力的地方。这个位置的词比其他地方更能得到强调
+- 句子中意义紧密相连的各个部分在排列上也应该紧密地连在一起。忽视这条原则写出的句子，不是毫无意义，就是既滑稽又可笑。句尾应放置句中最为重要的词。永远不要以and、but、since、because和其他次要的词作为句子的开头，也永远不要以介词、次要的副词或代词作为句子的结尾
+- 无论哪种句子结构，都必须遵守语法规则——语法一致原则，也就是某些词在语法上的一致，必须得到遵守
+  - 动词和主语保持人称和数的一致。强调一群个体或事物时，动词用复数形式。强调整体概念时，动词用单数形式
+  - 当句子中有两个或以上指向不同对象，且由and连接起来的主语时，动词用复数形式
+  - 当多个主语指向同一对象，且由or连接起来时，动词用单数形式
+  - 永远不要在过去时的时态里用过去分词， eg. The jar was broke. 而不是 The jar was broken.
+  - 第一人称的shall仅仅是预告,而will则是威胁或许诺,第二、三人称的shall是威胁
+  - 在第一人称中，shall被直接用于表达一般将来时的动作。eg. I shall go to the city tomorrow. 在第二、第三人称中，shall被用于表达决定, eg. You shall go to the city tomorrow.
+  - 在第一人称中，will被直接用于表达决定。eg. I will go to the city tomorrow. 在第二、第三人称中，will被用于表达一般将来时的动作, eg. You will go to the city tomorrow.
+  - 要特别注意区分主格和宾格。代词是唯一保留了宾格独特的结尾方式的词类。宾格跟在及物动词和介词后面 eg. The boy whom I sent to see you. whom是及物动词sent的宾语
+  - 使用关系代词who、which和that时要注意：who仅指人；which仅指物,而that既指人又指物
+  - 不要用形容词代替副词，或用副词代替形容词, eg. 不是He acted nice towards me. 而是 He acted nicely toward me.
+
+句子分类：
+- 松散句（loose sentence），指主要信息放在前面，补充信息放在后面的句子
+- 掉尾句（periodic sentence，又称圆周句），主要信息放在最后，相关介绍放在前面的句子。这类句子经常以that、if、since、because等词开头
+
+一般对于讲话（相对于写作）而言，松散句更加合适。因为在谈话中使用掉尾句时，听者容易在谈到最终主题之前忘记其他介绍信息的分句。
+
+**对于写作和讲话来说，短句比长句更受欢迎**。约瑟夫·艾迪生的作品是很好的学习对象。
+
+## 造句
+
+- 完整的句子至少要有：主语+谓语动词，或主语+及物动词+宾语
+- 完整和句子以大写字母开始，以句号结束。与中文不同的是不能用逗号分开完整的句子
+- 句子类型
+  - 按用意：陈述句、祈使句、疑问句、感叹句
+  - 按结构：简单句、并列句（用并列连词或分号连接的独立从句）、复合句（一个主句，一或多个从句）、并列复合句（至少两个主要从句和一个次要从句）
+  - 从修辞：松散句（重点在前，简单、自然、直接）、圆周句（重点在后，复杂、正式、文雅）、对偶句（至少两个结构相似但意思相反的平行从句，印象深刻，节奏优美）
+  - 短句和长句：短句语气重，长句准确表达复杂的思想
+- 好句子的特点
+  - 完整：一个完整的句子表达单一完整的思想
+  - 连贯：句子各部分有清晰合理的联系。在人称、数、语气或语态上前后一致
+  - 简洁：在表达清晰的前提下用词越少越好
+  - 强调
+    - 整句强调：短句、不完整句、倒装句、圆周句、祈使句、反问句等
+    - 句内强调：放在句首或句尾、重复强调的词、使用动词和主动语态、将资 要意思放在从属部分、使用表示强调的词（very,far等）
+  - 多样：句型多样化，避免使用单一句型
+
+## 段落
+
+段落（paragraph）是由一组联系紧密、表达同一中心意思的句子构成的。如果两个句子毫无联系，就应该把它们分开放在不同的段落里。
+
+和句子一样，段落里最重要的位置是段首和段尾。所以因其结构和张力，第一句和最后一句能够牢牢地吸引读者的注意。一般来说，第一句最好是短句，最后一句可长可短，但一定要有张力。第一句的目的是清楚地陈述观点，最后一句则应加强该观点。
+
+- 完整：一个段落内容完整，所有句子围绕一个中心主题进行叙述，中心主题有一个中心句（主题句）
+- 连惯：段落中的句子条理清晰，层次分明，衔接自然流畅
+- 过渡
+  - 使用平行结构
+  - 重复一个词或一个词组
+  - 复指上一句提到的名词时使用代词
+  - 名词和代词人称和数量保持一致，动词时态保持一致
+  - 使用过渡词语
+![png]({{"/assets/images/2020/20200409_01.png"| absolute_url }})
+- 段落设计
+  - 写下一个主题或中心意思，并用一句话表达
+  - 选择阐述中心意思的例子或细节，一一列出
+  - 将细节按逻辑顺序排好：
+    - 按时间、过程或空间顺序展开
+    - 通过举例展开，将中心句的抽象意思具体化
+    - 通过归纳展开，先铺叙细节，再将归纳性的中心句放在段尾
+    - 段落中的细节和例子按重要性排列，分量轻的靠前，分量重的放在后面
+    - 类比和对比展开，整体对比，或按特点交替类比对比
+    - 原因和结果展开，先叙述原因再预测结果，或先写结果再分析原因
+    - 分类描述展开
+    - 定义，使用一个段落阐明一个定义
+    - 多方法组合展开
+
+## 全文
+
+- 总体规划：选定题目，收集资料，审查资料，列出提纲
+![png]({{"/assets/images/2020/20200409_02.png"| absolute_url }})
+- 打初稿
+- 修定初稿
+  - 通篇审查：题目是什么？初稿是否符合要求？主题是否清楚，论据是否充分？是否有无关内容需要删除？论述是否合乎逻辑，是否缺少必要环节？
+  - 组织结构审查：开篇段落是否引出文章主要观点？段落是否都有各自的中心思想？段落中心思想是否与文章主题关联？段落之间衔接如何？段落是否逐步推向高潮？结尾段落是否清楚地表明了文章主题？
+  - 句子审查：每句话是否与前后句子密切相关？有无不必要的句子需要删除？句子结构有无错误？句子类型有无变化？
+  - 用词审查：用词与文体风格是否适应？拼写有无错误？
+  - 技术审查：标点、语法等错误审查
+- 定稿  
+
+## 参考书目
+
+- 《圣经》不仅是一部关于上帝的启示的著作，也是目前为止最完美的文学作品。
+- 必读作家：荷马、但丁、塞万提斯、莎士比亚和歌德
+- 莎士比亚最佳戏剧：《哈姆雷特》《李尔王》《奥赛罗》《安东尼和克里奥帕特拉》《麦克白》《威尼斯商人》《亨利四世》《皆大欢喜》《冬天的故事》《罗密欧与朱丽叶》《仲夏夜之梦》《第十二夜》《暴风雨》
+- 美国十大诗人：布莱恩特、爱伦·坡、惠蒂尔、朗费罗、洛威尔、爱默生、惠特曼、拉尼尔、奥尔德里奇和斯托达德
+- 英国十大诗人：乔叟、斯宾塞、莎士比亚、米尔顿、伯恩斯、沃兹沃斯、济慈、雪莱、丁尼生和布朗宁
+- 英国十大散文家：培根、艾迪生、斯梯尔、麦考莱、兰姆、杰弗里、德·昆西、卡莱尔、萨克雷和马修·阿诺德
+- 其他佳作：普鲁塔克的《希腊罗马名人传》，马可·奥勒留的《沉思录》，乔叟、耿稗思的《师主篇》，哲罗米·泰勒的《圣洁的生与死》《天路历程》，麦考莱、培根、阿狄森、查尔斯·兰姆的《伊利亚随笔选》，雨果的《悲惨世界》，托马斯·卡莱尔的《英雄和英雄崇拜》，帕尔格雷夫的《英诗经典》，沃兹沃斯的《威克斐牧师传》，乔治·亚略特的《亚当·比德》，萨克雷的《名利场》，沃尔特·斯克特爵士的《劫后英雄传》，贝托尔德·奥尔巴赫的《在高地》，巴尔扎克的《欧也妮·葛朗台》，霍桑的《红字》，艾默生的文章、鲍斯威尔的《约翰逊传》，约翰·理查德·格林的《英国人民简史》，达尔文的《物种起源》，以及蒙田、朗费罗、丁尼生、布朗宁、惠蒂尔、拉斯金、赫伯特·斯宾塞的作品
+
+
+参考
+============
+
+版权声明：本文为博主原创文章，转载请注明出处。 [旭日酒馆](https://xueyp.github.io/)

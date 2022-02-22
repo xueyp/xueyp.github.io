@@ -1,0 +1,180 @@
+---
+layout: post
+title:  "Linux-zsh与bash共用"
+categories: linux
+tags: linux 
+author: xueyp
+description: zsh与bash共用自定义配置 
+---
+
+# zsh介绍 
+
+Zsh 是一款功能强大终端（shell）软件，既可以作为一个交互式终端，也可以作为一个脚本解释器。它在兼容 Bash 的同时 (默认不兼容，除非设置成 emulate sh) 还有提供了很多改进，例如：
+
+- 更高效
+- 更好的自动补全
+- 更好的文件名展开（通配符展开）
+- 更好的数组处理
+- 可定制性高
+
+## login 与 non-login shell 
+
+- login shell： 取得 bash 是需要完整的登入流程，就称为 login shell。例如，tty1~tty6 登入，需要输入用户的账号与密码，此时取得的 bash 就称为 login shell。
+- non-login shell：取得 bash 接口的方法不需要重复登入的操作。例如，以 X widow 登入 Linux后，以 X 图形化接口启动终端机，此时那个终端并没有需要再次输入账号和密码，那个 bash 的环境就称 non-login shell 。或者已经以login shell登陆后， 再次执行bash ，同样的也没有输入账号和密码，那第二个 bash（子程序）也是 non-login shell。
+
+### bash加载配置文件顺序
+
+login 和 non-login bash shell 的情况下，读取的配置文件数据并不一样所致。
+
+一般来说 login shell 会读取两个配置文件：
+
+1. /etc/profile:这是系统整体的设定，修改这个文件要慎重
+
+2. ~/.bash_profile 或 ~/.bash_login 或~/.profile:属于使用者个人设定，要改自己的数据，可以写在这里。
+
+bash 在读完整体环境设定的 /etc/profile 并藉此呼叫其他配置文件后，接下来则会读取使用者的个人配置文件。在login shell 的 bash 环境中，所读取的个人偏好配置文件主要有三个，依顺序分别为：
+- 1.~/.bash_profile
+- 2.~/.bash_login
+- 3.~/.profile
+其实 bash 的 login shell 设定只会读取上面三个文件的其中一个，而读取的顺序则是依照上面的顺序。
+
+![png]({{"/assets/images/my/20190115_01.png"| absolute_url }})
+
+实线的方向是主线程流程，虚线的方向则是被调用的配置文件。
+
+*** source与.bashrc ***
+
+non-login shell 这种非登入情况取得 bash 操作接口的环境配置文件又是什么？ 当你取得 non-login shell 时，该 bash 配置文件仅会读取 ~/.bashrc 而已。
+
+由于 /etc/profile 与 ~/.bash_profile 都是在取得 login shell 的时候才会读取的配置文件，所以，如果将自己的偏好设定写入上述文件后，通常都是得注销在登入后，改设定才会生效。那么，能不能直接读取配置文件而不注销登入呢？可以的，那就是利用 source 这个指令。
+
+利用 source 或小数的（.）都可以将配置文件的内容读进来目前的 shell 环境中。
+
+### zsh加载配置文件顺序
+
+当 Zsh 启动时，它会按照顺序依次读取下面的配置文件：
+
+1. /etc/zsh/zshenv
+
+该文件应该包含用来设置PATH 环境变量[broken link: invalid section]以及其他一些环境变量的命令；不应该包含那些可以产生输出结果或者假设终端已经附着到 tty 上的命令。
+
+2. ~/.zshenv
+
+该文件和 /etc/zsh/zshenv 相似，但是它是针对每个用户而言的。一般来说是用来设置一些有用的环境变量。
+
+3. /etc/zsh/zprofile
+
+这是一个全局的配置文件，在用户登录的时候加载。一般是用来在登录的时候执行一些命令。请注意，在 Arch Linux 里该文件默认包含一行配置，用来加载 /etc/profile 文件，详见 #全局配置文件。
+
+4. /etc/profile
+
+在登录时，该文件应该被所有和伯克利（Bourne）终端相兼容的终端加载：它在登录的的时候会加载应用相关的配置（/etc/profile.d/*.sh）。注意在 Arch Linux 里，Zsh 会默认加载该文件。
+
+5. ~/.zprofile
+
+该文件一般用来在登录的时候自动执行一些用户脚本。
+
+6. /etc/zsh/zshrc
+
+当 Zsh 被作为交互式终端的时候，会加载这样一个全局配置文件。
+
+7. ~/.zshrc
+
+当 Zsh 被作为交互式终端的时候，会加载这样一个用户配置文件。
+
+8. /etc/zsh/zlogin
+
+在登录完毕后加载的一个全局配置文件。
+
+9. ~/.zlogin
+
+和 /etc/zsh/zlogin 相似，但是它是针对每个用户而言的。
+
+10. /etc/zsh/zlogout
+
+在注销的时候被加载的一个全局配置文件。
+
+11. ~/.zlogout
+
+和 /etc/zsh/zlogout 相似，但是它是针对每个用户而言的.
+
+## zsh安装
+
+1. 安装zsh
+
+``` 
+pacman -S zsh git
+```
+
+2. 安装oh-my-zsh
+
+```
+sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+```
+
+3. 切换默认shell
+
+```
+chsh -s /bin/zsh
+```
+
+4. 配置
+
+为了便于在bash和zsh切换后可以使用同样的配置的alias等配置，采用如下方案：
+
+- 自定义配置放在.profile中
+- .bashrc配置文件中使用source ~/.profile加载自定义配置
+- .zshrc配置文件中使用[[ -e ~/.profile ]] && emulate sh -c 'source ~/.profile'加载自定义配置
+
+配置文件示例如下：
+
+- .bashrc
+
+```
+zzzzzzzzzzzzz原有配置
+下面一行为新加配置
+source ~/.profile
+```
+
+- .zshrc
+
+```
+zzzzzzzzzzzzz原有配置
+下面一行为新加配置
+ [[ -e ~/.profile ]] && emulate sh -c 'source ~/.profile'
+```
+
+- .profile
+
+```
+export QT_QPA_PLATFORMTHEME="qt5ct"
+export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
+
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export LC_CTYPE=zh_CN.UTF-8
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+export EDITOR=vim
+export JAVA_HOME=/usr/local/jdk
+export SCALA_HOME=/usr/local/scala
+export HADOOP_HOME=/usr/local/hadoop
+export HADOOP_CONF_DIR=/usr/local/hadoop/etc/hadoop
+export HBASE_HOME=/usr/local/hbase
+export HIVE_HOME=/usr/local/hive
+export SPARK_HOME=/usr/local/spark
+export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$SCALA_HOME/bin:  $SPARK_HOME/bin:/usr/local/sbt/bin:/usr/local/cassandra/bin:/usr/local/   kafka/bin:/usr/local/mongodb/bin:/usr/local/es/bin:$HBASE_HOME/bin:        $HIVE_HOME/bin:/home/x/firefoxDriver:JAVA_HOME/bin
+alias vi="vim"
+alias xxnet="sudo /usr/local/XX-Net/start &"
+```
+
+这样把算定义配置放在.profile里，即可在bash和zsh中使用同样的自定义环境了。
+
+## zsh常用插件
+
+[https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins](https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins)
+
+
+版权声明：本文为博主原创文章，转载请注明出处。 [旭日酒馆](https://xueyp.        github.io/)
+
