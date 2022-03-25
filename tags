@@ -2696,6 +2696,7 @@ $b	assets/js/jquery.min.js	/^},removeAttr:function(a,b){var c,d,e=0,f=b&&b.match
 1 信息架构	_posts/2021-09-14-读书笔记-产品逻辑之美，打造复杂的产品系统.markdown	/^## 1 信息架构$/;"	s
 1 确立目标	_posts/2021-04-20-读书笔记-费曼学习法.markdown	/^## 1 确立目标$/;"	s
 1)最小二乘法(min square)	_posts/2018-05-07-机器学习-线性回归.markdown	/^## 1)最小二乘法(min square)$/;"	s
+1+1>2	_posts/2022-03-04-读书笔记-产品思维,创新设计的六条法则.markdown	/^## 1+1>2$/;"	s
 1.K-Means	_posts/2018-05-08-机器学习-K-Means.markdown	/^# 1.K-Means$/;"	c
 1.kNN(k-NearestNeighbor)	_posts/2018-05-08-机器学习-KNN.markdown	/^# 1.kNN(k-NearestNeighbor)$/;"	c
 1.决策树（Decision Tree）	_posts/2018-05-09-机器学习-决策树.markdown	/^# 1.决策树（Decision Tree）$/;"	c
@@ -2735,6 +2736,7 @@ $b	assets/js/jquery.min.js	/^},removeAttr:function(a,b){var c,d,e=0,f=b&&b.match
 4.分发和启动：	_posts/2018-04-26-hadoop spark集群安装配置(二) .markdown	/^4.分发和启动：$/;"	c
 5 用户中心	_posts/2021-09-14-读书笔记-产品逻辑之美，打造复杂的产品系统.markdown	/^## 5 用户中心$/;"	s
 5 简化	_posts/2021-04-20-读书笔记-费曼学习法.markdown	/^## 5 简化$/;"	s
+5级产品经理能力模型	_posts/2020-06-04-读书笔记-俞军产品方法论.markdown	/^## 5级产品经理能力模型$/;"	s
 6 搜索系统	_posts/2021-09-14-读书笔记-产品逻辑之美，打造复杂的产品系统.markdown	/^## 6 搜索系统$/;"	s
 6节示范课的知识点	_posts/2019-02-10-英语-英语流利说方法笔记.markdown	/^## 6节示范课的知识点$/;"	s
 7 推荐系统	_posts/2021-09-14-读书笔记-产品逻辑之美，打造复杂的产品系统.markdown	/^## 7 推荐系统$/;"	s
@@ -3253,6 +3255,7 @@ AnonymousFunction43d59b50fe00	assets/js/jquery.min.js	/^},_data:function(a,b,c){
 AnonymousFunction43d59b50ff00	assets/js/jquery.min.js	/^},_data:function(a,b,c){return L.access(a,b,c)},_removeData:function(a,b){L.remove(a,b)}}),n.fn./;"	f	function:AnonymousFunction43d59b50fe00
 Apache Spark vs Apache Flink	_posts/2019-02-28-大数据-Spark vs Flink.markdown	/^# Apache Spark vs Apache Flink$/;"	c
 B	assets/js/jquery.min.js	/^!function(a,b){"object"==typeof module&&"object"==typeof module.exports?module.exports=a.documen/;"	f	function:AnonymousFunction43d59b502400
+B2B创业公司	_posts/2022-03-09-读书笔记-精益数据分析.markdown	/^### B2B创业公司$/;"	S
 Bc	assets/js/jquery.min.js	/^},removeAttr:function(a,b){var c,d,e=0,f=b&&b.match(E);if(f&&1===a.nodeType)while(c=f[e++])d=n.p/;"	f
 Boltzmann机	_posts/2018-05-09-机器学习-神经网络.markdown	/^#### Boltzmann机$/;"	t
 BurpSuite	_posts/2018-07-18-网络安全-BurpSuite.markdown	/^BurpSuite$/;"	c
@@ -3377,6 +3380,7 @@ SQL编程	_posts/2018-08-09-数据库-mysql笔记整理.markdown	/^# SQL编程$/
 SSH&NetCat	_posts/2018-06-06-网络安全-SSH和NetCat内网穿透.markdown	/^SSH&NetCat$/;"	c
 SSH免密登陆详解	_posts/2018-04-26-hadoop spark集群安装配置(一).markdown	/^SSH免密登陆详解$/;"	c
 SWOT	_posts/2020-09-12-读书笔记-直击本质.markdown	/^#### SWOT$/;"	t
+SaaS模式	_posts/2022-03-09-读书笔记-精益数据分析.markdown	/^### SaaS模式$/;"	S
 Sb	assets/js/jquery.min.js	/^},_data:function(a,b,c){return L.access(a,b,c)},_removeData:function(a,b){L.remove(a,b)}}),n.fn./;"	f
 ScrapydArt	_posts/2018-12-20-编程-scrapy可视化管理工具.markdown	/^# ScrapydArt$/;"	c
 ScrapydWeb	_posts/2018-12-20-编程-scrapy可视化管理工具.markdown	/^# ScrapydWeb$/;"	c
@@ -3670,17 +3674,25 @@ description:	_posts/2019-03-30-大数据-zookeeper详解.markdown	/^description:
 description:	_posts/2019-05-17-读书笔记-技术的本质.markdown	/^description: $/;"	s
 description:	_posts/2019-06-14-读书笔记-人人都是产品经理系列.markdown	/^description:$/;"	s
 description:	_posts/2019-08-24-读书笔记-思考的技术.markdown	/^description:$/;"	s
+description:	_posts/2019-09-10-读书笔记-谷歌和亚马逊如何做产品.markdown	/^description:$/;"	s
 description:	_posts/2019-11-01-读书笔记-表达力.markdown	/^description:$/;"	s
 description:	_posts/2019-12-26-读书笔记-Scrum敏捷项目管理.markdown	/^description:$/;"	s
+description:	_posts/2020-01-01-用户思维加.markdown	/^description:$/;"	s
 description:	_posts/2020-01-20-读书笔记-软件架构设计.markdown	/^description:$/;"	s
+description:	_posts/2020-02-20-读书笔记-精益创业方法论.markdown	/^description:$/;"	s
 description:	_posts/2020-03-15-逻辑思维-有逻辑的表达.markdown	/^description:$/;"	s
 description:	_posts/2020-04-09-英语-英文写作要点.markdown	/^description:$/;"	s
+description:	_posts/2020-04-26-软件需求最佳实践.markdown	/^description:$/;"	s
 description:	_posts/2020-05-12-读书笔记-小逻辑.markdown	/^description:$/;"	s
+description:	_posts/2020-05-25-上瘾.markdown	/^description:$/;"	s
+description:	_posts/2020-06-04-读书笔记-俞军产品方法论.markdown	/^description:$/;"	s
 description:	_posts/2020-06-24-读书笔记-说服力.markdown	/^description:$/;"	s
 description:	_posts/2020-07-05-读书笔记-产品经理手册.markdown	/^description:$/;"	s
 description:	_posts/2020-07-15-读书笔记-股票基本面分析清单.markdown	/^description:$/;"	s
 description:	_posts/2020-08-02-读书笔记-区块链金融.markdown	/^description:$/;"	s
+description:	_posts/2020-08-18-讲出一个精彩故事.markdown	/^description:$/;"	s
 description:	_posts/2020-09-12-读书笔记-直击本质.markdown	/^description:$/;"	s
+description:	_posts/2020-10-10-读书笔记-有效需求分析.markdown	/^description:$/;"	s
 description:	_posts/2020-10-24-读书笔记-TED说话的力量.markdown	/^description:$/;"	s
 description:	_posts/2020-11-27-读书笔记-蝶变_数字商业进化之道.markdown	/^description:$/;"	s
 description:	_posts/2020-12-09-读书笔记-场景纪元.markdown	/^description:$/;"	s
@@ -3689,11 +3701,23 @@ description:	_posts/2021-02-07-读书笔记-乌合之众，群氓的狂欢.markd
 description:	_posts/2021-03-04-数据治理-从信息化到数字化的数据治理总结.markdown	/^description:$/;"	s
 description:	_posts/2021-03-26-产品经理-B端产品经理总结.markdown	/^description:$/;"	s
 description:	_posts/2021-04-20-读书笔记-费曼学习法.markdown	/^description:$/;"	s
+description:	_posts/2021-06-01-读书笔记-点石成金,访客至上的网页设计秘籍.markdown	/^description:$/;"	s
+description:	_posts/2021-06-23-读书笔记-锦绣蓝图,怎样规划令人流连忘返的网站.markdown	/^description:$/;"	s
+description:	_posts/2021-07-03-读书笔记-一目了然,Web软件显性设计之路.markdown	/^description:$/;"	s
 description:	_posts/2021-07-22-读书笔记-底层逻辑，半秒钟看透问题本质.markdown	/^description:$/;"	s
+description:	_posts/2021-08-08-读书笔记-信息架构,超越Web设计.markdown	/^description:$/;"	s
 description:	_posts/2021-09-14-读书笔记-产品逻辑之美，打造复杂的产品系统.markdown	/^description:$/;"	s
 description:	_posts/2021-10-07-读书笔记-用户真正需要什么.markdown	/^description:$/;"	s
 description:	_posts/2021-11-20-读书笔记-反直觉.markdown	/^description:$/;"	s
 description:	_posts/2021-12-23-读书笔记-数据安全架构设计与实战.markdown	/^description:$/;"	s
+description:	_posts/2022-01-27-读书笔记-简约至上交互设计四策略.markdown	/^description:$/;"	s
+description:	_posts/2022-01-28-读书笔记-端到端流程.markdown	/^description:$/;"	s
+description:	_posts/2022-02-10-读书笔记-用户体验要素.markdown	/^description:$/;"	s
+description:	_posts/2022-02-18-读书笔记-破茧成蝶，用户体验设计师的成长之路.markdown	/^description:$/;"	s
+description:	_posts/2022-02-21-读书笔记-决胜UX,互联网产品用户体验策略.markdown	/^description:$/;"	s
+description:	_posts/2022-03-03-读书笔记-以终为始,诱发行为改变的产品设计.markdown	/^description:$/;"	s
+description:	_posts/2022-03-04-读书笔记-产品思维,创新设计的六条法则.markdown	/^description:$/;"	s
+description:	_posts/2022-03-09-读书笔记-精益数据分析.markdown	/^description:$/;"	s
 description: ActiveMQ，RabbitMQ，ZeroMQ，Kafka，MetaMQ，RocketMQ	_posts/2018-09-12-大数据-消息队列.markdown	/^description: ActiveMQ，RabbitMQ，ZeroMQ，Kafka，MetaMQ，RocketMQ$/;"	s
 description: BurpSuite简介和使用	_posts/2018-07-18-网络安全-BurpSuite.markdown	/^description: BurpSuite简介和使用$/;"	s
 description: CSRF原理及介绍	_posts/2018-06-13-网络安全-CSRF.markdown	/^description: CSRF原理及介绍$/;"	s
@@ -4251,6 +4275,8 @@ zsh常用插件	_posts/2019-01-15-linux-切换到zsh.markdown	/^## zsh常用插�
 ”Fabric”以太网架构	_posts/2018-09-12-大数据-数据中心网络架构演进.markdown	/^## ”Fabric”以太网架构$/;"	s
 《信息安全技术个人信息安全规范》（GB/T 35273——2017）	_posts/2021-12-23-读书笔记-数据安全架构设计与实战.markdown	/^#### 《信息安全技术个人信息安全规范》（GB\/T 35273——2017）$/;"	t
 一个成功的产品团队应有的关键角色和职责	_posts/2019-01-09-产品-启示录打造用户喜爱的产品阅读笔记.markdown	/^### 一个成功的产品团队应有的关键角色和职责$/;"	S
+一切都要井井有条	_posts/2021-06-23-读书笔记-锦绣蓝图,怎样规划令人流连忘返的网站.markdown	/^## 一切都要井井有条$/;"	s
+一天10美分的可用性测试：可用性测试	_posts/2021-06-01-读书笔记-点石成金,访客至上的网页设计秘籍.markdown	/^### 一天10美分的可用性测试：可用性测试$/;"	S
 一款大众的产品应该具备以下特点：	_posts/2019-01-09-产品-启示录打造用户喜爱的产品阅读笔记.markdown	/^### 一款大众的产品应该具备以下特点：$/;"	S
 万物车联：全新的场景竞争	_posts/2020-12-09-读书笔记-场景纪元.markdown	/^## 万物车联：全新的场景竞争$/;"	s
 三大最常见机器学习任务	_posts/2018-05-04-机器学习-基本概念和流程.markdown	/^三大最常见机器学习任务$/;"	c
@@ -4262,8 +4288,17 @@ zsh常用插件	_posts/2019-01-15-linux-切换到zsh.markdown	/^## zsh常用插�
 不知道用的哪种类型？	_posts/2018-12-13-数据库-redis及python操作.markdown	/^# 不知道用的哪种类型？$/;"	c
 与众不同----大同小异	_posts/2021-10-07-读书笔记-用户真正需要什么.markdown	/^## 与众不同----大同小异$/;"	s
 与逻辑回归一样，导入iris数据集	_posts/2018-05-08-机器学习-KNN.markdown	/^# 与逻辑回归一样，导入iris数据集$/;"	c
+业务场景分析	_posts/2020-10-10-读书笔记-有效需求分析.markdown	/^### 业务场景分析$/;"	S
+业务场景识别	_posts/2020-10-10-读书笔记-有效需求分析.markdown	/^### 业务场景识别$/;"	S
+业务子系统划分	_posts/2020-10-10-读书笔记-有效需求分析.markdown	/^### 业务子系统划分$/;"	S
 业务安全	_posts/2021-12-23-读书笔记-数据安全架构设计与实战.markdown	/^### 业务安全$/;"	S
+业务报表分析	_posts/2020-10-10-读书笔记-有效需求分析.markdown	/^### 业务报表分析$/;"	S
+业务接口分析	_posts/2020-10-10-读书笔记-有效需求分析.markdown	/^### 业务接口分析$/;"	S
+业务数据分析	_posts/2020-10-10-读书笔记-有效需求分析.markdown	/^### 业务数据分析$/;"	S
+业务流程分析与优化	_posts/2020-10-10-读书笔记-有效需求分析.markdown	/^### 业务流程分析与优化$/;"	S
+业务流程识别	_posts/2020-10-10-读书笔记-有效需求分析.markdown	/^### 业务流程识别$/;"	S
 业务能力	_posts/2020-07-05-读书笔记-产品经理手册.markdown	/^## 业务能力$/;"	s
+业务规则分析	_posts/2020-10-10-读书笔记-有效需求分析.markdown	/^### 业务规则分析$/;"	S
 业务调研	_posts/2021-03-26-产品经理-B端产品经理总结.markdown	/^### 业务调研$/;"	S
 业务逻辑漏洞	_posts/2021-12-23-读书笔记-数据安全架构设计与实战.markdown	/^#### 业务逻辑漏洞$/;"	t
 两个模型/算法、单个数据集上的泛化性能检验	_posts/2018-05-04-机器学习-基本概念和流程.markdown	/^### 两个模型\/算法、单个数据集上的泛化性能检验$/;"	S
@@ -4271,12 +4306,17 @@ zsh常用插件	_posts/2019-01-15-linux-切换到zsh.markdown	/^## zsh常用插�
 中文译文	_posts/2018-08-26-机器学习-从模型到产品.markdown	/^中文译文$/;"	c
 临键锁（Next-key locks）	_posts/2018-09-07-数据库-mysql的各种锁.markdown	/^### 临键锁（Next-key locks）$/;"	S
 为了得到最佳性能，我们将特征缩放	_posts/2018-05-08-机器学习-逻辑回归.markdown	/^# 为了得到最佳性能，我们将特征缩放$/;"	c
+为什么我们喜欢听故事？	_posts/2020-08-18-讲出一个精彩故事.markdown	/^### 为什么我们喜欢听故事？$/;"	S
 为什么要做技术管理	_posts/2019-03-08-管理-技术管理实战笔记(上).markdown	/^# 为什么要做技术管理$/;"	c
 为什么需要函数式编程	_posts/2018-12-04-编程-函数式编程.markdown	/^# 为什么需要函数式编程$/;"	c
 为无解问题找出正确导向的思考方法	_posts/2019-08-24-读书笔记-思考的技术.markdown	/^## 为无解问题找出正确导向的思考方法$/;"	s
+为流程企业设立新职位	_posts/2022-01-28-读书笔记-端到端流程.markdown	/^### 为流程企业设立新职位$/;"	S
 为知识注入灵魂	_posts/2021-04-20-读书笔记-费曼学习法.markdown	/^### 为知识注入灵魂$/;"	S
+为转化而设计	_posts/2022-02-21-读书笔记-决胜UX,互联网产品用户体验策略.markdown	/^### 为转化而设计$/;"	S
 主动地怀疑和探索	_posts/2021-04-20-读书笔记-费曼学习法.markdown	/^### 主动地怀疑和探索$/;"	S
 主干系统	_posts/2018-09-12-大数据-数据中心网络架构演进.markdown	/^## 主干系统$/;"	s
+习惯测试	_posts/2020-05-25-上瘾.markdown	/^## 习惯测试$/;"	s
+习惯的力量	_posts/2020-05-25-上瘾.markdown	/^## 习惯的力量$/;"	s
 了解企业——从客户的角度	_posts/2020-07-15-读书笔记-股票基本面分析清单.markdown	/^### 了解企业——从客户的角度$/;"	S
 了解企业——企业的基本要素	_posts/2020-07-15-读书笔记-股票基本面分析清单.markdown	/^### 了解企业——企业的基本要素$/;"	S
 了解企业的基本要素	_posts/2020-07-15-读书笔记-股票基本面分析清单.markdown	/^## 了解企业的基本要素$/;"	s
@@ -4290,7 +4330,10 @@ zsh常用插件	_posts/2019-01-15-linux-切换到zsh.markdown	/^## zsh常用插�
 互联网时代的“大前法则”	_posts/2019-08-24-读书笔记-思考的技术.markdown	/^### 互联网时代的“大前法则”$/;"	S
 交叉验证	_posts/2018-05-04-机器学习-基本概念和流程.markdown	/^#### 交叉验证$/;"	t
 交叉验证t检验	_posts/2018-05-04-机器学习-基本概念和流程.markdown	/^#### 交叉验证t检验$/;"	t
+交易	_posts/2020-06-04-读书笔记-俞军产品方法论.markdown	/^# 交易$/;"	c
 产品	_posts/2019-06-14-读书笔记-人人都是产品经理系列.markdown	/^## 产品$/;"	s
+产品A特征⇋产品B特征	_posts/2022-03-04-读书笔记-产品思维,创新设计的六条法则.markdown	/^## 产品A特征⇋产品B特征$/;"	s
+产品∩特定场景	_posts/2022-03-04-读书笔记-产品思维,创新设计的六条法则.markdown	/^## 产品∩特定场景$/;"	s
 产品与产品营销：两者不是一回事　	_posts/2019-01-09-产品-启示录打造用户喜爱的产品阅读笔记.markdown	/^### 产品与产品营销：两者不是一回事　$/;"	S
 产品企划框架	_posts/2020-07-05-读书笔记-产品经理手册.markdown	/^## 产品企划框架$/;"	s
 产品安全架构	_posts/2021-12-23-读书笔记-数据安全架构设计与实战.markdown	/^## 产品安全架构$/;"	s
@@ -4312,22 +4355,29 @@ zsh常用插件	_posts/2019-01-15-linux-切换到zsh.markdown	/^## zsh常用插�
 产品经理的分类	_posts/2021-03-26-产品经理-B端产品经理总结.markdown	/^## 产品经理的分类$/;"	s
 产品经理的多面性	_posts/2020-07-05-读书笔记-产品经理手册.markdown	/^## 产品经理的多面性$/;"	s
 产品经理的核心技能	_posts/2019-06-14-读书笔记-人人都是产品经理系列.markdown	/^## 产品经理的核心技能$/;"	s
+产品经理的职责	_posts/2020-06-04-读书笔记-俞军产品方法论.markdown	/^## 产品经理的职责$/;"	s
 产品经理的自我修养	_posts/2019-06-14-读书笔记-人人都是产品经理系列.markdown	/^# 产品经理的自我修养$/;"	c
+产品经理的选拔与成长	_posts/2020-06-04-读书笔记-俞军产品方法论.markdown	/^# 产品经理的选拔与成长$/;"	c
 产品设计	_posts/2019-01-09-产品-启示录打造用户喜爱的产品阅读笔记.markdown	/^### 产品设计$/;"	S
 产品评审	_posts/2019-01-09-产品-启示录打造用户喜爱的产品阅读笔记.markdown	/^### 产品评审$/;"	S
 产品验证	_posts/2019-01-09-产品-启示录打造用户喜爱的产品阅读笔记.markdown	/^### 产品验证$/;"	S
 产生新构想的思维逻辑	_posts/2019-08-24-读书笔记-思考的技术.markdown	/^### 产生新构想的思维逻辑$/;"	S
 人际能力——建立人际关系的能力	_posts/2021-01-05-读书笔记-差异优势.markdown	/^### 人际能力——建立人际关系的能力$/;"	S
+什么是产品经理	_posts/2020-06-04-读书笔记-俞军产品方法论.markdown	/^# 什么是产品经理$/;"	c
+什么是故事	_posts/2020-08-18-讲出一个精彩故事.markdown	/^## 什么是故事$/;"	s
 什么是管理能力	_posts/2019-06-14-读书笔记-人人都是产品经理系列.markdown	/^## 什么是管理能力$/;"	s
 什么是群体	_posts/2021-02-07-读书笔记-乌合之众，群氓的狂欢.markdown	/^## 什么是群体$/;"	s
 介绍	_posts/2019-01-24-linux-manjaro与lvm.markdown	/^# 介绍 $/;"	c
+从A取道B到达C	_posts/2021-06-23-读书笔记-锦绣蓝图,怎样规划令人流连忘返的网站.markdown	/^## 从A取道B到达C$/;"	s
 从万物车联到场景互联：新商业进化以场景为中心	_posts/2020-12-09-读书笔记-场景纪元.markdown	/^## 从万物车联到场景互联：新商业进化以场景为中心$/;"	s
 从信息化到数字化	_posts/2021-03-04-数据治理-从信息化到数字化的数据治理总结.markdown	/^### 从信息化到数字化$/;"	S
 从内心判断自己是否要做管理	_posts/2019-03-08-管理-技术管理实战笔记(上).markdown	/^## 从内心判断自己是否要做管理$/;"	s
 从客户的角度了解企业	_posts/2020-07-15-读书笔记-股票基本面分析清单.markdown	/^## 从客户的角度了解企业$/;"	s
 从空降谈管理方法论的积累	_posts/2019-03-15-管理-技术管理实战笔记(下).markdown	/^## 从空降谈管理方法论的积累 $/;"	s
+从练习讲“我的故事”开始	_posts/2020-08-18-讲出一个精彩故事.markdown	/^### 从练习讲“我的故事”开始$/;"	S
 从经济角度看待技术进化	_posts/2019-05-17-读书笔记-技术的本质.markdown	/^## 从经济角度看待技术进化$/;"	s
 从网络连接:	_posts/2018-04-29-python多线程、多进程、协程及分布式编程.markdown	/^# 从网络连接:$/;"	c
+从预试验到持续监测	_posts/2022-03-03-读书笔记-以终为始,诱发行为改变的产品设计.markdown	/^### 从预试验到持续监测$/;"	S
 代价敏感错误率与代价曲线	_posts/2018-05-04-机器学习-基本概念和流程.markdown	/^#### 代价敏感错误率与代价曲线$/;"	t
 代码审计	_posts/2018-07-10-网络安全-代码审计.markdown	/^代码审计$/;"	c
 代码示例	_posts/2018-05-16-机器学习-PyTorch-CNN.markdown	/^代码示例$/;"	c
@@ -4335,8 +4385,13 @@ zsh常用插件	_posts/2019-01-15-linux-切换到zsh.markdown	/^## zsh常用插�
 代码示例	_posts/2018-05-16-机器学习-PyTorch基础.markdown	/^代码示例$/;"	c
 代码补全	_posts/2018-04-26-jupyter notebook的安装、配置和使用.markdown	/^代码补全$/;"	c
 以教代学	_posts/2021-04-20-读书笔记-费曼学习法.markdown	/^### 以教代学$/;"	S
+价值需求	_posts/2020-10-10-读书笔记-有效需求分析.markdown	/^### 价值需求$/;"	S
+价值需求篇	_posts/2020-10-10-读书笔记-有效需求分析.markdown	/^## 价值需求篇$/;"	s
 任务管理	_posts/2019-03-15-管理-技术管理实战笔记(下).markdown	/^## 任务管理$/;"	s
+企业、用户、产品	_posts/2020-06-04-读书笔记-俞军产品方法论.markdown	/^# 企业、用户、产品$/;"	c
+企业内部的精益之道：内部创业者	_posts/2022-03-09-读书笔记-精益数据分析.markdown	/^### 企业内部的精益之道：内部创业者$/;"	S
 企业数据分类管理框架	_posts/2021-03-04-数据治理-从信息化到数字化的数据治理总结.markdown	/^## 企业数据分类管理框架$/;"	s
+企业治理和专业技能保持流程走向正确	_posts/2022-01-28-读书笔记-端到端流程.markdown	/^### 企业治理和专业技能保持流程走向正确$/;"	S
 企业级应用架构	_posts/2021-03-26-产品经理-B端产品经理总结.markdown	/^## 企业级应用架构$/;"	s
 传统大三层架构	_posts/2018-09-12-大数据-数据中心网络架构演进.markdown	/^## 传统大三层架构$/;"	s
 传统学习法	_posts/2021-04-20-读书笔记-费曼学习法.markdown	/^### 传统学习法$/;"	S
@@ -4351,11 +4406,15 @@ zsh常用插件	_posts/2019-01-15-linux-切换到zsh.markdown	/^## zsh常用插�
 保存模型	_posts/2018-05-16-机器学习-PyTorch-CNN.markdown	/^# 保存模型$/;"	c
 保存模型	_posts/2018-05-16-机器学习-PyTorch-RNN.markdown	/^# 保存模型$/;"	c
 保存模型	_posts/2018-05-16-机器学习-PyTorch基础.markdown	/^# 保存模型$/;"	c
+俞军产品经理十二条	_posts/2020-06-04-读书笔记-俞军产品方法论.markdown	/^## 俞军产品经理十二条$/;"	s
+俞军产品谁知迭代	_posts/2020-06-04-读书笔记-俞军产品方法论.markdown	/^# 俞军产品谁知迭代$/;"	c
 信息增益	_posts/2018-05-09-机器学习-决策树.markdown	/^#### 信息增益$/;"	t
 信息架构	_posts/2021-03-04-数据治理-从信息化到数字化的数据治理总结.markdown	/^## 信息架构$/;"	s
 信息架构应基于业务对象设计和实施	_posts/2021-03-04-数据治理-从信息化到数字化的数据治理总结.markdown	/^### 信息架构应基于业务对象设计和实施$/;"	S
 信息架构的4个核心组件	_posts/2021-03-04-数据治理-从信息化到数字化的数据治理总结.markdown	/^### 信息架构的4个核心组件$/;"	S
+信息架构的基本原理	_posts/2021-08-08-读书笔记-信息架构,超越Web设计.markdown	/^## 信息架构的基本原理$/;"	s
 信息架构管理政策	_posts/2021-03-04-数据治理-从信息化到数字化的数据治理总结.markdown	/^### 信息架构管理政策$/;"	S
+信息设计	_posts/2022-02-10-读书笔记-用户体验要素.markdown	/^#### 信息设计$/;"	t
 信联网	_posts/2020-11-27-读书笔记-蝶变_数字商业进化之道.markdown	/^## 信联网$/;"	s
 修剪列表	_posts/2018-12-13-数据库-redis及python操作.markdown	/^# 修剪列表$/;"	c
 值对象	_posts/2021-03-26-产品经理-B端产品经理总结.markdown	/^### 值对象$/;"	S
@@ -4364,9 +4423,12 @@ zsh常用插件	_posts/2019-01-15-linux-切换到zsh.markdown	/^## zsh常用插�
 偏函数	_posts/2018-12-04-编程-函数式编程.markdown	/^## 偏函数$/;"	s
 偏差与方差	_posts/2018-05-04-机器学习-基本概念和流程.markdown	/^## 偏差与方差$/;"	s
 做管理的患得患失	_posts/2019-03-08-管理-技术管理实战笔记(上).markdown	/^## 做管理的患得患失$/;"	s
+先理解用户，再思考合适的设计	_posts/2022-01-27-读书笔记-简约至上交互设计四策略.markdown	/^### 先理解用户，再思考合适的设计$/;"	S
+免费移动应用模式	_posts/2022-03-09-读书笔记-精益数据分析.markdown	/^### 免费移动应用模式$/;"	S
 全书概要	_posts/2019-01-09-产品-启示录打造用户喜爱的产品阅读笔记.markdown	/^# 全书概要$/;"	c
 全局最小与局部极小	_posts/2018-05-09-机器学习-神经网络.markdown	/^## 全局最小与局部极小$/;"	s
 全文	_posts/2020-04-09-英语-英文写作要点.markdown	/^## 全文$/;"	s
+八项基本原则	_posts/2021-06-23-读书笔记-锦绣蓝图,怎样规划令人流连忘返的网站.markdown	/^## 八项基本原则$/;"	s
 公司级的数据治理政策	_posts/2021-03-04-数据治理-从信息化到数字化的数据治理总结.markdown	/^### 公司级的数据治理政策$/;"	S
 公链，联盟链和私链常用算法	_posts/2018-07-26-区块链-区块链主要共识算法.markdown	/^## 公链，联盟链和私链常用算法$/;"	s
 共享/排他锁（shared and exclusion locks）	_posts/2018-09-07-数据库-mysql的各种锁.markdown	/^### 共享\/排他锁（shared and exclusion locks）$/;"	S
@@ -4378,6 +4440,7 @@ zsh常用插件	_posts/2019-01-15-linux-切换到zsh.markdown	/^## zsh常用插�
 其他	_posts/2018-11-06-编程-Kubernetes DashBoard.markdown	/^# 其他$/;"	c
 其他	_posts/2018-12-13-数据库-redis及python操作.markdown	/^# 其他$/;"	c
 其他	_posts/2021-03-26-产品经理-B端产品经理总结.markdown	/^### 其他$/;"	S
+其他	_posts/2022-01-27-读书笔记-简约至上交互设计四策略.markdown	/^## 其他$/;"	s
 其他常用语法和函数	_posts/2018-12-04-编程-函数式编程.markdown	/^## 其他常用语法和函数$/;"	s
 其他常见神经网络	_posts/2018-05-09-机器学习-神经网络.markdown	/^## 其他常见神经网络$/;"	s
 具体性原则	_posts/2020-10-24-读书笔记-TED说话的力量.markdown	/^## 具体性原则$/;"	s
@@ -4386,6 +4449,9 @@ zsh常用插件	_posts/2019-01-15-linux-切换到zsh.markdown	/^## zsh常用插�
 内网穿透	_posts/2018-06-06-网络安全-SSH和NetCat内网穿透.markdown	/^内网穿透$/;"	c
 内部替换	_posts/2019-05-17-读书笔记-技术的本质.markdown	/^### 内部替换$/;"	S
 写进程代码:	_posts/2018-04-29-python多线程、多进程、协程及分布式编程.markdown	/^# 写进程代码:$/;"	c
+农场主和牧牛人应该是朋友：为什么web设计团队讨论可用性是浪费时间？	_posts/2021-06-01-读书笔记-点石成金,访客至上的网页设计秘籍.markdown	/^### 农场主和牧牛人应该是朋友：为什么web设计团队讨论可用性是浪费时间/;"	S
+决策	_posts/2019-09-10-读书笔记-谷歌和亚马逊如何做产品.markdown	/^### 决策$/;"	S
+决策	_posts/2020-06-04-读书笔记-俞军产品方法论.markdown	/^# 决策$/;"	c
 出人意料原则	_posts/2020-10-24-读书笔记-TED说话的力量.markdown	/^## 出人意料原则$/;"	s
 函数式编程的优点	_posts/2018-12-04-编程-函数式编程.markdown	/^## 函数式编程的优点$/;"	s
 函数式编程的本质	_posts/2018-12-04-编程-函数式编程.markdown	/^## 函数式编程的本质$/;"	s
@@ -4399,40 +4465,52 @@ zsh常用插件	_posts/2019-01-15-linux-切换到zsh.markdown	/^## zsh常用插�
 分布式编程	_posts/2018-04-29-python多线程、多进程、协程及分布式编程.markdown	/^分布式编程$/;"	c
 分类测试集，这将返回一个测试结果的数组	_posts/2018-05-08-机器学习-逻辑回归.markdown	/^# 分类测试集，这将返回一个测试结果的数组$/;"	c
 切分测试集和训练集，随机拿出数据集中20%的部分做测试	_posts/2018-05-08-机器学习-逻辑回归.markdown	/^# 切分测试集和训练集，随机拿出数据集中20%的部分做测试$/;"	c
+创业的本质	_posts/2020-02-20-读书笔记-精益创业方法论.markdown	/^## 创业的本质$/;"	s
+创业阶段	_posts/2022-03-09-读书笔记-精益数据分析.markdown	/^### 创业阶段$/;"	S
 创建Dashboard	_posts/2018-11-06-编程-Kubernetes DashBoard.markdown	/^## 创建Dashboard$/;"	s
 创建certs	_posts/2018-11-06-编程-Kubernetes DashBoard.markdown	/^## 创建certs$/;"	s
 创建svm训练模型集，分别采用不同的核函数	_posts/2018-05-09-机器学习-支持向量机.markdown	/^# 创建svm训练模型集，分别采用不同的核函数$/;"	c
+创建实验原型	_posts/2022-02-21-读书笔记-决胜UX,互联网产品用户体验策略.markdown	/^### 创建实验原型$/;"	S
 创建类似的QueueManager:	_posts/2018-04-29-python多线程、多进程、协程及分布式编程.markdown	/^# 创建类似的QueueManager:$/;"	c
 创建颜色表	_posts/2018-05-08-机器学习-KNN.markdown	/^# 创建颜色表$/;"	c
+创意	_posts/2022-03-04-读书笔记-产品思维,创新设计的六条法则.markdown	/^## 创意$/;"	s
+创意的价值	_posts/2022-03-04-读书笔记-产品思维,创新设计的六条法则.markdown	/^### 创意的价值$/;"	S
 创新----安于现状	_posts/2021-10-07-读书笔记-用户真正需要什么.markdown	/^## 创新----安于现状$/;"	s
 创造能力——看到多种选择并寻找答案的能力	_posts/2021-01-05-读书笔记-差异优势.markdown	/^### 创造能力——看到多种选择并寻找答案的能力$/;"	S
 初级目标	_posts/2021-03-04-数据治理-从信息化到数字化的数据治理总结.markdown	/^### 初级目标$/;"	S
 删数据 1是删除成功 0和None是没这个东西	_posts/2018-12-13-数据库-redis及python操作.markdown	/^# 删数据 1是删除成功 0和None是没这个东西$/;"	c
+删除	_posts/2022-01-27-读书笔记-简约至上交互设计四策略.markdown	/^### 删除$/;"	S
 判断set中一个对象是否存在	_posts/2018-12-13-数据库-redis及python操作.markdown	/^# 判断set中一个对象是否存在$/;"	c
 判断一个set长度为多少 不存在为0	_posts/2018-12-13-数据库-redis及python操作.markdown	/^# 判断一个set长度为多少 不存在为0$/;"	c
 利用外部视角，做出正确决策	_posts/2021-11-20-读书笔记-反直觉.markdown	/^## 利用外部视角，做出正确决策$/;"	s
+别让我思考：Krug可用性第一定律	_posts/2021-06-01-读书笔记-点石成金,访客至上的网页设计秘籍.markdown	/^### 别让我思考：Krug可用性第一定律$/;"	S
 制定企划方案并获得批准	_posts/2020-07-05-读书笔记-产品经理手册.markdown	/^## 制定企划方案并获得批准$/;"	s
 制定和实施产品发布方案	_posts/2020-07-05-读书笔记-产品经理手册.markdown	/^## 制定和实施产品发布方案$/;"	s
 制定计划:帮助你实现目标的关键因素	_posts/2020-05-12-读书笔记-小逻辑.markdown	/^## 制定计划:帮助你实现目标的关键因素$/;"	s
 刷新	_posts/2020-11-27-读书笔记-蝶变_数字商业进化之道.markdown	/^## 刷新$/;"	s
 前言	_posts/2019-02-10-英语-英语流利说方法笔记.markdown	/^## 前言$/;"	s
+功能主线子篇	_posts/2020-10-10-读书笔记-有效需求分析.markdown	/^## 功能主线子篇$/;"	s
 功能菜单简介	_posts/2018-07-18-网络安全-BurpSuite.markdown	/^功能菜单简介$/;"	c
 加法-减法模型	_posts/2020-09-12-读书笔记-直击本质.markdown	/^#### 加法-减法模型$/;"	t
 务虚会议	_posts/2019-06-14-读书笔记-人人都是产品经理系列.markdown	/^### 务虚会议$/;"	S
+动物、植物、无机物：为什么用户喜欢无需思考的选择	_posts/2021-06-01-读书笔记-点石成金,访客至上的网页设计秘籍.markdown	/^### 动物、植物、无机物：为什么用户喜欢无需思考的选择$/;"	S
 区块链	_posts/2018-07-26-区块链-区块链主要共识算法.markdown	/^区块链$/;"	c
 区块链在保险业的开发实践	_posts/2020-08-02-读书笔记-区块链金融.markdown	/^## 区块链在保险业的开发实践$/;"	s
 区块链在其他金融业的价值服务	_posts/2020-08-02-读书笔记-区块链金融.markdown	/^## 区块链在其他金融业的价值服务$/;"	s
 区块链在证券业的创新尝试	_posts/2020-08-02-读书笔记-区块链金融.markdown	/^## 区块链在证券业的创新尝试$/;"	s
 区块链在银行业的应用	_posts/2020-08-02-读书笔记-区块链金融.markdown	/^## 区块链在银行业的应用$/;"	s
 区块链金融演绎历程	_posts/2020-08-02-读书笔记-区块链金融.markdown	/^## 区块链金融演绎历程$/;"	s
+十大交付原则	_posts/2019-09-10-读书笔记-谷歌和亚马逊如何做产品.markdown	/^## 十大交付原则$/;"	s
 升维	_posts/2020-11-27-读书笔记-蝶变_数字商业进化之道.markdown	/^## 升维$/;"	s
 升维思考	_posts/2020-09-12-读书笔记-直击本质.markdown	/^### 升维思考$/;"	S
 协程	_posts/2018-04-29-python多线程、多进程、协程及分布式编程.markdown	/^协程$/;"	c
 协调----混乱	_posts/2021-10-07-读书笔记-用户真正需要什么.markdown	/^## 协调----混乱$/;"	s
+卓越技能	_posts/2019-09-10-读书笔记-谷歌和亚马逊如何做产品.markdown	/^## 卓越技能$/;"	s
 单个模型、单个数据集上的泛化性能检验	_posts/2018-05-04-机器学习-基本概念和流程.markdown	/^### 单个模型、单个数据集上的泛化性能检验$/;"	S
 单机构建网站	_posts/2018-08-15-软件开发-Web系统架构演进.markdown	/^# 单机构建网站$/;"	c
 卷积	_posts/2018-05-16-机器学习-PyTorch-CNN.markdown	/^## 卷积$/;"	s
 卷积层	_posts/2018-05-16-机器学习-PyTorch-CNN.markdown	/^## 卷积层$/;"	s
+压力分析和压力验证	_posts/2022-03-03-读书笔记-以终为始,诱发行为改变的产品设计.markdown	/^### 压力分析和压力验证$/;"	S
 原始链接	_posts/2018-08-26-机器学习-从模型到产品.markdown	/^原始链接$/;"	c
 原理性思维	_posts/2021-04-20-读书笔记-费曼学习法.markdown	/^### 原理性思维$/;"	S
 去标识化	_posts/2021-12-23-读书笔记-数据安全架构设计与实战.markdown	/^#### 去标识化$/;"	t
@@ -4470,17 +4548,25 @@ zsh常用插件	_posts/2019-01-15-linux-切换到zsh.markdown	/^## zsh常用插�
 参考	_posts/2019-05-17-读书笔记-技术的本质.markdown	/^参考$/;"	c
 参考	_posts/2019-06-14-读书笔记-人人都是产品经理系列.markdown	/^参考$/;"	c
 参考	_posts/2019-08-24-读书笔记-思考的技术.markdown	/^参考$/;"	c
+参考	_posts/2019-09-10-读书笔记-谷歌和亚马逊如何做产品.markdown	/^参考$/;"	c
 参考	_posts/2019-11-01-读书笔记-表达力.markdown	/^参考$/;"	c
 参考	_posts/2019-12-26-读书笔记-Scrum敏捷项目管理.markdown	/^参考$/;"	c
+参考	_posts/2020-01-01-用户思维加.markdown	/^参考$/;"	c
 参考	_posts/2020-01-20-读书笔记-软件架构设计.markdown	/^参考$/;"	c
+参考	_posts/2020-02-20-读书笔记-精益创业方法论.markdown	/^参考$/;"	c
 参考	_posts/2020-03-15-逻辑思维-有逻辑的表达.markdown	/^参考$/;"	c
 参考	_posts/2020-04-09-英语-英文写作要点.markdown	/^参考$/;"	c
+参考	_posts/2020-04-26-软件需求最佳实践.markdown	/^参考$/;"	c
 参考	_posts/2020-05-12-读书笔记-小逻辑.markdown	/^参考$/;"	c
+参考	_posts/2020-05-25-上瘾.markdown	/^参考$/;"	c
+参考	_posts/2020-06-04-读书笔记-俞军产品方法论.markdown	/^参考$/;"	c
 参考	_posts/2020-06-24-读书笔记-说服力.markdown	/^参考$/;"	c
 参考	_posts/2020-07-05-读书笔记-产品经理手册.markdown	/^参考$/;"	c
 参考	_posts/2020-07-15-读书笔记-股票基本面分析清单.markdown	/^参考$/;"	c
 参考	_posts/2020-08-02-读书笔记-区块链金融.markdown	/^参考$/;"	c
+参考	_posts/2020-08-18-讲出一个精彩故事.markdown	/^参考$/;"	c
 参考	_posts/2020-09-12-读书笔记-直击本质.markdown	/^参考$/;"	c
+参考	_posts/2020-10-10-读书笔记-有效需求分析.markdown	/^参考$/;"	c
 参考	_posts/2020-10-24-读书笔记-TED说话的力量.markdown	/^参考$/;"	c
 参考	_posts/2020-11-27-读书笔记-蝶变_数字商业进化之道.markdown	/^参考$/;"	c
 参考	_posts/2020-12-09-读书笔记-场景纪元.markdown	/^参考$/;"	c
@@ -4489,14 +4575,27 @@ zsh常用插件	_posts/2019-01-15-linux-切换到zsh.markdown	/^## zsh常用插�
 参考	_posts/2021-03-04-数据治理-从信息化到数字化的数据治理总结.markdown	/^参考$/;"	c
 参考	_posts/2021-03-26-产品经理-B端产品经理总结.markdown	/^参考$/;"	c
 参考	_posts/2021-04-20-读书笔记-费曼学习法.markdown	/^参考$/;"	c
+参考	_posts/2021-06-01-读书笔记-点石成金,访客至上的网页设计秘籍.markdown	/^参考$/;"	c
+参考	_posts/2021-06-23-读书笔记-锦绣蓝图,怎样规划令人流连忘返的网站.markdown	/^参考$/;"	c
+参考	_posts/2021-07-03-读书笔记-一目了然,Web软件显性设计之路.markdown	/^参考$/;"	c
 参考	_posts/2021-07-22-读书笔记-底层逻辑，半秒钟看透问题本质.markdown	/^参考$/;"	c
+参考	_posts/2021-08-08-读书笔记-信息架构,超越Web设计.markdown	/^参考$/;"	c
 参考	_posts/2021-09-14-读书笔记-产品逻辑之美，打造复杂的产品系统.markdown	/^参考$/;"	c
 参考	_posts/2021-10-07-读书笔记-用户真正需要什么.markdown	/^参考$/;"	c
 参考	_posts/2021-11-20-读书笔记-反直觉.markdown	/^参考$/;"	c
 参考	_posts/2021-12-23-读书笔记-数据安全架构设计与实战.markdown	/^参考$/;"	c
+参考	_posts/2022-01-27-读书笔记-简约至上交互设计四策略.markdown	/^参考$/;"	c
+参考	_posts/2022-01-28-读书笔记-端到端流程.markdown	/^参考$/;"	c
+参考	_posts/2022-02-10-读书笔记-用户体验要素.markdown	/^参考$/;"	c
+参考	_posts/2022-02-18-读书笔记-破茧成蝶，用户体验设计师的成长之路.markdown	/^参考$/;"	c
+参考	_posts/2022-02-21-读书笔记-决胜UX,互联网产品用户体验策略.markdown	/^参考$/;"	c
+参考	_posts/2022-03-03-读书笔记-以终为始,诱发行为改变的产品设计.markdown	/^参考$/;"	c
+参考	_posts/2022-03-04-读书笔记-产品思维,创新设计的六条法则.markdown	/^参考$/;"	c
+参考	_posts/2022-03-09-读书笔记-精益数据分析.markdown	/^参考$/;"	c
 参考书目	_posts/2020-04-09-英语-英文写作要点.markdown	/^## 参考书目$/;"	s
 参考资料	_posts/2018-07-26-区块链-区块链主要共识算法.markdown	/^参考资料$/;"	c
 双因子认证	_posts/2021-12-23-读书笔记-数据安全架构设计与实战.markdown	/^#### 双因子认证$/;"	t
+双边市场模式	_posts/2022-03-09-读书笔记-精益数据分析.markdown	/^### 双边市场模式$/;"	S
 反向传播算法（back propagation)	_posts/2018-05-14-机器学习-DNN .markdown	/^## 反向传播算法（back propagation)$/;"	s
 反思的作用：寻找反证	_posts/2021-04-20-读书笔记-费曼学习法.markdown	/^### 反思的作用：寻找反证$/;"	S
 反馈	_posts/2019-11-01-读书笔记-表达力.markdown	/^### 反馈$/;"	S
@@ -4509,13 +4608,18 @@ zsh常用插件	_posts/2019-01-15-linux-切换到zsh.markdown	/^## zsh常用插�
 取数据	_posts/2018-12-13-数据库-redis及python操作.markdown	/^# 取数据$/;"	c
 变化-不变模型	_posts/2020-09-12-读书笔记-直击本质.markdown	/^#### 变化-不变模型$/;"	t
 变道	_posts/2020-11-27-读书笔记-蝶变_数字商业进化之道.markdown	/^## 变道$/;"	s
+叙词表、受控词表和元数据	_posts/2021-08-08-读书笔记-信息架构,超越Web设计.markdown	/^### 叙词表、受控词表和元数据$/;"	S
 句法	_posts/2020-04-09-英语-英文写作要点.markdown	/^## 句法$/;"	s
 另外还有创业、顾问两大类分类	_posts/2019-03-08-管理-技术管理实战笔记(上).markdown	/^### 另外还有创业、顾问两大类分类$/;"	S
 只写abs	_posts/2018-12-04-编程-函数式编程.markdown	/^# 只写abs$/;"	c
+只提供用户所需的功能	_posts/2021-07-03-读书笔记-一目了然,Web软件显性设计之路.markdown	/^## 只提供用户所需的功能$/;"	s
 可以改变你命运的30条底层逻辑	_posts/2021-07-22-读书笔记-底层逻辑，半秒钟看透问题本质.markdown	/^## 可以改变你命运的30条底层逻辑$/;"	s
 可信性原则	_posts/2020-10-24-读书笔记-TED说话的力量.markdown	/^## 可信性原则$/;"	s
 可审计	_posts/2021-12-23-读书笔记-数据安全架构设计与实战.markdown	/^### 可审计$/;"	S
+可用性是基本礼貌：为什么你的网站应该让人尊敬	_posts/2021-06-01-读书笔记-点石成金,访客至上的网页设计秘籍.markdown	/^### 可用性是基本礼貌：为什么你的网站应该让人尊敬$/;"	S
+可能性分析和验证	_posts/2022-03-03-读书笔记-以终为始,诱发行为改变的产品设计.markdown	/^### 可能性分析和验证$/;"	S
 可行性分析	_posts/2019-06-14-读书笔记-人人都是产品经理系列.markdown	/^### 可行性分析$/;"	S
+可访问性、级联样式表和你	_posts/2021-06-01-读书笔记-点石成金,访客至上的网页设计秘籍.markdown	/^### 可访问性、级联样式表和你$/;"	S
 各种代理服务器	_posts/2019-02-21-linux-各种代理类型.markdown	/^# 各种代理服务器$/;"	c
 合作能力——选择与别人合作	_posts/2021-01-05-读书笔记-差异优势.markdown	/^### 合作能力——选择与别人合作$/;"	S
 合规与风险管理	_posts/2021-12-23-读书笔记-数据安全架构设计与实战.markdown	/^#### 合规与风险管理$/;"	t
@@ -4523,15 +4627,25 @@ zsh常用插件	_posts/2019-01-15-linux-切换到zsh.markdown	/^## zsh常用插�
 向上沟通	_posts/2019-03-15-管理-技术管理实战笔记(下).markdown	/^### 向上沟通 $/;"	S
 向下沟通	_posts/2019-03-15-管理-技术管理实战笔记(下).markdown	/^### 向下沟通$/;"	S
 向量计算	_posts/2018-05-09-机器学习-支持向量机.markdown	/^## 向量计算$/;"	s
+启发式可用性评估原则	_posts/2022-03-04-读书笔记-产品思维,创新设计的六条法则.markdown	/^### 启发式可用性评估原则$/;"	S
 命令示例	_posts/2018-06-06-网络安全-SSH和NetCat内网穿透.markdown	/^命令示例$/;"	c
 和已有的知识建立多角度的类比关系	_posts/2021-04-20-读书笔记-费曼学习法.markdown	/^### 和已有的知识建立多角度的类比关系$/;"	S
 品格能力——选择要基于正确的价值观	_posts/2021-01-05-读书笔记-差异优势.markdown	/^### 品格能力——选择要基于正确的价值观$/;"	S
 商业模式、创新、行业	_posts/2019-06-14-读书笔记-人人都是产品经理系列.markdown	/^## 商业模式、创新、行业$/;"	s
+商业模式一：电子商务	_posts/2022-03-09-读书笔记-精益数据分析.markdown	/^#### 商业模式一：电子商务$/;"	t
+商业模式三：免费移动应用	_posts/2022-03-09-读书笔记-精益数据分析.markdown	/^#### 商业模式三：免费移动应用$/;"	t
+商业模式二：SaaS	_posts/2022-03-09-读书笔记-精益数据分析.markdown	/^#### 商业模式二：SaaS$/;"	t
+商业模式五：用户生成内容	_posts/2022-03-09-读书笔记-精益数据分析.markdown	/^#### 商业模式五：用户生成内容$/;"	t
+商业模式六：双边市场	_posts/2022-03-09-读书笔记-精益数据分析.markdown	/^#### 商业模式六：双边市场$/;"	t
+商业模式四：媒体网站	_posts/2022-03-09-读书笔记-精益数据分析.markdown	/^#### 商业模式四：媒体网站$/;"	t
+善用叙事观点，可以有效发挥内在力量。叙事观点基本有三种。	_posts/2020-08-18-讲出一个精彩故事.markdown	/^### 善用叙事观点，可以有效发挥内在力量。叙事观点基本有三种。$/;"	S
+团队	_posts/2019-09-10-读书笔记-谷歌和亚马逊如何做产品.markdown	/^### 团队$/;"	S
 团队建设	_posts/2019-03-08-管理-技术管理实战笔记(上).markdown	/^## 团队建设$/;"	s
 团队建设	_posts/2019-03-15-管理-技术管理实战笔记(下).markdown	/^## 团队建设$/;"	s
 团队逻辑	_posts/2021-07-22-读书笔记-底层逻辑，半秒钟看透问题本质.markdown	/^## 团队逻辑$/;"	s
 国内翻墙安装困难级数大增，可以考虑使用minikube	_posts/2018-10-23-编程-Kubernetes安装.markdown	/^国内翻墙安装困难级数大增，可以考虑使用minikube$/;"	c
 在s1中有，但在s2和s3中都没有的数	_posts/2018-12-13-数据库-redis及python操作.markdown	/^# 在s1中有，但在s2和s3中都没有的数$/;"	c
+在亚马逊和谷歌做得最好的团队是如何交付软件的	_posts/2019-09-10-读书笔记-谷歌和亚马逊如何做产品.markdown	/^## 在亚马逊和谷歌做得最好的团队是如何交付软件的$/;"	s
 场景开发：创建新的有效时间	_posts/2020-12-09-读书笔记-场景纪元.markdown	/^## 场景开发：创建新的有效时间$/;"	s
 场景纪元：让随机的生活别有意义	_posts/2020-12-09-读书笔记-场景纪元.markdown	/^## 场景纪元：让随机的生活别有意义$/;"	s
 场景订阅方法论：持续占据有效时间的简洁模式	_posts/2020-12-09-读书笔记-场景纪元.markdown	/^## 场景订阅方法论：持续占据有效时间的简洁模式$/;"	s
@@ -4551,26 +4665,35 @@ zsh常用插件	_posts/2019-01-15-linux-切换到zsh.markdown	/^## zsh常用插�
 外部合规认证与测评	_posts/2021-12-23-读书笔记-数据安全架构设计与实战.markdown	/^### 外部合规认证与测评$/;"	S
 多个模型/算法、多个数据集上的泛化性能检验	_posts/2018-05-04-机器学习-基本概念和流程.markdown	/^### 多个模型\/算法、多个数据集上的泛化性能检验$/;"	S
 多任务并行该如何应对？	_posts/2019-03-15-管理-技术管理实战笔记(下).markdown	/^### 多任务并行该如何应对？ $/;"	S
+多变的酬赏	_posts/2020-05-25-上瘾.markdown	/^## 多变的酬赏$/;"	s
 多层网络	_posts/2018-05-09-机器学习-神经网络.markdown	/^#### 多层网络$/;"	t
 多线程	_posts/2018-04-29-python多线程、多进程、协程及分布式编程.markdown	/^多线程$/;"	c
 多进程	_posts/2018-04-29-python多线程、多进程、协程及分布式编程.markdown	/^多进程$/;"	c
 大产品	_posts/2019-06-14-读书笔记-人人都是产品经理系列.markdown	/^## 大产品$/;"	s
+大的方面和外界影响	_posts/2021-06-01-读书笔记-点石成金,访客至上的网页设计秘籍.markdown	/^## 大的方面和外界影响$/;"	s
 奖励机制:策划和设定奖励机制以鼓励自己实现目标	_posts/2020-05-12-读书笔记-小逻辑.markdown	/^## 奖励机制:策划和设定奖励机制以鼓励自己实现目标$/;"	s
 好的演讲的23个原则	_posts/2020-10-24-读书笔记-TED说话的力量.markdown	/^## 好的演讲的23个原则$/;"	s
 如何做产品	_posts/2019-06-14-读书笔记-人人都是产品经理系列.markdown	/^## 如何做产品$/;"	s
+如何制定创意纲要？	_posts/2022-03-04-读书笔记-产品思维,创新设计的六条法则.markdown	/^### 如何制定创意纲要？$/;"	S
 如何和低绩效员工谈绩效？	_posts/2019-03-15-管理-技术管理实战笔记(下).markdown	/^### 如何和低绩效员工谈绩效？$/;"	S
+如何展现出富有节奏感的情节	_posts/2020-08-18-讲出一个精彩故事.markdown	/^### 如何展现出富有节奏感的情节$/;"	S
 如何应对相变，做出正确决策	_posts/2021-11-20-读书笔记-反直觉.markdown	/^## 如何应对相变，做出正确决策$/;"	s
 如何建设团队文化，营造团队氛围？	_posts/2019-03-15-管理-技术管理实战笔记(下).markdown	/^### 如何建设团队文化，营造团队氛围？ $/;"	S
 如何形成投资理念	_posts/2020-07-15-读书笔记-股票基本面分析清单.markdown	/^## 如何形成投资理念$/;"	s
 如何掌控自己的情绪，以及如何管理情绪化的员工？	_posts/2019-03-15-管理-技术管理实战笔记(下).markdown	/^### 如何掌控自己的情绪，以及如何管理情绪化的员工？ $/;"	S
+如何激发创意？	_posts/2022-03-04-读书笔记-产品思维,创新设计的六条法则.markdown	/^### 如何激发创意？$/;"	S
 如何物色和培养核心人才？	_posts/2019-03-15-管理-技术管理实战笔记(下).markdown	/^### 如何物色和培养核心人才？ $/;"	S
+如何理解“讲故事”？	_posts/2020-08-18-讲出一个精彩故事.markdown	/^### 如何理解“讲故事”？$/;"	S
 如何确保项目的有效执行？	_posts/2019-03-15-管理-技术管理实战笔记(下).markdown	/^### 如何确保项目的有效执行？ $/;"	S
 如何简化知识的要点？	_posts/2021-04-20-读书笔记-费曼学习法.markdown	/^## 如何简化知识的要点？$/;"	s
 如何考虑环境，做出正确决策	_posts/2021-11-20-读书笔记-反直觉.markdown	/^## 如何考虑环境，做出正确决策$/;"	s
 如何让团建活动不再“收效甚微”？	_posts/2019-03-15-管理-技术管理实战笔记(下).markdown	/^### 如何让团建活动不再“收效甚微”？ $/;"	S
 如何让流程机制得到有效的执行？	_posts/2019-03-15-管理-技术管理实战笔记(下).markdown	/^### 如何让流程机制得到有效的执行？ $/;"	S
+如何讲故事	_posts/2020-08-18-讲出一个精彩故事.markdown	/^## 如何讲故事$/;"	s
+媒体网站模式	_posts/2022-03-09-读书笔记-精益数据分析.markdown	/^### 媒体网站模式$/;"	S
 子进程要执行的代码,放在一个函数中	_posts/2018-04-29-python多线程、多进程、协程及分布式编程.markdown	/^# 子进程要执行的代码,放在一个函数中$/;"	c
 存储加密	_posts/2021-12-23-读书笔记-数据安全架构设计与实战.markdown	/^#### 存储加密$/;"	t
+学习如何自底向上设计架构	_posts/2021-06-23-读书笔记-锦绣蓝图,怎样规划令人流连忘返的网站.markdown	/^## 学习如何自底向上设计架构$/;"	s
 学习方式	_posts/2018-05-04-机器学习-基本概念和流程.markdown	/^学习方式$/;"	c
 学习逻辑	_posts/2021-07-22-读书笔记-底层逻辑，半秒钟看透问题本质.markdown	/^## 学习逻辑$/;"	s
 它是两头通的	_posts/2018-12-13-数据库-redis及python操作.markdown	/^# 它是两头通的$/;"	c
@@ -4584,6 +4707,7 @@ zsh常用插件	_posts/2019-01-15-linux-切换到zsh.markdown	/^## zsh常用插�
 安装grub	_posts/2019-01-24-linux-manjaro与lvm.markdown	/^## 安装grub$/;"	s
 安装过程	_posts/2018-06-25-网络安全-ovirt虚拟化集群.markdown	/^安装过程$/;"	c
 完全相同的模型几乎不能被部署两次	_posts/2018-08-26-机器学习-从模型到产品.markdown	/^# 完全相同的模型几乎不能被部署两次$/;"	c
+完成信息架构	_posts/2021-08-08-读书笔记-信息架构,超越Web设计.markdown	/^## 完成信息架构$/;"	s
 完整DevOps的Pipeline：	_posts/2018-08-29-软件开发-DevOps.markdown	/^## 完整DevOps的Pipeline：$/;"	s
 官方kubernetes-dashboard.yaml	_posts/2018-11-06-编程-Kubernetes DashBoard.markdown	/^## 官方kubernetes-dashboard.yaml$/;"	s
 定义 CNN 模型	_posts/2018-05-16-机器学习-PyTorch-CNN.markdown	/^# 定义 CNN 模型$/;"	c
@@ -4613,13 +4737,18 @@ zsh常用插件	_posts/2019-01-15-linux-切换到zsh.markdown	/^## zsh常用插�
 导入导出	_posts/2018-08-09-数据库-mysql笔记整理.markdown	/^导入导出$/;"	c
 导入现有代码以及作为shell使用	_posts/2018-04-26-jupyter notebook的安装、配置和使用.markdown	/^导入现有代码以及作为shell使用$/;"	c
 导入镜像	_posts/2018-11-06-编程-Kubernetes DashBoard.markdown	/^## 导入镜像$/;"	s
+导航之道	_posts/2021-06-23-读书笔记-锦绣蓝图,怎样规划令人流连忘返的网站.markdown	/^## 导航之道$/;"	s
+导航系统	_posts/2021-08-08-读书笔记-信息架构,超越Web设计.markdown	/^### 导航系统$/;"	S
+导航设计	_posts/2022-02-10-读书笔记-用户体验要素.markdown	/^#### 导航设计$/;"	t
 将Queue对象在网络中暴露	_posts/2018-04-29-python多线程、多进程、协程及分布式编程.markdown	/^# 将Queue对象在网络中暴露$/;"	c
 小逻辑，大目标	_posts/2020-05-12-读书笔记-小逻辑.markdown	/^# 小逻辑，大目标$/;"	c
+尽量避免出错，并且很容易从错误中恢复过来	_posts/2021-07-03-读书笔记-一目了然,Web软件显性设计之路.markdown	/^## 尽量避免出错，并且很容易从错误中恢复过来$/;"	s
 层级思考法	_posts/2020-09-12-读书笔记-直击本质.markdown	/^#### 层级思考法$/;"	t
 工作量估计	_posts/2019-12-26-读书笔记-Scrum敏捷项目管理.markdown	/^# 工作量估计$/;"	c
 工作量证明（Proof of Work,POW）	_posts/2018-07-26-区块链-区块链主要共识算法.markdown	/^工作量证明（Proof of Work,POW）$/;"	c
 差分隐私	_posts/2021-12-23-读书笔记-数据安全架构设计与实战.markdown	/^#### 差分隐私$/;"	t
 市场调研	_posts/2019-01-09-产品-启示录打造用户喜爱的产品阅读笔记.markdown	/^### 市场调研$/;"	S
+帮助用户迅速入门，尽快成为中级用户	_posts/2021-07-03-读书笔记-一目了然,Web软件显性设计之路.markdown	/^## 帮助用户迅速入门，尽快成为中级用户$/;"	s
 常用代码审计工具	_posts/2018-07-10-网络安全-代码审计.markdown	/^常用代码审计工具$/;"	c
 常用工具	_posts/2018-06-06-网络安全-渗透测试基础.markdown	/^常用工具$/;"	c
 常用工具	_posts/2018-08-29-软件开发-DevOps.markdown	/^## 常用工具$/;"	s
@@ -4630,10 +4759,15 @@ zsh常用插件	_posts/2019-01-15-linux-切换到zsh.markdown	/^## zsh常用插�
 常用用户身份认证方式	_posts/2021-12-23-读书笔记-数据安全架构设计与实战.markdown	/^#### 常用用户身份认证方式$/;"	t
 常见代理高匿性判断方法	_posts/2019-02-21-linux-各种代理类型.markdown	/^# 常见代理高匿性判断方法$/;"	c
 常见响应函数(非线性函数)	_posts/2018-05-14-机器学习-DNN .markdown	/^## 常见响应函数(非线性函数)$/;"	s
+常见指标	_posts/2022-03-09-读书笔记-精益数据分析.markdown	/^#### 常见指标$/;"	t
 常见ＣＮＮ模型	_posts/2018-05-16-机器学习-PyTorch-CNN.markdown	/^## 常见ＣＮＮ模型$/;"	s
+干系人分析	_posts/2020-10-10-读书笔记-有效需求分析.markdown	/^### 干系人分析$/;"	S
+干系人识别	_posts/2020-10-10-读书笔记-有效需求分析.markdown	/^### 干系人识别$/;"	S
+干预设计和干预选择	_posts/2022-03-03-读书笔记-以终为始,诱发行为改变的产品设计.markdown	/^### 干预设计和干预选择$/;"	S
 并发事务处理带来的问题	_posts/2018-09-07-数据库-mysql的各种锁.markdown	/^## 并发事务处理带来的问题$/;"	s
 并发编程	_posts/2018-09-27-编程-java架构师技术体系.markdown	/^## 并发编程$/;"	s
 幸福-痛苦模型	_posts/2020-09-12-读书笔记-直击本质.markdown	/^#### 幸福-痛苦模型$/;"	t
+广告牌设计101法则：为扫描设计，不为阅读设计	_posts/2021-06-01-读书笔记-点石成金,访客至上的网页设计秘籍.markdown	/^### 广告牌设计101法则：为扫描设计，不为阅读设计$/;"	S
 广播(broadcast)模式	_posts/2019-03-30-大数据-zookeeper详解.markdown	/^### 广播(broadcast)模式$/;"	S
 序列(list)操作	_posts/2018-12-13-数据库-redis及python操作.markdown	/^# 序列(list)操作$/;"	c
 序章	_posts/2020-11-27-读书笔记-蝶变_数字商业进化之道.markdown	/^## 序章$/;"	s
@@ -4650,13 +4784,16 @@ zsh常用插件	_posts/2019-01-15-linux-切换到zsh.markdown	/^## zsh常用插�
 应用服务器集群	_posts/2018-08-15-软件开发-Web系统架构演进.markdown	/^# 应用服务器集群$/;"	c
 应用的拆分	_posts/2018-08-15-软件开发-Web系统架构演进.markdown	/^# 应用的拆分$/;"	c
 应用程序	_posts/2021-03-26-产品经理-B端产品经理总结.markdown	/^### 应用程序$/;"	S
+应用精益数据分析	_posts/2022-03-09-读书笔记-精益数据分析.markdown	/^## 应用精益数据分析$/;"	s
 应用解耦	_posts/2018-09-12-大数据-消息队列.markdown	/^## 应用解耦$/;"	s
+底线在哪里	_posts/2022-03-09-读书笔记-精益数据分析.markdown	/^## 底线在哪里$/;"	s
 开发团队	_posts/2019-12-26-读书笔记-Scrum敏捷项目管理.markdown	/^### 开发团队$/;"	S
 开发阶段	_posts/2019-06-14-读书笔记-人人都是产品经理系列.markdown	/^### 开发阶段$/;"	S
 开始训练	_posts/2018-05-16-机器学习-PyTorch-CNN.markdown	/^# 开始训练$/;"	c
 异步处理	_posts/2018-09-12-大数据-消息队列.markdown	/^## 异步处理$/;"	s
 引入搜索引擎的开销	_posts/2018-08-15-软件开发-Web系统架构演进.markdown	/^## 引入搜索引擎的开销$/;"	s
 引入消息中间件	_posts/2018-08-15-软件开发-Web系统架构演进.markdown	/^# 引入消息中间件$/;"	c
+当好人遇到不好的设计决策	_posts/2021-06-01-读书笔记-点石成金,访客至上的网页设计秘籍.markdown	/^### 当好人遇到不好的设计决策$/;"	S
 当知识卡壳时	_posts/2021-04-20-读书笔记-费曼学习法.markdown	/^### 当知识卡壳时$/;"	S
 影响力也是一种说服力	_posts/2020-06-24-读书笔记-说服力.markdown	/^## 影响力也是一种说服力 $/;"	s
 微服务	_posts/2018-08-29-软件开发-DevOps.markdown	/^### 微服务$/;"	S
@@ -4665,8 +4802,11 @@ zsh常用插件	_posts/2019-01-15-linux-切换到zsh.markdown	/^## zsh常用插�
 心态能力——选择积极向上，无论什么情况	_posts/2021-01-05-读书笔记-差异优势.markdown	/^### 心态能力——选择积极向上，无论什么情况$/;"	S
 心理+心态	_posts/2019-02-10-英语-英语流利说方法笔记.markdown	/^### 心理+心态$/;"	S
 心理群体的特征	_posts/2021-02-07-读书笔记-乌合之众，群氓的狂欢.markdown	/^## 心理群体的特征$/;"	s
+必须正确处理的几个方面	_posts/2021-06-01-读书笔记-点石成金,访客至上的网页设计秘籍.markdown	/^## 必须正确处理的几个方面$/;"	s
 快照读(SnapShot Read)并不加锁	_posts/2018-09-07-数据库-mysql的各种锁.markdown	/^### 快照读(SnapShot Read)并不加锁$/;"	S
 态度逻辑	_posts/2021-07-22-读书笔记-底层逻辑，半秒钟看透问题本质.markdown	/^## 态度逻辑$/;"	s
+怎么培养好的产品经理?	_posts/2020-06-04-读书笔记-俞军产品方法论.markdown	/^## 怎么培养好的产品经理?$/;"	s
+怎样才算足够好	_posts/2022-03-09-读书笔记-精益数据分析.markdown	/^### 怎样才算足够好$/;"	S
 思维体系	_posts/2019-11-01-读书笔记-表达力.markdown	/^### 思维体系$/;"	S
 思维操控术的运用	_posts/2020-06-24-读书笔记-说服力.markdown	/^## 思维操控术的运用$/;"	s
 思维破局	_posts/2020-09-12-读书笔记-直击本质.markdown	/^## 思维破局$/;"	s
@@ -4685,13 +4825,22 @@ zsh常用插件	_posts/2019-01-15-linux-切换到zsh.markdown	/^## zsh常用插�
 情绪能力——管理自己情绪的能力	_posts/2021-01-05-读书笔记-差异优势.markdown	/^### 情绪能力——管理自己情绪的能力$/;"	S
 意向能力——选择有意识地追求人生的意义	_posts/2021-01-05-读书笔记-差异优势.markdown	/^### 意向能力——选择有意识地追求人生的意义$/;"	S
 意向锁（intention locks）	_posts/2018-09-07-数据库-mysql的各种锁.markdown	/^### 意向锁（intention locks）$/;"	S
+感官体验←语意→主观感受	_posts/2022-03-04-读书笔记-产品思维,创新设计的六条法则.markdown	/^## 感官体验←语意→主观感受$/;"	s
 感知机	_posts/2018-05-09-机器学习-神经网络.markdown	/^#### 感知机$/;"	t
 感知机与多层网络	_posts/2018-05-09-机器学习-神经网络.markdown	/^## 感知机与多层网络$/;"	s
 成功-失败模型	_posts/2020-09-12-读书笔记-直击本质.markdown	/^#### 成功-失败模型$/;"	t
+成果检验	_posts/2022-02-18-读书笔记-破茧成蝶，用户体验设计师的成长之路.markdown	/^## 成果检验$/;"	s
 成长能力——选择关注你能走多远	_posts/2021-01-05-读书笔记-差异优势.markdown	/^### 成长能力——选择关注你能走多远$/;"	S
+我们为什么要讲故事？	_posts/2020-08-18-讲出一个精彩故事.markdown	/^### 我们为什么要讲故事？$/;"	S
+我们实际上是如何使用Web的：扫描，满意即可，勉强应付	_posts/2021-06-01-读书笔记-点石成金,访客至上的网页设计秘籍.markdown	/^### 我们实际上是如何使用Web的：扫描，满意即可，勉强应付$/;"	S
+战略层(strategy)	_posts/2022-02-10-读书笔记-用户体验要素.markdown	/^### 战略层(strategy)$/;"	S
+所在的商业领域	_posts/2022-03-09-读书笔记-精益数据分析.markdown	/^### 所在的商业领域$/;"	S
 所用软件	_posts/2018-11-20-网络安全-局域网https嗅探.markdown	/^## 所用软件$/;"	s
 打造企业级产品的十大要点：	_posts/2019-01-09-产品-启示录打造用户喜爱的产品阅读笔记.markdown	/^### 打造企业级产品的十大要点：$/;"	S
+扩展产品功能	_posts/2022-03-04-读书笔记-产品思维,创新设计的六条法则.markdown	/^## 扩展产品功能$/;"	s
+找到当前的正确指标	_posts/2022-03-09-读书笔记-精益数据分析.markdown	/^## 找到当前的正确指标$/;"	s
 承诺机制:帮助你强化自己的承诺，让你更有可能坚持下去	_posts/2020-05-12-读书笔记-小逻辑.markdown	/^## 承诺机制:帮助你强化自己的承诺，让你更有可能坚持下去$/;"	s
+技术	_posts/2019-09-10-读书笔记-谷歌和亚马逊如何做产品.markdown	/^### 技术$/;"	S
 技术发展对网络架构的影响	_posts/2018-09-12-大数据-数据中心网络架构演进.markdown	/^# 技术发展对网络架构的影响 $/;"	c
 技术发展机制	_posts/2019-05-17-读书笔记-技术的本质.markdown	/^## 技术发展机制$/;"	s
 技术域	_posts/2019-05-17-读书笔记-技术的本质.markdown	/^## 技术域$/;"	s
@@ -4701,13 +4850,18 @@ zsh常用插件	_posts/2019-01-15-linux-切换到zsh.markdown	/^## zsh常用插�
 技术类职业发展主要包含两个大方向	_posts/2019-03-08-管理-技术管理实战笔记(上).markdown	/^### 技术类职业发展主要包含两个大方向$/;"	S
 技术进化机制	_posts/2019-05-17-读书笔记-技术的本质.markdown	/^##  技术进化机制$/;"	s
 把x加到y上,任何在原地(in-place)改变张量的操作都有一个’_’后缀。例如x.copy_(y), x.t_()操作将改变x.	_posts/2018-05-16-机器学习-PyTorch基础.markdown	/^# 把x加到y上,任何在原地(in-place)改变张量的操作都有一个’_’后缀。例如/;"	c
+投入	_posts/2020-05-25-上瘾.markdown	/^## 投入$/;"	s
 投资清单	_posts/2020-07-15-读书笔记-股票基本面分析清单.markdown	/^## 投资清单$/;"	s
+抽象思维落实到具体设计	_posts/2021-06-23-读书笔记-锦绣蓝图,怎样规划令人流连忘返的网站.markdown	/^## 抽象思维落实到具体设计$/;"	s
 拉格朗日乘子法（Lagrange Multiplier) 和KKT条件	_posts/2018-05-09-机器学习-支持向量机.markdown	/^## 拉格朗日乘子法（Lagrange Multiplier) 和KKT条件$/;"	s
 拉格朗日乘子法（Lagrange Multiplier) 和KKT条件	_posts/2018-05-09-机器学习-支持向量机.markdown	/^### 拉格朗日乘子法（Lagrange Multiplier) 和KKT条件$/;"	S
 招聘产品经理：寻找出色的产品经理	_posts/2019-01-09-产品-启示录打造用户喜爱的产品阅读笔记.markdown	/^### 招聘产品经理：寻找出色的产品经理$/;"	S
+拥有一致的界面元素，并能平衡无规则的元素	_posts/2021-07-03-读书笔记-一目了然,Web软件显性设计之路.markdown	/^## 拥有一致的界面元素，并能平衡无规则的元素$/;"	s
 持续交付	_posts/2018-08-29-软件开发-DevOps.markdown	/^### 持续交付$/;"	S
 持续集成	_posts/2018-08-29-软件开发-DevOps.markdown	/^### 持续集成$/;"	S
 挂载lvm分区	_posts/2019-01-24-linux-manjaro与lvm.markdown	/^## 挂载lvm分区$/;"	s
+指导原则	_posts/2021-06-01-读书笔记-点石成金,访客至上的网页设计秘籍.markdown	/^## 指导原则$/;"	s
+按天赋高低分类	_posts/2020-06-04-读书笔记-俞军产品方法论.markdown	/^## 按天赋高低分类$/;"	s
 按微服务拆分应用	_posts/2018-08-15-软件开发-Web系统架构演进.markdown	/^## 按微服务拆分应用$/;"	s
 按正常流程安装系统	_posts/2019-01-24-linux-manjaro与lvm.markdown	/^## 按正常流程安装系统$/;"	s
 授权	_posts/2021-12-23-读书笔记-数据安全架构设计与实战.markdown	/^### 授权$/;"	S
@@ -4717,15 +4871,24 @@ zsh常用插件	_posts/2019-01-15-linux-切换到zsh.markdown	/^## zsh常用插�
 授权的原则与方式	_posts/2021-12-23-读书笔记-数据安全架构设计与实战.markdown	/^#### 授权的原则与方式$/;"	t
 接收消息	_posts/2018-04-29-python网络编程.markdown	/^# 接收消息$/;"	c
 插入意向锁（insert intention locks）	_posts/2018-09-07-数据库-mysql的各种锁.markdown	/^### 插入意向锁（insert intention locks）$/;"	S
+搜索系统	_posts/2021-08-08-读书笔记-信息架构,超越Web设计.markdown	/^### 搜索系统$/;"	S
+搜索：算法和查询建议	_posts/2021-06-23-读书笔记-锦绣蓝图,怎样规划令人流连忘返的网站.markdown	/^## 搜索：算法和查询建议$/;"	s
 搭建环境	_posts/2018-11-20-网络安全-局域网https嗅探.markdown	/^# 搭建环境 $/;"	c
 摆脱情境控制，做出正确决策	_posts/2021-11-20-读书笔记-反直觉.markdown	/^## 摆脱情境控制，做出正确决策$/;"	s
 支付结算应用	_posts/2020-08-02-读书笔记-区块链金融.markdown	/^### 支付结算应用$/;"	S
 支持向量回归	_posts/2018-05-09-机器学习-支持向量机.markdown	/^### 支持向量回归$/;"	S
 支持批量操作的	_posts/2018-12-13-数据库-redis及python操作.markdown	/^# 支持批量操作的$/;"	c
+支持用户的心智模型	_posts/2021-07-03-读书笔记-一目了然,Web软件显性设计之路.markdown	/^## 支持用户的心智模型$/;"	s
 支持的语言	_posts/2018-12-13-数据库-redis及python操作.markdown	/^## 支持的语言$/;"	s
+改良比创新重要	_posts/2021-07-03-读书笔记-一目了然,Web软件显性设计之路.markdown	/^## 改良比创新重要$/;"	s
+故事三要素：叙事、场景、对白	_posts/2020-08-18-讲出一个精彩故事.markdown	/^### 故事三要素：叙事、场景、对白$/;"	S
+故事展开有赖于人物塑造	_posts/2020-08-18-讲出一个精彩故事.markdown	/^### 故事展开有赖于人物塑造$/;"	S
 故事性原则	_posts/2020-10-24-读书笔记-TED说话的力量.markdown	/^## 故事性原则$/;"	s
+故事是什么？	_posts/2020-08-18-讲出一个精彩故事.markdown	/^### 故事是什么？$/;"	S
 效率和锁	_posts/2018-09-07-数据库-mysql的各种锁.markdown	/^### 效率和锁$/;"	S
 数字化的关键：数据治理	_posts/2021-03-04-数据治理-从信息化到数字化的数据治理总结.markdown	/^## 数字化的关键：数据治理$/;"	s
+数据主线子篇	_posts/2020-10-10-读书笔记-有效需求分析.markdown	/^## 数据主线子篇$/;"	s
+数据分析框架	_posts/2022-03-09-读书笔记-精益数据分析.markdown	/^### 数据分析框架$/;"	S
 数据垂直拆分	_posts/2018-08-15-软件开发-Web系统架构演进.markdown	/^## 数据垂直拆分$/;"	s
 数据安全与隐私保护治理	_posts/2021-12-23-读书笔记-数据安全架构设计与实战.markdown	/^## 数据安全与隐私保护治理$/;"	s
 数据安全与隐私保护的统一	_posts/2021-12-23-读书笔记-数据安全架构设计与实战.markdown	/^### 数据安全与隐私保护的统一$/;"	S
@@ -4746,6 +4909,7 @@ zsh常用插件	_posts/2019-01-15-linux-切换到zsh.markdown	/^## zsh常用插�
 数据质量管理政策	_posts/2021-03-04-数据治理-从信息化到数字化的数据治理总结.markdown	/^### 数据质量管理政策$/;"	S
 数联网	_posts/2020-11-27-读书笔记-蝶变_数字商业进化之道.markdown	/^## 数联网$/;"	s
 文稿格式	_posts/2020-04-09-英语-英文写作要点.markdown	/^## 文稿格式$/;"	s
+新创企业发展的生命周期	_posts/2020-02-20-读书笔记-精益创业方法论.markdown	/^### 新创企业发展的生命周期$/;"	S
 新技术	_posts/2019-05-17-读书笔记-技术的本质.markdown	/^## 新技术$/;"	s
 新线程执行的代码，放在一个函数中:	_posts/2018-04-29-python多线程、多进程、协程及分布式编程.markdown	/^# 新线程执行的代码，放在一个函数中:$/;"	c
 新经理最常见的工作误区	_posts/2019-03-08-管理-技术管理实战笔记(上).markdown	/^## 新经理最常见的工作误区$/;"	s
@@ -4755,7 +4919,10 @@ zsh常用插件	_posts/2019-01-15-linux-切换到zsh.markdown	/^## zsh常用插�
 日志处理	_posts/2018-09-12-大数据-消息队列.markdown	/^## 日志处理$/;"	s
 日志收集系统	_posts/2018-09-12-大数据-消息队列.markdown	/^## 日志收集系统$/;"	s
 时间轴思考法	_posts/2020-09-12-读书笔记-直击本质.markdown	/^#### 时间轴思考法$/;"	t
+明确认识	_posts/2022-01-27-读书笔记-简约至上交互设计四策略.markdown	/^## 明确认识$/;"	s
+显性设计的定义	_posts/2021-07-03-读书笔记-一目了然,Web软件显性设计之路.markdown	/^## 显性设计的定义$/;"	s
 智联网	_posts/2020-11-27-读书笔记-蝶变_数字商业进化之道.markdown	/^## 智联网$/;"	s
+最后，正式发布产品	_posts/2019-09-10-读书笔记-谷歌和亚马逊如何做产品.markdown	/^### 最后，正式发布产品$/;"	S
 最大似然估计	_posts/2018-05-08-机器学习-逻辑回归.markdown	/^## 最大似然估计$/;"	s
 有效说服的六大原则	_posts/2020-06-24-读书笔记-说服力.markdown	/^## 有效说服的六大原则$/;"	s
 有逻辑地系统化	_posts/2021-04-20-读书笔记-费曼学习法.markdown	/^### 有逻辑地系统化$/;"	S
@@ -4766,6 +4933,7 @@ zsh常用插件	_posts/2019-01-15-linux-切换到zsh.markdown	/^## zsh常用插�
 本书还讲述了产品开发流程，讲述如何探索、定义一款用户喜爱的产品	_posts/2019-01-09-产品-启示录打造用户喜爱的产品阅读笔记.markdown	/^## 本书还讲述了产品开发流程，讲述如何探索、定义一款用户喜爱的产品$/;"	s
 本质思考	_posts/2020-09-12-读书笔记-直击本质.markdown	/^## 本质思考$/;"	s
 权益证明（Proof of Stake,POS）	_posts/2018-07-26-区块链-区块链主要共识算法.markdown	/^权益证明（Proof of Stake,POS）$/;"	c
+构建社交空间	_posts/2021-06-23-读书笔记-锦绣蓝图,怎样规划令人流连忘返的网站.markdown	/^## 构建社交空间$/;"	s
 架构	_posts/2021-03-26-产品经理-B端产品经理总结.markdown	/^### 架构$/;"	S
 架构开发技术之路的学习经验	_posts/2018-09-27-编程-java架构师技术体系.markdown	/^# 架构开发技术之路的学习经验 $/;"	c
 架构视图	_posts/2020-01-20-读书笔记-软件架构设计.markdown	/^## 架构视图$/;"	s
@@ -4777,9 +4945,12 @@ zsh常用插件	_posts/2019-01-15-linux-切换到zsh.markdown	/^## zsh常用插�
 查看一个数据有没有 有 1 无0	_posts/2018-12-13-数据库-redis及python操作.markdown	/^# 查看一个数据有没有 有 1 无0$/;"	c
 查看客户端和服务端的日志是否正常生成	_posts/2018-12-26-大数据-日志采集和转发rsyslog-auditd.markdown	/^## 查看客户端和服务端的日志是否正常生成$/;"	s
 标准BP算法	_posts/2018-05-09-机器学习-神经网络.markdown	/^#### 标准BP算法$/;"	t
+标签系统	_posts/2021-08-08-读书笔记-信息架构,超越Web设计.markdown	/^### 标签系统$/;"	S
+标识关键质量需求	_posts/2020-10-10-读书笔记-有效需求分析.markdown	/^### 标识关键质量需求$/;"	S
 核函数	_posts/2018-05-09-机器学习-支持向量机.markdown	/^### 核函数$/;"	S
 核方法	_posts/2018-05-09-机器学习-支持向量机.markdown	/^### 核方法$/;"	S
 根治中式英语	_posts/2019-02-10-英语-英语流利说方法笔记.markdown	/^### 根治中式英语$/;"	S
+框架层（skeleton）	_posts/2022-02-10-读书笔记-用户体验要素.markdown	/^### 框架层（skeleton）$/;"	S
 案例	_posts/2019-02-15-linux-grep,sed,awk案例整理.markdown	/^# 案例$/;"	c
 桥接模式参考	_posts/2018-05-27-网络安全-openvpn安装配置.markdown	/^桥接模式参考$/;"	c
 概念	_posts/2018-05-07-机器学习-线性回归.markdown	/^概念$/;"	c
@@ -4810,6 +4981,7 @@ zsh常用插件	_posts/2019-01-15-linux-切换到zsh.markdown	/^## zsh常用插�
 求交集	_posts/2018-12-13-数据库-redis及python操作.markdown	/^# 求交集$/;"	c
 求并集	_posts/2018-12-13-数据库-redis及python操作.markdown	/^# 求并集$/;"	c
 池化层	_posts/2018-05-16-机器学习-PyTorch-CNN.markdown	/^## 池化层$/;"	s
+沟通	_posts/2019-09-10-读书笔记-谷歌和亚马逊如何做产品.markdown	/^### 沟通$/;"	S
 沟通与合作	_posts/2018-08-29-软件开发-DevOps.markdown	/^### 沟通与合作$/;"	S
 沟通逻辑	_posts/2021-07-22-读书笔记-底层逻辑，半秒钟看透问题本质.markdown	/^## 沟通逻辑$/;"	s
 没有“最可靠”的结论	_posts/2021-04-20-读书笔记-费曼学习法.markdown	/^### 没有“最可靠”的结论$/;"	S
@@ -4818,6 +4990,10 @@ zsh常用插件	_posts/2019-01-15-linux-切换到zsh.markdown	/^## zsh常用插�
 洋腔洋调的秘诀	_posts/2019-02-01-英语-洋腔洋调的秘诀笔记.markdown	/^# 洋腔洋调的秘诀$/;"	c
 洞察节奏三原则	_posts/2020-01-20-读书笔记-软件架构设计.markdown	/^## 洞察节奏三原则$/;"	s
 洞悉问题本质：看清楚问题真正的原因，并导出正确的解决方法	_posts/2019-08-24-读书笔记-思考的技术.markdown	/^## 洞悉问题本质：看清楚问题真正的原因，并导出正确的解决方法$/;"	s
+流程员工和基础建设要支持端到端工作	_posts/2022-01-28-读书笔记-端到端流程.markdown	/^### 流程员工和基础建设要支持端到端工作$/;"	S
+流程成熟度模型	_posts/2022-01-28-读书笔记-端到端流程.markdown	/^## 流程成熟度模型$/;"	s
+流程设计	_posts/2022-01-28-读书笔记-端到端流程.markdown	/^## 流程设计$/;"	s
+流程设计原则	_posts/2022-01-28-读书笔记-端到端流程.markdown	/^### 流程设计原则$/;"	S
 流量削锋	_posts/2018-09-12-大数据-消息队列.markdown	/^## 流量削锋$/;"	s
 测试工作流程	_posts/2018-07-18-网络安全-BurpSuite.markdown	/^测试工作流程$/;"	c
 测试阶段	_posts/2019-06-14-读书笔记-人人都是产品经理系列.markdown	/^### 测试阶段$/;"	S
@@ -4830,6 +5006,7 @@ zsh常用插件	_posts/2019-01-15-linux-切换到zsh.markdown	/^## zsh常用插�
 渗透攻击示例1:SMB漏洞攻击	_posts/2018-06-07-网络安全-Metasploit渗透测试基本流程.markdown	/^渗透攻击示例1:SMB漏洞攻击$/;"	c
 渗透攻击示例2:Java_RMI漏洞攻击	_posts/2018-06-07-网络安全-Metasploit渗透测试基本流程.markdown	/^渗透攻击示例2:Java_RMI漏洞攻击$/;"	c
 渗透测试(penetration test)	_posts/2018-06-06-网络安全-渗透测试基础.markdown	/^渗透测试(penetration test)$/;"	c
+游击式用户调研	_posts/2022-02-21-读书笔记-决胜UX,互联网产品用户体验策略.markdown	/^### 游击式用户调研$/;"	S
 漏洞实验和利用	_posts/2018-06-13-网络安全-XSS.markdown	/^漏洞实验和利用$/;"	c
 点到直线距离公式	_posts/2018-05-09-机器学习-支持向量机.markdown	/^## 点到直线距离公式$/;"	s
 熵增定律	_posts/2020-09-12-读书笔记-直击本质.markdown	/^#### 熵增定律$/;"	t
@@ -4840,36 +5017,61 @@ zsh常用插件	_posts/2019-01-15-linux-切换到zsh.markdown	/^## zsh常用插�
 生产能力——实现结果的能力	_posts/2021-01-05-读书笔记-差异优势.markdown	/^### 生产能力——实现结果的能力$/;"	S
 用例驱动的模块划分	_posts/2020-01-20-读书笔记-软件架构设计.markdown	/^### 用例驱动的模块划分$/;"	S
 用同样的参数标准化测试集和训练集	_posts/2018-05-08-机器学习-逻辑回归.markdown	/^# 用同样的参数标准化测试集和训练集$/;"	c
+用户、技术和企业的平衡法则	_posts/2021-06-23-读书笔记-锦绣蓝图,怎样规划令人流连忘返的网站.markdown	/^## 用户、技术和企业的平衡法则$/;"	s
 用户价值衡量	_posts/2021-09-14-读书笔记-产品逻辑之美，打造复杂的产品系统.markdown	/^### 用户价值衡量$/;"	S
+用户体验为什么重要	_posts/2022-02-10-读书笔记-用户体验要素.markdown	/^## 用户体验为什么重要$/;"	s
+用户体验的五个层面	_posts/2022-02-10-读书笔记-用户体验要素.markdown	/^## 用户体验的五个层面$/;"	s
+用户体验设计	_posts/2022-02-18-读书笔记-破茧成蝶，用户体验设计师的成长之路.markdown	/^## 用户体验设计$/;"	s
+用户体验设计	_posts/2022-02-21-读书笔记-决胜UX,互联网产品用户体验策略.markdown	/^## 用户体验设计$/;"	s
 用户分类方法	_posts/2019-06-14-读书笔记-人人都是产品经理系列.markdown	/^### 用户分类方法$/;"	S
 用户变现	_posts/2021-09-14-读书笔记-产品逻辑之美，打造复杂的产品系统.markdown	/^### 用户变现$/;"	S
 用户召回	_posts/2021-09-14-读书笔记-产品逻辑之美，打造复杂的产品系统.markdown	/^### 用户召回$/;"	S
 用户和权限管理	_posts/2018-08-09-数据库-mysql笔记整理.markdown	/^# 用户和权限管理$/;"	c
+用户生成内容模式	_posts/2022-03-09-读书笔记-精益数据分析.markdown	/^### 用户生成内容模式$/;"	S
 用户留存	_posts/2021-09-14-读书笔记-产品逻辑之美，打造复杂的产品系统.markdown	/^### 用户留存$/;"	S
 用户筛选	_posts/2021-09-14-读书笔记-产品逻辑之美，打造复杂的产品系统.markdown	/^### 用户筛选$/;"	S
 用搜索引擎缓解读库的压力	_posts/2018-08-15-软件开发-Web系统架构演进.markdown	/^# 用搜索引擎缓解读库的压力$/;"	c
+用故事板描绘价值创新	_posts/2022-02-21-读书笔记-决胜UX,互联网产品用户体验策略.markdown	/^### 用故事板描绘价值创新$/;"	S
 用缓存缓解读库的压力	_posts/2018-08-15-软件开发-Web系统架构演进.markdown	/^# 用缓存缓解读库的压力$/;"	c
 用词	_posts/2020-04-09-英语-英文写作要点.markdown	/^## 用词$/;"	s
 电商系统	_posts/2018-09-12-大数据-消息队列.markdown	/^## 电商系统$/;"	s
+电子商务模式	_posts/2022-03-09-读书笔记-精益数据分析.markdown	/^### 电子商务模式$/;"	S
+界面设计	_posts/2022-02-10-读书笔记-用户体验要素.markdown	/^#### 界面设计$/;"	t
 留出法	_posts/2018-05-04-机器学习-基本概念和流程.markdown	/^#### 留出法$/;"	t
 监控和日志记录	_posts/2018-08-29-软件开发-DevOps.markdown	/^### 监控和日志记录$/;"	S
 监督新产品计划	_posts/2020-07-05-读书笔记-产品经理手册.markdown	/^## 监督新产品计划$/;"	s
 目标原则	_posts/2021-04-20-读书笔记-费曼学习法.markdown	/^### 目标原则$/;"	S
+目标／愿景分析	_posts/2020-10-10-读书笔记-有效需求分析.markdown	/^### 目标／愿景分析$/;"	S
 目的	_posts/2019-11-01-读书笔记-表达力.markdown	/^### 目的$/;"	S
 盲注	_posts/2018-06-12-网络安全-SQL注入.markdown	/^盲注$/;"	c
 相关概念	_posts/2019-12-26-读书笔记-Scrum敏捷项目管理.markdown	/^## 相关概念$/;"	s
+省略不必要的文字：不要在Web上写作的艺术	_posts/2021-06-01-读书笔记-点石成金,访客至上的网页设计秘籍.markdown	/^### 省略不必要的文字：不要在Web上写作的艺术$/;"	S
 看一个set对象	_posts/2018-12-13-数据库-redis及python操作.markdown	/^# 看一个set对象$/;"	c
 看信息	_posts/2018-12-13-数据库-redis及python操作.markdown	/^# 看信息$/;"	c
 看连接	_posts/2018-12-13-数据库-redis及python操作.markdown	/^# 看连接$/;"	c
 看长度	_posts/2018-12-13-数据库-redis及python操作.markdown	/^# 看长度$/;"	c
 知识吸收能力	_posts/2021-04-20-读书笔记-费曼学习法.markdown	/^### 知识吸收能力$/;"	S
+研究	_posts/2021-08-08-读书笔记-信息架构,超越Web设计.markdown	/^### 研究$/;"	S
 确定关键需求	_posts/2020-01-20-读书笔记-软件架构设计.markdown	/^### 确定关键需求$/;"	S
 示例	_posts/2018-06-13-网络安全-CSRF.markdown	/^示例$/;"	c
 神经元（neuron）模型　　	_posts/2018-05-09-机器学习-神经网络.markdown	/^## 神经元（neuron）模型　　$/;"	s
 票据链金融应用	_posts/2020-08-02-读书笔记-区块链金融.markdown	/^### 票据链金融应用$/;"	S
 移动数据去2数据库	_posts/2018-12-13-数据库-redis及python操作.markdown	/^# 移动数据去2数据库$/;"	c
+竞争力调研和分析	_posts/2022-02-21-读书笔记-决胜UX,互联网产品用户体验策略.markdown	/^### 竞争力调研和分析$/;"	S
 端口和验证口令注意保持与服务进程设置的完全一致:	_posts/2018-04-29-python多线程、多进程、协程及分布式编程.markdown	/^# 端口和验证口令注意保持与服务进程设置的完全一致:$/;"	c
+第10章 变更管理操作实务	_posts/2020-04-26-软件需求最佳实践.markdown	/^## 第10章 变更管理操作实务$/;"	s
+第11章 需求跟踪操作实务	_posts/2020-04-26-软件需求最佳实践.markdown	/^## 第11章 需求跟踪操作实务$/;"	s
+第1章 需求实践现状分析	_posts/2020-04-26-软件需求最佳实践.markdown	/^## 第1章 需求实践现状分析$/;"	s
+第2章 不同软件项目的需求视图	_posts/2020-04-26-软件需求最佳实践.markdown	/^## 第2章 不同软件项目的需求视图$/;"	s
+第3章 软件需求与需求工程	_posts/2020-04-26-软件需求最佳实践.markdown	/^## 第3章 软件需求与需求工程$/;"	s
+第4章 需求定义最佳实践	_posts/2020-04-26-软件需求最佳实践.markdown	/^## 第4章 需求定义最佳实践$/;"	s
+第5章 需求捕获最佳实践	_posts/2020-04-26-软件需求最佳实践.markdown	/^## 第5章 需求捕获最佳实践$/;"	s
+第6章 需求分析与建模最佳实践	_posts/2020-04-26-软件需求最佳实践.markdown	/^## 第6章 需求分析与建模最佳实践$/;"	s
+第7章 需求描述最佳实践	_posts/2020-04-26-软件需求最佳实践.markdown	/^## 第7章 需求描述最佳实践$/;"	s
+第8章 需求验证最佳实践	_posts/2020-04-26-软件需求最佳实践.markdown	/^## 第8章 需求验证最佳实践$/;"	s
+第9章 需求基线操作实务	_posts/2020-04-26-软件需求最佳实践.markdown	/^## 第9章 需求基线操作实务$/;"	s
 第一个原理:组合进化	_posts/2019-05-17-读书笔记-技术的本质.markdown	/^## 第一个原理:组合进化$/;"	s
+第一关键指标（One Metric That Matters，OMTM）	_posts/2022-03-09-读书笔记-精益数据分析.markdown	/^### 第一关键指标（One Metric That Matters，OMTM）$/;"	S
 第一次复述	_posts/2021-04-20-读书笔记-费曼学习法.markdown	/^### 第一次复述$/;"	S
 第一章 认知篇：语感因子-英语思维训练	_posts/2019-02-10-英语-英语流利说方法笔记.markdown	/^## 第一章 认知篇：语感因子-英语思维训练$/;"	s
 第一级：“Operating”：会使用工具	_posts/2018-10-03-机器学习-机器学习算法水平.markdown	/^## 第一级：“Operating”：会使用工具$/;"	s
@@ -4883,16 +5085,21 @@ zsh常用插件	_posts/2019-01-15-linux-切换到zsh.markdown	/^## zsh常用插�
 第二章 技能篇：快速提升词汇量-突击学习神技	_posts/2019-02-10-英语-英语流利说方法笔记.markdown	/^## 第二章 技能篇：快速提升词汇量-突击学习神技$/;"	s
 第二级：“Optimization”：能改造模型	_posts/2018-10-03-机器学习-机器学习算法水平.markdown	/^## 第二级：“Optimization”：能改造模型$/;"	s
 第四章 标准篇：学了就要用-形成条件反射	_posts/2019-02-10-英语-英语流利说方法笔记.markdown	/^## 第四章 标准篇：学了就要用-形成条件反射$/;"	s
+策略	_posts/2021-08-08-读书笔记-信息架构,超越Web设计.markdown	/^### 策略$/;"	S
 简介	_posts/2018-10-18-编程-Kubernetes简介.markdown	/^# 简介$/;"	c
 简介	_posts/2018-12-26-大数据-日志采集和转发rsyslog-auditd.markdown	/^# 简介$/;"	c
 简介	_posts/2019-12-26-读书笔记-Scrum敏捷项目管理.markdown	/^# 简介$/;"	c
 简介	_posts/2020-01-20-读书笔记-软件架构设计.markdown	/^# 简介$/;"	c
 简介	_posts/2020-07-15-读书笔记-股票基本面分析清单.markdown	/^## 简介$/;"	s
 简介	_posts/2020-09-12-读书笔记-直击本质.markdown	/^## 简介$/;"	s
+简介	_posts/2021-08-08-读书笔记-信息架构,超越Web设计.markdown	/^## 简介$/;"	s
+简介	_posts/2022-03-04-读书笔记-产品思维,创新设计的六条法则.markdown	/^## 简介$/;"	s
 简洁性原则	_posts/2020-10-24-读书笔记-TED说话的力量.markdown	/^## 简洁性原则$/;"	s
+简约四策略	_posts/2022-01-27-读书笔记-简约至上交互设计四策略.markdown	/^## 简约四策略$/;"	s
 算法工程师	_posts/2018-10-03-机器学习-机器学习算法水平.markdown	/^# 算法工程师$/;"	c
 算法工程师的水平等级	_posts/2018-10-03-机器学习-机器学习算法水平.markdown	/^# 算法工程师的水平等级$/;"	c
 算法思想——基于概率的预测	_posts/2018-05-09-机器学习-朴素贝叶斯.markdown	/^## 算法思想——基于概率的预测$/;"	s
+管控点识别与分析	_posts/2020-10-10-读书笔记-有效需求分析.markdown	/^### 管控点识别与分析$/;"	S
 管理产品经理	_posts/2019-01-09-产品-启示录打造用户喜爱的产品阅读笔记.markdown	/^### 管理产品经理$/;"	S
 管理做哪些事情呢？	_posts/2019-03-08-管理-技术管理实战笔记(上).markdown	/^# 管理做哪些事情呢？$/;"	c
 管理品牌资产	_posts/2020-07-05-读书笔记-产品经理手册.markdown	/^## 管理品牌资产$/;"	s
@@ -4907,16 +5114,31 @@ zsh常用插件	_posts/2019-01-15-linux-切换到zsh.markdown	/^## zsh常用插�
 管理风格	_posts/2019-03-08-管理-技术管理实战笔记(上).markdown	/^## 管理风格$/;"	s
 粗粒度功能模块划分	_posts/2020-01-20-读书笔记-软件架构设计.markdown	/^### 粗粒度功能模块划分$/;"	S
 精力能力——体力上向前推进的能力	_posts/2021-01-05-读书笔记-差异优势.markdown	/^### 精力能力——体力上向前推进的能力$/;"	S
+精益创业	_posts/2020-02-20-读书笔记-精益创业方法论.markdown	/^## 精益创业$/;"	s
+精益创业	_posts/2022-03-09-读书笔记-精益数据分析.markdown	/^## 精益创业$/;"	s
+精益创业步骤	_posts/2020-02-20-读书笔记-精益创业方法论.markdown	/^### 精益创业步骤$/;"	S
+精益创业的逻辑框架	_posts/2020-02-20-读书笔记-精益创业方法论.markdown	/^### 精益创业的逻辑框架$/;"	S
+精益创业第一阶段：定义用户痛点假设和解决方案假设	_posts/2020-02-20-读书笔记-精益创业方法论.markdown	/^#### 精益创业第一阶段：定义用户痛点假设和解决方案假设$/;"	t
+精益创业第二阶段：验证用户痛点假设和解决方案假设	_posts/2020-02-20-读书笔记-精益创业方法论.markdown	/^#### 精益创业第二阶段：验证用户痛点假设和解决方案假设$/;"	t
+精益数据分析阶段和关隘模型	_posts/2022-03-09-读书笔记-精益数据分析.markdown	/^#### 精益数据分析阶段和关隘模型$/;"	t
+精简与优化：将混乱降到最低限度	_posts/2021-07-03-读书笔记-一目了然,Web软件显性设计之路.markdown	/^## 精简与优化：将混乱降到最低限度$/;"	s
+系统分解子篇	_posts/2020-10-10-读书笔记-有效需求分析.markdown	/^## 系统分解子篇$/;"	s
 索引	_posts/2018-09-07-数据库-mysql的各种锁.markdown	/^### 索引$/;"	S
 累积BP算法	_posts/2018-05-09-机器学习-神经网络.markdown	/^#### 累积BP算法$/;"	t
+约束分析	_posts/2020-10-10-读书笔记-有效需求分析.markdown	/^### 约束分析$/;"	S
 级联相关网络	_posts/2018-05-09-机器学习-神经网络.markdown	/^#### 级联相关网络$/;"	t
 纵向拓展和精进	_posts/2021-04-20-读书笔记-费曼学习法.markdown	/^### 纵向拓展和精进$/;"	S
 线性思维已过时	_posts/2019-08-24-读书笔记-思考的技术.markdown	/^### 线性思维已过时$/;"	S
 组合-反向模型	_posts/2020-09-12-读书笔记-直击本质.markdown	/^#### 组合-反向模型$/;"	t
+组成故事的元素是什么？	_posts/2020-08-18-讲出一个精彩故事.markdown	/^### 组成故事的元素是什么？$/;"	S
+组织	_posts/2022-01-27-读书笔记-简约至上交互设计四策略.markdown	/^### 组织$/;"	S
+组织系统	_posts/2021-08-08-读书笔记-信息架构,超越Web设计.markdown	/^### 组织系统$/;"	S
 细化架构设计	_posts/2020-01-20-读书笔记-软件架构设计.markdown	/^### 细化架构设计$/;"	S
+结构层（structure）	_posts/2022-02-10-读书笔记-用户体验要素.markdown	/^### 结构层（structure）$/;"	S
 结构深化	_posts/2019-05-17-读书笔记-技术的本质.markdown	/^### 结构深化$/;"	S
 结果逻辑	_posts/2021-07-22-读书笔记-底层逻辑，半秒钟看透问题本质.markdown	/^## 结果逻辑$/;"	s
 统一日志管理平台	_posts/2021-12-23-读书笔记-数据安全架构设计与实战.markdown	/^#### 统一日志管理平台$/;"	t
+维护需求分析	_posts/2020-10-10-读书笔记-有效需求分析.markdown	/^### 维护需求分析$/;"	S
 编程范式	_posts/2018-12-04-编程-函数式编程.markdown	/^## 编程范式$/;"	s
 网站审计	_posts/2018-07-10-网络安全-代码审计.markdown	/^网站审计$/;"	c
 网络和通信层安全架构	_posts/2021-12-23-读书笔记-数据安全架构设计与实战.markdown	/^### 网络和通信层安全架构$/;"	S
@@ -4946,9 +5168,16 @@ zsh常用插件	_posts/2019-01-15-linux-切换到zsh.markdown	/^## zsh常用插�
 英文表达的三个基本要素	_posts/2020-04-09-英语-英文写作要点.markdown	/^## 英文表达的三个基本要素$/;"	s
 英语流利说课程	_posts/2019-02-10-英语-英语流利说方法笔记.markdown	/^# 英语流利说课程$/;"	c
 英语语法基础	_posts/2020-04-09-英语-英文写作要点.markdown	/^## 英语语法基础$/;"	s
+范围层（scope）	_posts/2022-02-10-读书笔记-用户体验要素.markdown	/^### 范围层（scope）$/;"	S
 营销策略与产品上市	_posts/2020-07-05-读书笔记-产品经理手册.markdown	/^## 营销策略与产品上市$/;"	s
+行为改变的基本要素	_posts/2022-03-03-读书笔记-以终为始,诱发行为改变的产品设计.markdown	/^## 行为改变的基本要素$/;"	s
+行为陈述	_posts/2022-03-03-读书笔记-以终为始,诱发行为改变的产品设计.markdown	/^### 行为陈述$/;"	S
+行动	_posts/2020-05-25-上瘾.markdown	/^## 行动$/;"	s
+街头指示牌和面包屑：设计导航	_posts/2021-06-01-读书笔记-点石成金,访客至上的网页设计秘籍.markdown	/^### 街头指示牌和面包屑：设计导航$/;"	S
 衡量企业运营和财务状况	_posts/2020-07-15-读书笔记-股票基本面分析清单.markdown	/^## 衡量企业运营和财务状况$/;"	s
 衡量企业运营和财务状况	_posts/2020-07-15-读书笔记-股票基本面分析清单.markdown	/^### 衡量企业运营和财务状况$/;"	S
+补充篇	_posts/2020-10-10-读书笔记-有效需求分析.markdown	/^## 补充篇$/;"	s
+表现层（surface）	_posts/2022-02-10-读书笔记-用户体验要素.markdown	/^### 表现层（surface）$/;"	S
 表达力	_posts/2019-11-01-读书笔记-表达力.markdown	/^## 表达力$/;"	s
 表达力5步法	_posts/2019-11-01-读书笔记-表达力.markdown	/^### 表达力5步法$/;"	S
 表达力工具箱	_posts/2019-11-01-读书笔记-表达力.markdown	/^### 表达力工具箱$/;"	S
@@ -4959,6 +5188,7 @@ zsh常用插件	_posts/2019-01-15-linux-切换到zsh.markdown	/^## zsh常用插�
 规划	_posts/2021-04-20-读书笔记-费曼学习法.markdown	/^### 规划$/;"	S
 视角思考法	_posts/2020-09-12-读书笔记-直击本质.markdown	/^#### 视角思考法$/;"	t
 解决问题的步骤	_posts/2018-05-04-机器学习-基本概念和流程.markdown	/^解决问题的步骤$/;"	c
+触发	_posts/2020-05-25-上瘾.markdown	/^## 触发$/;"	s
 计算模型在测试集上的准确性	_posts/2018-05-08-机器学习-逻辑回归.markdown	/^# 计算模型在测试集上的准确性$/;"	c
 认清现实	_posts/2019-03-08-管理-技术管理实战笔记(上).markdown	/^### 认清现实$/;"	S
 认知和领导力	_posts/2019-11-01-读书笔记-表达力.markdown	/^### 认知和领导力$/;"	S
@@ -4967,9 +5197,14 @@ zsh常用插件	_posts/2019-01-15-linux-切换到zsh.markdown	/^## zsh常用插�
 训练集、验证集与测试集划分	_posts/2018-05-04-机器学习-基本概念和流程.markdown	/^训练集、验证集与测试集划分$/;"	c
 记录锁（record locks）	_posts/2018-09-07-数据库-mysql的各种锁.markdown	/^### 记录锁（record locks）$/;"	S
 设备和主机层安全架构	_posts/2021-12-23-读书笔记-数据安全架构设计与实战.markdown	/^### 设备和主机层安全架构$/;"	S
+设定正确的评价标准	_posts/2022-01-28-读书笔记-端到端流程.markdown	/^### 设定正确的评价标准$/;"	S
 设定目标:你的目标以及实现目标的步骤应该是什么?	_posts/2020-05-12-读书笔记-小逻辑.markdown	/^## 设定目标:你的目标以及实现目标的步骤应该是什么?$/;"	s
 设置不同学习速率的参数组	_posts/2018-05-09-机器学习-神经网络.markdown	/^# 设置不同学习速率的参数组$/;"	c
+设计	_posts/2021-08-08-读书笔记-信息架构,超越Web设计.markdown	/^### 设计$/;"	S
+设计一个网站的步骤	_posts/2021-06-23-读书笔记-锦绣蓝图,怎样规划令人流连忘返的网站.markdown	/^## 设计一个网站的步骤$/;"	s
+设计标准	_posts/2022-02-18-读书笔记-破茧成蝶，用户体验设计师的成长之路.markdown	/^## 设计标准$/;"	s
 设计目标	_posts/2018-09-07-数据库-mysql的各种锁.markdown	/^### 设计目标$/;"	S
+设计规划	_posts/2022-02-18-读书笔记-破茧成蝶，用户体验设计师的成长之路.markdown	/^## 设计规划$/;"	s
 访问Dashboard	_posts/2018-11-06-编程-Kubernetes DashBoard.markdown	/^## 访问Dashboard$/;"	s
 访问控制	_posts/2021-12-23-读书笔记-数据安全架构设计与实战.markdown	/^### 访问控制$/;"	S
 评估产品机会	_posts/2019-01-09-产品-启示录打造用户喜爱的产品阅读笔记.markdown	/^### 评估产品机会$/;"	S
@@ -4990,6 +5225,7 @@ zsh常用插件	_posts/2019-01-15-linux-切换到zsh.markdown	/^## zsh常用插�
 评估管理层素质——能力：管理层如何运营企业	_posts/2020-07-15-读书笔记-股票基本面分析清单.markdown	/^### 评估管理层素质——能力：管理层如何运营企业$/;"	S
 识别假知识	_posts/2021-04-20-读书笔记-费曼学习法.markdown	/^### 识别假知识$/;"	S
 词法	_posts/2020-04-09-英语-英文写作要点.markdown	/^## 词法$/;"	s
+详细需求	_posts/2020-10-10-读书笔记-有效需求分析.markdown	/^### 详细需求$/;"	S
 误差	_posts/2018-05-04-机器学习-基本概念和流程.markdown	/^## 误差$/;"	s
 误差逆传播算法	_posts/2018-05-09-机器学习-神经网络.markdown	/^## 误差逆传播算法$/;"	s
 说服前的准备	_posts/2020-06-24-读书笔记-说服力.markdown	/^## 说服前的准备$/;"	s
@@ -5005,6 +5241,8 @@ zsh常用插件	_posts/2019-01-15-linux-切换到zsh.markdown	/^## zsh常用插�
 责任能力——选择对你的人生负责	_posts/2021-01-05-读书笔记-差异优势.markdown	/^### 责任能力——选择对你的人生负责$/;"	S
 责任逻辑	_posts/2021-07-22-读书笔记-底层逻辑，半秒钟看透问题本质.markdown	/^## 责任逻辑$/;"	s
 账号安全	_posts/2021-12-23-读书笔记-数据安全架构设计与实战.markdown	/^#### 账号安全$/;"	t
+质量主线子篇	_posts/2020-10-10-读书笔记-有效需求分析.markdown	/^## 质量主线子篇$/;"	s
+质量场景分析	_posts/2020-10-10-读书笔记-有效需求分析.markdown	/^### 质量场景分析$/;"	S
 费曼学习法	_posts/2021-04-20-读书笔记-费曼学习法.markdown	/^### 费曼学习法$/;"	S
 费曼学习法简介与优势	_posts/2021-04-20-读书笔记-费曼学习法.markdown	/^## 费曼学习法简介与优势$/;"	s
 费曼对知识内化的建议	_posts/2021-04-20-读书笔记-费曼学习法.markdown	/^### 费曼对知识内化的建议$/;"	S
@@ -5016,7 +5254,9 @@ zsh常用插件	_posts/2019-01-15-linux-切换到zsh.markdown	/^## zsh常用插�
 路线图、创新和模糊前沿	_posts/2020-07-05-读书笔记-产品经理手册.markdown	/^## 路线图、创新和模糊前沿$/;"	s
 身份认证	_posts/2021-12-23-读书笔记-数据安全架构设计与实战.markdown	/^### 身份认证$/;"	S
 身份认证与账号安全	_posts/2021-12-23-读书笔记-数据安全架构设计与实战.markdown	/^#### 身份认证与账号安全$/;"	t
+转移	_posts/2022-01-27-读书笔记-简约至上交互设计四策略.markdown	/^### 转移$/;"	S
 软件架构	_posts/2020-01-20-读书笔记-软件架构设计.markdown	/^## 软件架构$/;"	s
+软件需求	_posts/2020-10-10-读书笔记-有效需求分析.markdown	/^## 软件需求$/;"	s
 软间隔与正则化	_posts/2018-05-09-机器学习-支持向量机.markdown	/^### 软间隔与正则化$/;"	S
 输入	_posts/2019-11-01-读书笔记-表达力.markdown	/^### 输入$/;"	S
 输出:演讲	_posts/2019-11-01-读书笔记-表达力.markdown	/^### 输出:演讲$/;"	S
@@ -5038,10 +5278,12 @@ zsh常用插件	_posts/2019-01-15-linux-切换到zsh.markdown	/^## zsh常用插�
 选择：做让能力最大化的事情	_posts/2021-01-05-读书笔记-差异优势.markdown	/^## 选择：做让能力最大化的事情$/;"	s
 选数据库	_posts/2018-12-13-数据库-redis及python操作.markdown	/^# 选数据库$/;"	c
 选项	_posts/2018-11-15-网络安全-钓鱼邮件.markdown	/^## 选项$/;"	s
+透明度和责任感	_posts/2022-03-03-读书笔记-以终为始,诱发行为改变的产品设计.markdown	/^### 透明度和责任感$/;"	S
 通常，真正的建模工作从模型部署到生产系统后才开始	_posts/2018-08-26-机器学习-从模型到产品.markdown	/^# 通常，真正的建模工作从模型部署到生产系统后才开始$/;"	c
 造句	_posts/2020-04-09-英语-英文写作要点.markdown	/^## 造句$/;"	s
 逻辑回归的损失函数	_posts/2018-05-08-机器学习-逻辑回归.markdown	/^## 逻辑回归的损失函数$/;"	s
 逻辑性表达	_posts/2020-03-15-逻辑思维-有逻辑的表达.markdown	/^## 逻辑性表达$/;"	s
+遵循用户在Web上的交互方式，重点是用户的行为，而非针对某个特定用户	_posts/2021-07-03-读书笔记-一目了然,Web软件显性设计之路.markdown	/^## 遵循用户在Web上的交互方式，重点是用户的行为，而非针对某个特定用/;"	s
 避免与均值回归相关的错误，做出正确决策	_posts/2021-11-20-读书笔记-反直觉.markdown	/^## 避免与均值回归相关的错误，做出正确决策$/;"	s
 避免专家限制，做出正确决策	_posts/2021-11-20-读书笔记-反直觉.markdown	/^## 避免专家限制，做出正确决策$/;"	s
 避免视野狭窄，做出正确决策	_posts/2021-11-20-读书笔记-反直觉.markdown	/^## 避免视野狭窄，做出正确决策$/;"	s
@@ -5057,17 +5299,31 @@ zsh常用插件	_posts/2019-01-15-linux-切换到zsh.markdown	/^## zsh常用插�
 银行业发展区块链的挑战	_posts/2020-08-02-读书笔记-区块链金融.markdown	/^### 银行业发展区块链的挑战$/;"	S
 错误率和精度	_posts/2018-05-04-机器学习-基本概念和流程.markdown	/^#### 错误率和精度$/;"	t
 闭包	_posts/2018-12-04-编程-函数式编程.markdown	/^## 闭包$/;"	s
+问题+方法	_posts/2022-03-04-读书笔记-产品思维,创新设计的六条法则.markdown	/^## 问题+方法$/;"	s
 间隔	_posts/2018-05-09-机器学习-支持向量机.markdown	/^## 间隔$/;"	s
 间隙锁（Gap locks）	_posts/2018-09-07-数据库-mysql的各种锁.markdown	/^### 间隙锁（Gap locks）$/;"	S
 阅读源码	_posts/2018-09-27-编程-java架构师技术体系.markdown	/^## 阅读源码$/;"	s
 防止遍历查询	_posts/2021-12-23-读书笔记-数据安全架构设计与实战.markdown	/^#### 防止遍历查询$/;"	t
+阶段1：移情，你需要深入目标市场，解决人们关心的问题	_posts/2022-03-09-读书笔记-精益数据分析.markdown	/^#### 阶段1：移情，你需要深入目标市场，解决人们关心的问题$/;"	t
+阶段2：黏性，找到已发现问题的解决方案	_posts/2022-03-09-读书笔记-精益数据分析.markdown	/^#### 阶段2：黏性，找到已发现问题的解决方案$/;"	t
+阶段3：病毒性，开始口碑营销	_posts/2022-03-09-读书笔记-精益数据分析.markdown	/^#### 阶段3：病毒性，开始口碑营销$/;"	t
+阶段4：营收，着手盈利事宜	_posts/2022-03-09-读书笔记-精益数据分析.markdown	/^#### 阶段4：营收，着手盈利事宜$/;"	t
+阶段5：规模化，从自身发展模式切换至市场扩张模式	_posts/2022-03-09-读书笔记-精益数据分析.markdown	/^#### 阶段5：规模化，从自身发展模式切换至市场扩张模式$/;"	t
+阶段一，确定正确的产品方向：需求-->使命-->策略	_posts/2019-09-10-读书笔记-谷歌和亚马逊如何做产品.markdown	/^### 阶段一，确定正确的产品方向：需求-->使命-->策略$/;"	S
+阶段三，设计用户体验	_posts/2019-09-10-读书笔记-谷歌和亚马逊如何做产品.markdown	/^### 阶段三，设计用户体验$/;"	S
+阶段二，尽可能清晰详细地定义产品	_posts/2019-09-10-读书笔记-谷歌和亚马逊如何做产品.markdown	/^### 阶段二，尽可能清晰详细地定义产品$/;"	S
+阶段五，开始测试	_posts/2019-09-10-读书笔记-谷歌和亚马逊如何做产品.markdown	/^### 阶段五，开始测试$/;"	S
+阶段六，准备发布	_posts/2019-09-10-读书笔记-谷歌和亚马逊如何做产品.markdown	/^### 阶段六，准备发布$/;"	S
+阶段四，做一些基础的项目管理工作，不要太多也不要太少，包括跟踪交付物的进展、指出问题以及控制项目范围	_posts/2019-09-10-读书笔记-谷歌和亚马逊如何做产品.markdown	/^### 阶段四，做一些基础的项目管理工作，不要太多也不要太少，包括跟踪/;"	S
 隐层神经元个数	_posts/2018-05-09-机器学习-神经网络.markdown	/^#### 隐层神经元个数$/;"	t
 隐私保护基础	_posts/2021-12-23-读书笔记-数据安全架构设计与实战.markdown	/^### 隐私保护基础$/;"	S
 隐私保护增强技术	_posts/2021-12-23-读书笔记-数据安全架构设计与实战.markdown	/^### 隐私保护增强技术$/;"	S
+隐藏	_posts/2022-01-27-读书笔记-简约至上交互设计四策略.markdown	/^### 隐藏$/;"	S
 集合(set)操作	_posts/2018-12-13-数据库-redis及python操作.markdown	/^# 集合(set)操作$/;"	c
 集成界限上下文	_posts/2021-03-26-产品经理-B端产品经理总结.markdown	/^### 集成界限上下文$/;"	S
 集群软硬件环境	_posts/2018-04-26-hadoop spark集群安装配置(一).markdown	/^集群软硬件环境$/;"	c
 需求分析	_posts/2020-01-20-读书笔记-软件架构设计.markdown	/^### 需求分析$/;"	S
+需求分析	_posts/2022-02-18-读书笔记-破茧成蝶，用户体验设计师的成长之路.markdown	/^## 需求分析$/;"	s
 需求管理	_posts/2019-06-14-读书笔记-人人都是产品经理系列.markdown	/^## 需求管理$/;"	s
 需求转化	_posts/2019-06-14-读书笔记-人人都是产品经理系列.markdown	/^### 需求转化$/;"	S
 靠谱的会议	_posts/2019-06-14-读书笔记-人人都是产品经理系列.markdown	/^### 靠谱的会议$/;"	S
@@ -5077,16 +5333,22 @@ zsh常用插件	_posts/2019-01-15-linux-切换到zsh.markdown	/^## zsh常用插�
 项目发布	_posts/2019-06-14-读书笔记-人人都是产品经理系列.markdown	/^### 项目发布$/;"	S
 项目管理	_posts/2019-06-14-读书笔记-人人都是产品经理系列.markdown	/^## 项目管理$/;"	s
 项目管理与实施	_posts/2021-03-26-产品经理-B端产品经理总结.markdown	/^### 项目管理与实施$/;"	S
+项目跟进	_posts/2022-02-18-读书笔记-破茧成蝶，用户体验设计师的成长之路.markdown	/^## 项目跟进$/;"	s
 领域事件	_posts/2021-03-26-产品经理-B端产品经理总结.markdown	/^### 领域事件$/;"	S
 领域建模	_posts/2020-01-20-读书笔记-软件架构设计.markdown	/^### 领域建模$/;"	S
+领域建模	_posts/2020-10-10-读书笔记-有效需求分析.markdown	/^### 领域建模$/;"	S
 领域服务	_posts/2021-03-26-产品经理-B端产品经理总结.markdown	/^### 领域服务$/;"	S
 领域驱动设计	_posts/2021-03-26-产品经理-B端产品经理总结.markdown	/^### 领域驱动设计$/;"	S
+领导力与文化：创造改变，维持成果	_posts/2022-01-28-读书笔记-端到端流程.markdown	/^### 领导力与文化：创造改变，维持成果$/;"	S
 领导力与管理能力	_posts/2020-07-05-读书笔记-产品经理手册.markdown	/^## 领导力与管理能力$/;"	s
 领导能力——提升并领导他人的能力	_posts/2021-01-05-读书笔记-差异优势.markdown	/^### 领导能力——提升并领导他人的能力$/;"	S
 风控	_posts/2020-08-02-读书笔记-区块链金融.markdown	/^### 风控$/;"	S
 风险管理	_posts/2021-12-23-读书笔记-数据安全架构设计与实战.markdown	/^#### 风险管理$/;"	t
 风险能力——选择走出你的舒适区	_posts/2021-01-05-读书笔记-差异优势.markdown	/^### 风险能力——选择走出你的舒适区$/;"	S
+首先要承认，主页不由你控制：设计主页	_posts/2021-06-01-读书笔记-点石成金,访客至上的网页设计秘籍.markdown	/^### 首先要承认，主页不由你控制：设计主页$/;"	S
+验证价值主张	_posts/2022-02-21-读书笔记-决胜UX,互联网产品用户体验策略.markdown	/^### 验证价值主张$/;"	S
 高级目标	_posts/2021-03-04-数据治理-从信息化到数字化的数据治理总结.markdown	/^### 高级目标$/;"	S
+高级行为改变	_posts/2022-03-03-读书笔记-以终为始,诱发行为改变的产品设计.markdown	/^## 高级行为改变$/;"	s
 高阶依赖	_posts/2018-05-09-机器学习-朴素贝叶斯.markdown	/^## 高阶依赖$/;"	s
 高阶函数	_posts/2018-12-04-编程-函数式编程.markdown	/^## 高阶函数$/;"	s
 （6）梯度下降法和其他无约束优化算法的比较	_posts/2018-05-07-机器学习-线性回归.markdown	/^### （6）梯度下降法和其他无约束优化算法的比较$/;"	S
