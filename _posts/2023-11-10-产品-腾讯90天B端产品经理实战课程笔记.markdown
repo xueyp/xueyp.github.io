@@ -1,10 +1,10 @@
 ---
-layout： post
-title：  "产品-腾讯90天B端产品经理实战课程笔记"
-categories： 读书笔记
-tags： 读书笔记
-author： xueyp
-description：
+layout: post
+title: "产品-腾讯90天B端产品经理实战课程笔记"
+categories: 读书笔记
+tags: 读书笔记
+author: xueyp
+description:
 ---
 
 B端产品特点：
