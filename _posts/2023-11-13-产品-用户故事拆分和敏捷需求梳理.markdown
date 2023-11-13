@@ -1,0 +1,70 @@
+---
+layout: post
+title: "产品-用户故事拆分和敏捷需求梳理"
+categories: 读书笔记
+tags: 读书笔记
+author: xueyp
+description:
+---
+
+
+![png]({{"/assets/images/2023/20231113_00.jpg"| absolute_url }})
+
+![png]({{"/assets/images/2023/20231113_01.jpg"| absolute_url }})
+
+![png]({{"/assets/images/2023/20231113_02.jpg"| absolute_url }})
+
+![png]({{"/assets/images/2023/20231113_03.jpg"| absolute_url }})
+
+![png]({{"/assets/images/2023/20231113_04.jpg"| absolute_url }})
+
+![png]({{"/assets/images/2023/20231113_05.jpg"| absolute_url }})
+
+![png]({{"/assets/images/2023/20231113_06.jpg"| absolute_url }})
+
+![png]({{"/assets/images/2023/20231113_07.jpg"| absolute_url }})
+
+![png]({{"/assets/images/2023/20231113_08.jpg"| absolute_url }})
+
+![png]({{"/assets/images/2023/20231113_09.jpg"| absolute_url }})
+
+![png]({{"/assets/images/2023/20231113_10.jpg"| absolute_url }})
+
+![png]({{"/assets/images/2023/20231113_11.jpg"| absolute_url }})
+
+![png]({{"/assets/images/2023/20231113_12.jpg"| absolute_url }})
+
+![png]({{"/assets/images/2023/20231113_13.jpg"| absolute_url }})
+
+![png]({{"/assets/images/2023/20231113_14.jpg"| absolute_url }})
+
+![png]({{"/assets/images/2023/20231113_15.jpg"| absolute_url }})
+
+![png]({{"/assets/images/2023/20231113_16.jpg"| absolute_url }})
+
+![png]({{"/assets/images/2023/20231113_17.jpg"| absolute_url }})
+
+![png]({{"/assets/images/2023/20231113_18.jpg"| absolute_url }})
+
+![png]({{"/assets/images/2023/20231113_19.jpg"| absolute_url }})
+
+![png]({{"/assets/images/2023/20231113_20.jpg"| absolute_url }})
+
+![png]({{"/assets/images/2023/20231113_21.jpg"| absolute_url }})
+
+![png]({{"/assets/images/2023/20231113_22.jpg"| absolute_url }})
+
+![png]({{"/assets/images/2023/20231113_23.jpg"| absolute_url }})
+
+![png]({{"/assets/images/2023/20231113_24.jpg"| absolute_url }})
+
+![png]({{"/assets/images/2023/20231113_25.jpg"| absolute_url }})
+
+![png]({{"/assets/images/2023/20231113_26.jpg"| absolute_url }})
+
+![png]({{"/assets/images/2023/20231113_27.jpg"| absolute_url }})
+
+参考
+============
+
+版权声明：本文为博主原创文章，转载请注明出处。 [旭日酒馆](https：//xueyp.github.io/)
