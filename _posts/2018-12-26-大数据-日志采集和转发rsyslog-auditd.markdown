@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "大数据-日志采集和转发rsyslog,auditd到elasticsearch"
-categories: 编程
+categories: 大数据
 tags: 日志 rsyslog auditd elasticsearch
 author: xueyp
 description: 日志采集和转发rsyslog,auditd到elasticsearch
@@ -69,7 +69,7 @@ $ModLoad imjournal # provides access to the systemd journal
  #####开启udp接收日志
 $ModLoad imudp
 $UDPServerRun 514
-$template RemoteHost,"/data/syslog/%$YEAR%-%$MONTH%-%$DAY%/%FROMHOST-IP%.log"   
+$template RemoteHost,"/data/syslog/%$YEAR%-%$MONTH%-%$DAY%/%FROMHOST-IP%.log"
 *.*  ?RemoteHost
 & ~
 ####开启tcp协议接受日志
@@ -80,7 +80,7 @@ $WorkDirectory /var/lib/rsyslog
 $ActionFileDefaultTemplate rsyslog_TraditionalFileFormat
 
 #######启用/etc/rsyslog.d/*.conf目录下所有以.conf结尾的配置文件
-$IncludeConfig /etc/rsyslog.d/*.conf     
+$IncludeConfig /etc/rsyslog.d/*.conf
 
 $OmitLocalLogging on
 $IMJournalStateFile imjournal.state
@@ -100,10 +100,10 @@ local0.*                                                /etc/keepalived/keepaliv
 # systemctl restart rsyslog
 # systemctl status rsyslog
 # netstat -anp|grep 514
-tcp        0      0 0.0.0.0:514             0.0.0.0:*               LISTEN      1445/rsyslogd       
-tcp6       0      0 :::514                  :::*                    LISTEN      1445/rsyslogd       
-udp        0      0 0.0.0.0:514             0.0.0.0:*                           1445/rsyslogd       
-udp6       0      0 :::514                  :::*                                1445/rsyslogd   
+tcp        0      0 0.0.0.0:514             0.0.0.0:*               LISTEN      1445/rsyslogd
+tcp6       0      0 :::514                  :::*                    LISTEN      1445/rsyslogd
+udp        0      0 0.0.0.0:514             0.0.0.0:*                           1445/rsyslogd
+udp6       0      0 :::514                  :::*                                1445/rsyslogd
 ```
 
 ## 配置为客户端
@@ -153,7 +153,7 @@ local0.*                                             /etc/keepalived/keepalived.
 - 查看服务端是否在/data/日期/ip.log正常生成。
 
 ```
-# tail -f /data/2018-12-24/172.16.1.241.log 
+# tail -f /data/2018-12-24/172.16.1.241.log
 ```
 
 - 在客户端生成日志，,可用logger命令生成日志，例如logger  "test log"生成一条内容为test log的日志，然后用如下命令查看是否有此条日志：
@@ -170,7 +170,7 @@ rsyslog配置：
 vim /etc/rsyslog.conf
 找到 #*.* @@remote-host:514
 修改 #*.* @@remote-host:514 -> *.* @@logstsh收集服务器IP:端口
- 
+
 重启服务
 service rsyslog restart
 ```
@@ -189,7 +189,7 @@ output {
         hosts => ["172.16.1.241:9200"]#elasticsearch服务器地址
         index => "syslog-%{+YYYY.MM.dd}"
     }
- 
+
 }
 
 ```
@@ -286,7 +286,7 @@ output:
     # ssl.verification_mode: trueFilebeat 6.x
 ```
 
-另外,还可以用专用于转发auditd日志信息的[auditbeat](https://www.elastic.co/cn/products/beats/auditbeat) ，收集Linux 审计框架的数据，监控文件完整性,Auditbeat 实时采集这些事件，然后发送到 Elastic Stack 其他部分做进一步分析。 
+另外,还可以用专用于转发auditd日志信息的[auditbeat](https://www.elastic.co/cn/products/beats/auditbeat) ，收集Linux 审计框架的数据，监控文件完整性,Auditbeat 实时采集这些事件，然后发送到 Elastic Stack 其他部分做进一步分析。
 
 - 转发auditd日志的示例配置：
 
@@ -305,7 +305,7 @@ type=PATH msg=audit(1522927552.749:917): item=0 name="/etc/passwd" inode=3147443
 type=UNKNOWN[1327] msg=audit(1522927552.749:917): proctitle=636174002F6574632F706173737764
 ```
 
-3. 编辑 /etc/auditbeat/auditbeat.yml 
+3. 编辑 /etc/auditbeat/auditbeat.yml
 
 ```
 auditbeat.modules:

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "产品-《产品研发管理-构建世界一流的产品研发管理体系》"
+title: "读书笔记-《产品研发管理-构建世界一流的产品研发管理体系》"
 categories: 读书笔记
 tags: 读书笔记
 author: xueyp

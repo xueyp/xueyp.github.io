@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "产品-用户故事拆分和敏捷需求梳理"
+title: "读书笔记-用户故事拆分和敏捷需求梳理"
 categories: 读书笔记
 tags: 读书笔记
 author: xueyp

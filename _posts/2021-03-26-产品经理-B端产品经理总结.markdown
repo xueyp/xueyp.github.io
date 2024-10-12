@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  "产品经理-B端产品经理总结"
-categories: 产品经理
-tags: 产品经理
+categories: 产品
+tags: 产品
 author: xueyp
 description:
 ---
