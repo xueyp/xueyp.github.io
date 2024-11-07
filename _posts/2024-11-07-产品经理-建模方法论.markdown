@@ -1,0 +1,17 @@
+---
+layout: post
+title: "产品经理-建模方法论"
+categories: 产品经理
+tags: 产品经理
+author: xueyp
+description:
+---
+
+## 简介
+
+![png]({{"/assets/images/2024/20241107_01.png"| absolute_url }})
+
+参考
+============
+
+版权声明：本文为博主原创文章，转载请注明出处。 [旭日酒馆](https：//xueyp.github.io/)
