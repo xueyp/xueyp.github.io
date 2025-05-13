@@ -1,0 +1,57 @@
+---
+layout: post
+title: "网络-成都移动单线复用配置"
+categories: 网络
+tags: 网络
+author: xueyp
+description:
+---
+
+经过断续的尝试和踩坑，终于配置好了成都移动单线复用的配置，MESH、IPTV直播和点播都ok了。
+
+设备，两台水星 SE106 PRO 交换机，全部端口支持2.5G，将来还可以通过SFP扩展万兆，一台才120多，划算。
+
+![png]({{"/assets/images/2025/20250513_01.png"| absolute_url }})
+
+端口1、4、5、6（vlan  1）default vlan用于lan网络(172.16.1.0/24)，用于有线mesh回程和接其他内网设备
+
+端口2（vlan  101）是internet口，弱电箱侧连光猫wan，客厅侧连接路由器wan
+
+端口3（vlan  102）是iptv口，弱电箱侧连接iptv，客厅侧连接机顶盒
+
+配置两个交换机管理ip分别为172.16.1.2，172.16.1.3，（root/passwd）通过路由器的wifi连接，或交换机1、4、5、6口可访问
+
+## 光猫配置
+
+获取root密码和删除TR069参考网络其他帖子，获取管理员权限后不反弹。
+
+internet连接截图保存之前的配置，然后修改为桥接。（若后续需要访问光猫管理界面(192.168.1.1)，则需要网线直连光猫口，或将主路由的上网方式从pppoe拨号改为DHCP，则能够访问）
+
+![png]({{"/assets/images/2025/20250513_02.png"| absolute_url }})
+
+IPTV保持原样。
+
+![png]({{"/assets/images/2025/20250513_03.png"| absolute_url }})
+
+确保IPTV的组播VLAN设为3900，不然无法看电视盒的电视频道直播。
+
+![png]({{"/assets/images/2025/20250513_04.png"| absolute_url }})
+
+确保IGMP监听是打开的。
+
+![png]({{"/assets/images/2025/20250513_05.png"| absolute_url }})
+
+## 交换机配置
+
+两个交换机同样配置，增加101和102两个vlan。
+
+![png]({{"/assets/images/2025/20250513_06.png"| absolute_url }})
+
+为了便于后续访问交换机管理界面，将【系统管理-固定ip】中的交换机管理ip地址改为lan网段中的，且将路由器的dhcp服务地址分配区间跳过交换机管理ip，避免联网设备地址冲突。
+
+
+
+参考
+============
+
+版权声明：本文为博主原创文章，转载请注明出处。 [旭日酒馆](https：//xueyp.github.io/)
